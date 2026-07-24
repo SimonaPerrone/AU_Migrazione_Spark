@@ -1,0 +1,8 @@
+.idea
+/src/main/resources/profiles/dev/spark_app.config
+/src/main/resources/profiles/coll/spark_app.config
+/src/main/resources/profiles/prod/spark_app.config
+/derby.log
+/pubblicazione_pcg.iml
+src/test/scala/it/eng/au/pubblicazionePcg/Test.scala
+src/test/resources/output/CLG/CLG2/CLG2_10238291008/2021/12/*

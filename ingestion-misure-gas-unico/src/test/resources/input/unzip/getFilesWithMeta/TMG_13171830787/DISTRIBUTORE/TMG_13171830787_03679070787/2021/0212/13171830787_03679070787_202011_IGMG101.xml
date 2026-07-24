@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<FlussoMisure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" cod_flusso="TAL">
+  <IdentificativiFlusso>
+    <piva_utente>03679070787</piva_utente>
+    <piva_distr>13171830787</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>15780078004787</cod_pdr>
+    <DatiTecnPdr>
+      <Trattamento>Y</Trattamento>
+      <matr_mis>MTSB038602149787</matr_mis>
+      <coeff_corr>1</coeff_corr>
+      <Raccolta>AC</Raccolta>
+    </DatiTecnPdr>
+    <DatiLettura>
+      <esito_val>V</esito_val>
+      <data_racc>26/11/2020</data_racc>
+      <let_tot_prel>000002787</let_tot_prel>
+    </DatiLettura>
+  </DatiPdr>
+  <DatiPdr>
+    <cod_pdr>01150000301787</cod_pdr>
+    <DatiTecnPdr>
+      <Trattamento>Y</Trattamento>
+      <matr_mis>4233787</matr_mis>
+      <coeff_corr>1.038787</coeff_corr>
+      <Racco

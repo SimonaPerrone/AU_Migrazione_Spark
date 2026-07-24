@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="D01R">
+  <IdentificativiFlusso>
+    <piva_utente>01234567890</piva_utente>
+    <piva_distr>11122233344</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>12345677889988</cod_pdr>
+    <tipo_rettifica>T</tipo_rettifica>
+    <mot_ret_lett>2</mot_ret_lett>
+    <DatiTecnPdrRett>
+      <Trattamento>M</Trattamento>
+      <matr_mis>QQQQQEEEEEZZZZZ99999</matr_mis>
+      <matr_conv>AAAAAXXXXXVVVVV44444</matr_conv>
+      <coeff_corr>1</coeff_corr>
+    </DatiTecnPdrRett>
+    <DatiLetturaRett>
+      <let_tot_prel>000000111</let_tot_prel>
+      <let_tot_conv>000000123</let_tot_conv>
+    </DatiLetturaRett>
+  </DatiPdr>
+</FlussoMisure>

@@ -1,0 +1,258 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="def_main_types.xsd"/>
+  <!-- Inizio sezione identificativi richiesta-->
+  <!-- ******* Elementi di base -->
+  <xs:complexType name="IdentificativiRichiestaBase">
+    <xs:sequence>
+      <xs:element name="piva_utente" type="PIVA"/>
+      <xs:element name="piva_distr" type="PIVA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdentificativiRichiestaIGMG">
+    <xs:sequence>
+      <xs:element name="piva_utente" type="PIVA_IGMG"/>
+      <xs:element name="piva_distr" type="PIVA_IGMG"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice pratica attivazione per voltura da SII -->
+  <xs:complexType name="IdentificativiRichiestaPratAtt">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_attivazione" type="CodPratAtt"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice pratica utente -->
+  <xs:complexType name="IdentificativiRichiestaCodUtente">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_utente" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta M01 0050 -->
+  <xs:complexType name="IdentificativiRichiestaM010050">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_utente" type="CodPratica"/>
+          <xs:element name="tipo_rich_cli_fin" type="TipoRichCliFin"/>
+          <xs:element name="cod_rich_cli_fin" type="Stringa15"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta M02 0050 -->
+  <xs:complexType name="IdentificativiRichiestaM020050">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_utente" type="CodPratica"/>
+          <xs:element name="rich_utente" type="Rich_Utente"/>
+          <xs:element name="categoria" type="CatCompl" minOccurs="0"/>
+          <xs:element name="tipo_rich_cli_fin" type="TipoRichCliFin"/>
+          <xs:element name="cod_rich_cli_fin" type="Stringa15"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta M01 0100 -->
+  <xs:complexType name="IdentificativiRichiesta0100">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_utente" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta M02 0130 -->
+  <xs:complexType name="IdentificativiRichiestaM020130">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_utente" type="CodPratica"/>
+          <xs:element name="ric_utente" type="Rich_Utente"/>
+          <xs:element name="motivazione" type="Stringa500"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo mese competenza-->
+  <xs:complexType name="IdentificativiRichiestaMeseComp">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="mese_comp" type="MeseAnno"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice pratica distributore -->
+  <xs:complexType name="IdentificativiRichiestaCodDistr">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodUtente">
+        <xs:sequence>
+          <xs:element name="cod_prat_distr" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCodDistrAppuntamento">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistr">
+        <xs:sequence>
+          <xs:element name="codice_appuntamento" type="Stringa15"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCodDistrOnly">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaBase">
+        <xs:sequence>
+          <xs:element name="cod_prat_distr" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice pratica distributore (opzionale) -->
+  <xs:complexType name="IdentificativiRichiestaCodDistrOpt">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodUtente">
+        <xs:sequence>
+          <xs:element name="cod_prat_distr" type="CodPratica" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta (con cod distrib opzionale) con l'inclusione del campo codice preventivo distributore-->
+  <xs:complexType name="IdentificativiRichiestaCodDistrOptCodPrev">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistrOpt">
+        <xs:sequence>
+          <xs:element name="cod_prev_distr" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta cod distributore con l'inclusione del campo data accertamento -->
+  <xs:complexType name="IdentificativiRichiestaCodDistrAcc">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistr">
+        <xs:sequence>
+          <xs:element name="data_accert" type="DataIta"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice preventivo distributore -->
+  <xs:complexType name="IdentificativiRichiestaCodPrev">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodUtente">
+        <xs:sequence>
+          <xs:element name="cod_prev_distr" type="CodPratica"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- *****************Estensioni per la sezione attivazione -->
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo data ricezione -->
+  <xs:complexType name="IdentificativiRichiestaAtt">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodUtente">
+        <xs:sequence>
+          <xs:element name="data_ricezione" type="DataIta"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta con l'inclusione del campo codice pratica distributore precedente -->
+  <xs:complexType name="IdentificativiRichiestaAtt40">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaAtt">
+        <xs:sequence>
+          <xs:element name="cod_prat_prec_distr" type="CodPratica" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Estensione Identificativi Richiesta Codice distributore con l'inclusione del campo data ricezione -->
+  <xs:complexType name="IdentificativiRichiestaCodDistrRicezione">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistr">
+        <xs:sequence>
+          <xs:element name="data_ricezione" type="DataIta"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- Fine sezione Identificativi Richiesta-->
+  <xs:complexType name="IdentificativiRichiestaCodDistrCA">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistrOpt">
+        <xs:sequence>
+          <xs:element name="decorrenza" type="DataIta"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCodDistrOptDec">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistrOpt">
+        <xs:sequence>
+          <xs:element name="decorrenza" type="DataIta"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCodDistrCAPrior">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistrCA">
+        <xs:sequence>
+          <xs:element name="priorita" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCA4">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodDistrOptDec">
+        <xs:sequence>
+          <xs:element name="motivazione" type="MotivazioneRichiesta"/>
+          <xs:element name="piva_utente_prec" type="PIVA" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IdentificativiRichiestaCodUtentePrior">
+    <xs:complexContent>
+      <xs:extension base="IdentificativiRichiestaCodUtente">
+        <xs:sequence>
+          <xs:element name="priorita" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UltimaIstanza">
+    <xs:sequence>
+      <xs:element name="serv_ui" type="OnOff"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+<!-- Identificativi Flusso IGMG-->
+<xs:complexType name="IdentificativiFlussoIGMGType">
+  <xs:sequence>
+    <xs:element name="Piva_Utente" type="PIVA_IGMG"/>
+    <xs:element name="Piva_Distributore" type="PIVA_IGMG"/>
+  </xs:sequence>
+</xs:complexType>
+</xs:schema>

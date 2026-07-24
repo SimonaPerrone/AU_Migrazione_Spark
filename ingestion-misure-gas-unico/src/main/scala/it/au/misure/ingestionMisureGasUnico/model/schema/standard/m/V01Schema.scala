@@ -1,0 +1,69 @@
+package it.au.misure.ingestionMisureGasUnico.model.schema.standard.m
+
+import it.au.misure.ingestionMisureGasUnico.model.schema.SchemaEnum
+
+object V01Schema extends SchemaEnum {
+  val
+  n_id_file
+  , n_id
+  , t_name_file
+  , d_caricamento
+  , local_file
+  , cod_servizio
+  , cod_flusso
+  , piva_distr
+  , piva_utente
+  , cod_prat_utente
+  , cod_prat_distr
+  , esito
+  , ver_laboratorio
+  , segnante
+  , sost_mis
+  , data_sostituzione
+  , matr_nuovo_mis
+  , segn_nuovo_mis
+  , classe_nuovo_mis
+  , n_cifre_nuovo_mis
+  , anno_fabb_nuovo_mis
+  , cause_lab
+  , data_verifica
+  , rif_resoconto
+  , cod_pdr
+  , matr_mis
+  , note
+  , anno
+  , mese
+  , mese_comp
+  , data_prest
+  , codprat_sii
+  , trattamento
+  , matr_conv
+  , n_cifre_mis
+  , n_cifre_conv
+  , coeff_corr
+  , freq_let
+  , acc_mis
+  , raccolta
+  , esito_raccolta
+  , causa_manc_raccolta
+  , mod_alt_racc
+  , dir_indennizzo
+  , pros_fin_inizio
+  , pros_fin_fine
+  , vol_annuo_sost
+  , classe_gruppo_mis
+  , pre_conv
+  , gruppo_mis_int
+  , tipo_lettura
+  , esito_val
+  , num_tentativi
+  , data_racc
+  , let_tot_prel
+  , let_tot_conv
+  , data_mis_eff
+  , segn_mis_eff
+  , segn_conv_eff
+  , ammissibilita
+  , annomese
+  = Value
+}

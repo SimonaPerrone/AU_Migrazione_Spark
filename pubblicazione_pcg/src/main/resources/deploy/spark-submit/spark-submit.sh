@@ -1,0 +1,21 @@
+spark-submit \
+	--class it.eng.au.pubblicazionePcg.Driver \
+	--master yarn \
+	--deploy-mode client \
+	--num-executors 60 \
+	--executor-cores 3 \
+	--executor-memory 21G \
+	--driver-memory 28G \
+	--driver-cores 4 \
+	--files ${isilon.path}/log4j.properties \
+	--conf spark.yarn.executor.memoryOverhead=4096 \
+	--conf "spark.driver.extraJavaOptions=-XX:hashCode=0 -Dlog4j.configuration=file:${isilon.path}/log4j.properties" \
+	--conf "spark.driver.extraJavaOptions=-XX:hashCode=0 -Dlog4j.configuration=file:${isilon.path}/log4j.properties" \
+	${isilon.path}/pubblicazione_pcg.jar \
+	-m ${month.offset} \
+	-s ${sbg.type} \
+	-n ${num.csv.lines} \
+	-d ${daily.consumption.table.name} \
+	-o ${isilon.output.path} \
+	-l ${hdfs.output.basepath.infoLog} \
+	-i ${sbgmisure-hdfs-path}

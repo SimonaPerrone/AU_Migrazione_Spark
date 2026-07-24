@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="TML">
+  <IdentificativiFlusso>
+    <piva_utente>01234567890</piva_utente>
+    <piva_distr>11122233344</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>00000000001234</cod_pdr>
+      <DatiTecnPdr>
+        <Trattamento>M</Trattamento>
+        <matr_mis>AAAAABBBBBCCCCC11122</matr_mis>
+        <matr_conv>BBBBBXXXXX1111122222</matr_conv>
+        <n_cifre_mis>6</n_cifre_mis>
+        <n_cifre_conv>6</n_cifre_conv>
+        <coeff_corr>1</coeff_corr>
+        <freq_let>3</freq_let>
+        <acc_mis>1</acc_mis>
+        <Raccolta>P</Raccolta>
+        <esito_raccolta>P</esito_raccolta>
+        <mod_alt_racc>N</mod_alt_racc>
+        <dir_indennizzo>P</dir_indennizzo>
+        <pros_fin_inizio>09/11/2020</pros_fin_inizio>
+        <pros_fin_fine>31/11/2020</pros_fin_fine>
+        <vol_annuo_sost>345.5</vol_annuo_sost>
+        <classe_gruppo_mis>G10</classe_gruppo_mis>
+        <pre_conv>SI</pre_conv>
+        <gruppo_mis_int>NO</gruppo_mis_int>     
+      </DatiTecnPdr>
+    <DatiLettura>
+      <tipo_lettura>E</tipo_lettura>
+      <num_tentativi>2</num_tentativi>
+      <data_racc>09/10/2020</data_racc>
+      <let_tot_prel>222332344</let_tot_prel>
+      <let_tot_conv>223456789</let_tot_conv>
+    </DatiLettura>
+  </DatiPdr>
+</FlussoMisure>

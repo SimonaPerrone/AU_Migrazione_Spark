@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlussoMisure cod_flusso="RSL">
+	<IdentificativiFlusso>
+		<piva_utente>01504440197</piva_utente>
+		<piva_distr>00489490011</piva_distr>
+	</IdentificativiFlusso>
+	<DatiPdr>
+		<cod_pdr>00881100239076</cod_pdr>
+		<tipo_rettifica>S</tipo_rettifica>
+		<mot_ret_lett>3</mot_ret_lett>
+		<data_prest>01/04/2024</data_prest>
+		<CodPrat_SII>SII202433477041</CodPrat_SII>
+		<DatiTecnPdrRett>
+			<Trattamento>Y</Trattamento>
+			<matr_mis>WTTS034019099048</matr_mis>
+			<coeff_corr>1.01737</coeff_corr>
+			<vol_annuo_rettificato>4.06948</vol_annuo_rettificato>
+		</DatiTecnPdrRett>
+		<DatiLetturaRett>
+			<let_tot_prel>000000078</let_tot_prel>
+		</DatiLetturaRett>
+	</DatiPdr>
+</FlussoMisure>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="def_dati_tecnici.xsd"/>
+  <xs:include schemaLocation="def_identificativi.xsd"/>
+  <xs:include schemaLocation="def_main_types.xsd"/>
+  <xs:element name="FlussoIGMR">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdentificativiFlusso" type="IdentificativiRichiestaIGMG"/>
+        <xs:element name="DatiPdR" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_PdR" type="CodicePdr"/>
+              <xs:element name="cau_int_mis" type="CausaleIntMisuratoreIGMR" minOccurs="0"/>
+              <xs:element name="cau_int_cor" type="CausaleIntCorrettoreIGMR" minOccurs="0"/>
+              <xs:element name="data_misura" type="DataIta" />
+			  <xs:element name="causa_ostativa" type="OnOff" minOccurs="0"/>
+			  <xs:element name="mot_ret_lett" type="MotivazioneRettLetturaIMGR" />
+              <xs:element name="Pre-int" type="Pre-intIGMR" minOccurs="0"/>
+              <xs:element name="Post-int" type="Post-intIGMR" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CodFlusso" type="TipoCodFlussoIntGrupMis" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

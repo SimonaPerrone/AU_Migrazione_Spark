@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoIGMR xmlns:xs="http://www.w3.org/2001/XMLSchema" CodFlusso="IGMR">
+  <IdentificativiFlusso>
+    <piva_utente>12345678901</piva_utente>
+    <piva_distr>12345678901</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdR>
+    <cod_PdR>12345600002233</cod_PdR>
+    <cau_int_mis>1</cau_int_mis>
+    <cau_int_cor>1</cau_int_cor>
+    <data_misura>12/12/2020</data_misura>
+    <causa_ostativa>NO</causa_ostativa>
+	<mot_ret_lett>2</mot_ret_lett>
+    <Pre-int>
+      <matr_mis>1234aaabbb123456cccc</matr_mis>
+      <pre_conv>SI</pre_conv>
+      <matr_conv></matr_conv>
+      <coeff_corr>2</coeff_corr>
+      <let_misuratore>123456789</let_misuratore>
+      <tipo_let>E</tipo_let>
+      <rinuncia_verifica>NO</rinuncia_verifica>
+    </Pre-int>     
+    <Post-int>
+      <matr_mis>qwe12344445556667788</matr_mis>
+      <classe_gruppo_mis>G4</classe_gruppo_mis>
+      <tipo_mis>02</tipo_mis>
+      <telegestione>SI</telegestione>
+      <pre_conv>NO</pre_conv>
+      <coeff_corr>1</coeff_corr>
+      <acc_mis>3</acc_mis>
+      <n_cifre_mis>12</n_cifre_mis>
+      <anno_fabb_mis>2017</anno_fabb_mis>
+      <data_inst_mis>07/08/2019</data_inst_mis>
+      <let_misuratore>234222222</let_misuratore>
+      <let_correttore>233456211</let_correttore>        
+     </Post-int>
+  </DatiPdR>
+</FlussoIGMR>

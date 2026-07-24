@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlussoMisure cod_flusso="RSL">
+    <IdentificativiFlusso>
+        <piva_utente>12883420155</piva_utente>
+        <piva_distr>12883450152</piva_distr>
+    </IdentificativiFlusso>
+    <DatiPdr>
+        <cod_pdr>05260200004219</cod_pdr>
+        <tipo_rettifica>S</tipo_rettifica>
+        <mot_ret_lett>3</mot_ret_lett>
+        <data_prest>01/06/2020</data_prest>
+        <CodPrat_SII>SWG219075900000</CodPrat_SII>
+        <DatiTecnPdrRett>
+            <Trattamento>Y</Trattamento>
+            <matr_mis>FIOR034020082541</matr_mis>
+            <coeff_corr>1.001381</coeff_corr>
+            <vol_annuo_rettificato>1109.376</vol_annuo_rettificato>
+        </DatiTecnPdrRett>
+    </DatiPdr>
+</FlussoMisure>

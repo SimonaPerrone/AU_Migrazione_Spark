@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="SM1">
+  <IdentificativiFlusso>
+    <piva_utente>01234567890</piva_utente>
+    <piva_distr>11122233344</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>00000000001234</cod_pdr>
+      <DatiTecnPdr>
+        <Trattamento>G</Trattamento>
+        <coeff_corr>1</coeff_corr>
+        <Raccolta>T</Raccolta>
+        <classe_gruppo_mis>G10</classe_gruppo_mis>
+        <pre_conv>SI</pre_conv>
+        <gruppo_mis_int>NO</gruppo_mis_int>     
+      </DatiTecnPdr>
+    <DatiLettura>
+      <tipo_lettura>S</tipo_lettura>
+      <let_tot_prel>000000333</let_tot_prel>
+      <let_tot_conv>000000355</let_tot_conv>
+    </DatiLettura>
+  </DatiPdr>
+</FlussoMisure>

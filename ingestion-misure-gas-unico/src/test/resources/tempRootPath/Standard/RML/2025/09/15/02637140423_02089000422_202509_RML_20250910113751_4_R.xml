@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<FlussoMisure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" cod_flusso="RML">
+  <IdentificativiFlusso>
+    <piva_utente>02089000422</piva_utente>
+    <piva_distr>02637140423</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>08450000083737</cod_pdr>
+    <data_comp>05/09/2025</data_comp>
+    <tipo_rettifica>T</tipo_rettifica>
+    <mot_ret_lett>5</mot_ret_lett>
+    <data_prest>05/09/2025</data_prest>
+    <DatiTecnPdrRett>
+      <Trattamento>M</Trattamento>
+      <matr_mis>MIT0030509066185</matr_mis>
+      <coeff_corr>1.019145</coeff_corr>
+      <freq_let>4</freq_let>
+    </DatiTecnPdrRett>
+    <DatiLetturaRett>
+      <data_racc>05/09/2025</data_racc>
+      <let_tot_prel>000000671</let_tot_prel>
+      <vol_ric>87</vol_ric>
+      <ini_periodo>22/12/2024</ini_periodo>
+      <fine_periodo>05/09/2025</fine_periodo>
+    </DatiLetturaRett>
+  </DatiPdr>
+</FlussoMisure>

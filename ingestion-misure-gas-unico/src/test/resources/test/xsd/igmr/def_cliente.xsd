@@ -1,0 +1,275 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="def_main_types.xsd"/>
+	<!-- Inizio sezione Cliente-->
+	<xs:complexType name="AnagraficaClienteBase">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="cognome" type="Cognome"/>
+					<xs:element name="nome" type="Nome"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="rag_soc" type="RagioneSociale"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Estensione tipo base con aggiunta del numero di telefono -->
+	<xs:complexType name="AnagraficaClienteTel">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteBase">
+				<xs:sequence>
+					<xs:element name="tel" type="Telefono"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione tipo cliente telefono con aggiunta del codice fiscale -->
+	<xs:complexType name="AnagraficaClienteTelCF">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteTel">
+				<xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="cf" type="CodiceFiscale"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:element name="piva" type="PIVA"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione tipo cliente base con aggiunta del codice fiscale -->
+	<xs:complexType name="AnagraficaClienteCF">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteBase">
+				<xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="cf" type="CodiceFiscale"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:element name="piva" type="PIVA"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione tipo cliente base per Switch-->
+	<xs:complexType name="AnagraficaClienteSwitch">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteBase">
+				<xs:choice maxOccurs="2">
+					<xs:element name="cf" type="CodiceFiscale"/>
+					<xs:element name="piva" type="PIVA"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Definizione degli elementi di recapito -->
+	<xs:complexType name="Recapito">
+		<xs:sequence>
+			<xs:element name="toponimo" type="Toponimo"/>
+			<xs:element name="via" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="istat" type="CodIstat"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+			<xs:element name="nazione" type="Stringa100"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Codice fiscale / P.IVA opz -->
+	<xs:complexType name="CF_PIVA">
+		<xs:choice maxOccurs="2">
+			<xs:element name="cf" type="CodiceFiscale"/>
+			<xs:element name="piva" type="PIVA"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Definizione degli elementi di recapito del beneficiario -->
+	<xs:complexType name="IndirizzoBeneficiario">
+		<xs:sequence>
+			<xs:element name="toponimo" type="Toponimo"/>
+			<xs:element name="via" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="istat" type="CodIstat"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClienteFinaleBase">
+		<xs:sequence>
+			<xs:element name="Anagrafica" type="AnagraficaClienteBase"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClienteFinale">
+		<xs:sequence>
+			<xs:element name="Anagrafica" type="AnagraficaClienteTelCF"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClienteFinaleNoCF">
+		<xs:sequence>
+			<xs:element name="Anagrafica" type="AnagraficaClienteTel"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ClienteFinaleRecapito">
+		<xs:sequence>
+			<xs:element name="Anagrafica" type="AnagraficaClienteTelCF"/>
+			<xs:element name="Recapito" type="Recapito" minOccurs="0"/>
+			<xs:element name="dati_fatt" type="OnOff"/>
+			<xs:element name="AnagraficaFatt" type="AnagraficaClienteBase" minOccurs="0"/>
+			<xs:element name="RecapitoFatt" type="Recapito" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiFatturazione">
+		<xs:sequence>
+			<xs:element name="dati_fatt" type="OnOff"/>
+			<xs:element name="AnagraficaFatt" type="AnagraficaClienteBase" minOccurs="0"/>
+			<xs:element name="RecapitoFatt" type="Recapito" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione cliente -->
+	<!-- Inizio sezione appuntamento -->
+	<xs:complexType name="ComunicazioneAppuntamento">
+		<xs:sequence>
+			<xs:element name="codice_appuntamento" type="Stringa15"/>
+			<xs:element name="data_app" type="DataIta"/>
+			<xs:element name="fascia_oraria" type="FasciaOraria"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Appuntamento">
+		<xs:sequence>
+			<xs:element name="codice_appuntamento" type="Stringa15"/>
+			<xs:element name="data_app" type="DataIta"/>
+			<xs:element name="fascia_oraria" type="FasciaOraria"/>
+			<xs:element name="stima_durata" type="DurataAppuntamento"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppuntamentoBase">
+		<xs:sequence>
+			<xs:element name="data_app" type="DataIta"/>
+			<xs:element name="fascia_oraria" type="FasciaOraria"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppuntamentoRichiestaModifica">
+		<xs:sequence>
+			<xs:element name="data_app" type="DataIta"/>
+			<xs:element name="fascia_oraria" type="FasciaOraria"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento -->
+	<!-- Inizio sezione appuntamento con data limite -->
+	<xs:complexType name="AppuntamentoDataLimite">
+		<xs:complexContent>
+			<xs:extension base="Appuntamento">
+				<xs:sequence>
+					<xs:element name="data_limite_modifica" type="DataIta"/>
+					<xs:element name="ora_limite_validita" type="Ora"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento con data limite  -->
+	<!-- Inizio sezione appuntamento con data limite e gestione appuntamento -->
+	<xs:complexType name="AppuntamentoGestione">
+		<xs:sequence>
+			<xs:element name="gest_app" type="GestioneAppuntamento"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento con data limite e gestione appuntamento  -->
+	<!-- Inizio sezione appuntamento conferma utente società di distribuzione -->
+	<xs:complexType name="AppuntamentoEsitoConferma">
+		<xs:sequence>
+			<xs:element name="data_app" type="DataIta"/>
+			<xs:element name="fascia_oraria" type="FasciaOraria"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento -->
+	<!-- Inizio sezione appuntamento conferma utente società di distribuzione -->
+	<xs:complexType name="AppuntamentoEsitoDistributore">
+		<xs:sequence>
+			<xs:element name="esito_conferma" type="Conferma"/>
+			<xs:element name="cod_causale" type="CausaleKOConfermaAppuntamento" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AppuntamentoModificaEsitoDistributore">
+		<xs:sequence>
+			<xs:element name="esito_conferma" type="EsitoBase"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento -->
+	<!-- Inizio sezione appuntamento conferma società di distribuzione -->
+	<xs:complexType name="AppuntamentoEsitoUtente">
+		<xs:sequence>
+			<xs:element name="esito_conferma" type="EsitoAppuntamento"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione appuntamento conferma società di distribuzione -->
+	<xs:complexType name="Referente">
+		<xs:sequence>
+			<xs:element name="cognome" type="Cognome"/>
+			<xs:element name="nome" type="Nome"/>
+			<xs:element name="email" type="Stringa50" minOccurs="0"/>
+			<xs:element name="tel" type="Telefono"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Estensione tipo cliente base per Cessazione Amministrativa-->
+	<xs:complexType name="AnagraficaClienteSwitchAltriRecapiti">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteSwitch">
+				<xs:sequence>
+					<xs:element name="SedeLegale_Indirizzo" type="Recapito"/>
+					<xs:element name="IndirizzoEsazione" type="Recapito" minOccurs="0"/>
+					<xs:element name="referente" type="Referente" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AgevolazioniFiscali">
+		<xs:sequence>
+			<xs:element name="agevolazoni_iva" type="OnOff"/>
+			<xs:element name="iva" type="Stringa255" minOccurs="0"/>
+			<xs:element name="agevolazoni_altro" type="OnOff"/>
+			<xs:element name="altre_imp" type="Stringa255" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnagraficaClienteCFPIVA">
+		<xs:choice maxOccurs="2">
+			<xs:element name="cf" type="CodiceFiscale"/>
+			<xs:element name="piva" type="PIVA"/>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Estensione tipo cliente base per Cessazione Amministrativa-->
+	<xs:complexType name="AnagraficaClienteCFPIVARagSoc">
+		<xs:complexContent>
+			<xs:extension base="AnagraficaClienteCFPIVA">
+				<xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="cognome" type="Cognome"/>
+							<xs:element name="nome" type="Nome"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:element name="rag_soc" type="RagioneSociale"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Anagrafica Cliente M01 0050-->
+	<xs:complexType name="AnagraficaClienteM010050">
+		<xs:sequence>
+			<xs:element name="cognome" type="Cognome" minOccurs="0"/>
+			<xs:element name="nome" type="Nome" minOccurs="0"/>
+			<xs:element name="rag_soc" type="RagioneSociale" minOccurs="0"/>
+			<xs:element name="tel" type="Telefono" minOccurs="0"/>
+			<xs:element name="cf_titolare" type="CodiceFiscale" minOccurs="0"/>
+			<xs:element name="piva_titolare" type="PIVA" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

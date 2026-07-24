@@ -1,0 +1,9 @@
+readme per versioni script dentro cartella /report
+
+script: descrizione
+
+merge_pdr_reports.sh: script di aggregazione iniziale sviluppato da Giuseppe Cancelliere
+merge_pdr_reports_v3.sh: script di aggregazione e pubblicazione report sviluppato da Nicola Schiavon e rilasciato come prima versione in produzione al 01/01/2021
+merge_pdr_reports_v3.1.sh: script di aggregazione e pubblicazione e tracking report sviluppato da Nicola Schiavon e rilasciato in produzione al 21/01/2021
+merge_pdr_reports_v3.2.sh: partendo da merge_pdr_reports_v3.1.sh è stata sviluppata una feature di esempio per mostrare tutte le righe di ammissibilità e non solo quelle in distinct (sviluppato da Nicola Schiavon mai rilasciato in produzione)
+merge_pdr_reports_v4.sh: partendo da merge_pdr_reports_v3.sh è stata sviluppata una feature di esempio per lo spit dei report in multipli chunks in base alla dimensione (sviluppato da Nicola Schiavon mai rilasciato in produzione)

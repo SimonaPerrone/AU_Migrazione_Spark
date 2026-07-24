@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="def_main_types.xsd"/>
+	<!-- Inizio sezione Documenti-->
+	<xs:complexType name="Documentazione">
+		<xs:sequence>
+			<xs:element name="ind_distr" type="Stringa200"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentazioneInviata">
+		<xs:sequence>
+			<xs:element name="rif_com_inviata" type="Stringa255"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentazioneMancante">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="doc_mancante" type="Stringa255"/>
+				<xs:element name="note" type="Stringa255" minOccurs="0"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="rif_com_inviata" type="Stringa255"/>
+			</xs:sequence>
+		</xs:choice>
+	</xs:complexType>
+	<!-- Fine sezione Documenti -->
+	<!-- Inizio sezione Imposte -->
+	<xs:complexType name="Imposte">
+		<xs:sequence>
+			<xs:element name="iva" type="Intero"/>
+			<xs:element name="imp" type="Stringa255" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType> <!-- Fine sezione Imposte-->
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure  xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="S40R">
+  <IdentificativiFlusso>
+    <piva_utente>12345678901</piva_utente>
+    <piva_distr>01234567890</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>11122233345678</cod_pdr>
+    <tipo_rettifica>T</tipo_rettifica>
+    <mot_ret_lett>1</mot_ret_lett>
+    <data_prest>12/05/2020</data_prest>
+    <DatiTecnPdrRett>
+      <Trattamento>M</Trattamento>
+      <matr_mis>qqqqqwwwwwzzzzz11111</matr_mis>
+      <matr_conv>aaaaabbbbb1111122222</matr_conv>
+      <coeff_corr>1</coeff_corr>
+    </DatiTecnPdrRett>
+    <DatiLetturaRett>
+      <let_tot_prel>000000234</let_tot_prel>
+      <let_tot_conv>000000256</let_tot_conv>
+    </DatiLetturaRett>
+  </DatiPdr> 
+</FlussoMisure>
+  

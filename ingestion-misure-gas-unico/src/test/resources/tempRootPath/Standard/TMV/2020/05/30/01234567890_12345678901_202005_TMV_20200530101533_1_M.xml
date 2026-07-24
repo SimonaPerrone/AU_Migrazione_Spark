@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure  xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="TMV">
+  <IdentificativiFlusso>
+    <piva_utente>12345678901</piva_utente>
+    <piva_distr>01234567890</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>11122233345678</cod_pdr>
+    <data_prest>28/05/2020</data_prest>
+    <CodPrat_SII>SII201905000000</CodPrat_SII>
+    <DatiTecnPdr>
+      <Trattamento>M</Trattamento>
+      <n_cifre_mis>9</n_cifre_mis>
+      <n_cifre_conv>9</n_cifre_conv>
+      <coeff_corr>1</coeff_corr>
+      <Raccolta>V</Raccolta>
+      <vol_annuo_sost>123.12</vol_annuo_sost>
+      <classe_gruppo_mis>G6</classe_gruppo_mis>
+      <pre_conv>NO</pre_conv>
+      <gruppo_mis_int>NO</gruppo_mis_int>
+    </DatiTecnPdr>
+    <DatiLettura>
+      <tipo_lettura>E</tipo_lettura>
+      <data_racc>30/05/2020</data_racc>
+      <let_tot_prel>000123456</let_tot_prel>
+      <data_mis_eff>28/05/2020</data_mis_eff>
+    </DatiLettura>
+  </DatiPdr> 
+</FlussoMisure>
+  

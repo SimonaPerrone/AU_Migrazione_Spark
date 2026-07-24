@@ -1,0 +1,968 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="def_cliente.xsd"/>
+	<!-- Inizio sezione Dati Tecnici -->
+	<xs:complexType name="DatiTecniciBase">
+		<xs:sequence>
+			<xs:element name="pot_tot_util" type="Potenza"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciPunti">
+		<xs:sequence>
+			<xs:element name="n_pdr" type="PuntiGas"/>
+			<xs:element name="pot_tot_util" type="Potenza"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- PdR Morosita -->
+	<xs:complexType name="PdrMorosita">
+		<xs:sequence>
+			<xs:element name="pdr_interrotti" type="Lista"/>
+			<xs:element name="pdr_ripristinati" type="Lista"/>
+			<xs:element name="tot_imp_da_pagare" type="Importi"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- PdR Base -->
+	<xs:complexType name="PdrBase">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrFornitura">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="stato_pdre01" type="StatoPdRE01"/>
+			<xs:element name="Fornitura" type="Fornitura" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrMultiple">
+		<xs:sequence>
+			<xs:element name="data_esecuzione" type="DataIta" minOccurs="0"/>
+			<xs:element name="acc_mis" type="TipoAccessibilita"/>
+			<xs:element name="cod_remi" type="CodiceREMI"/>
+			<xs:element name="matr_mis" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="stato_mis" type="StatoContatoreEsteso" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="sost_mis" type="OnOff"/>
+			<xs:element name="matr_nuovo_mis" type="Matricola" minOccurs="0"/>
+			<xs:element name="n_cifre_nuovo_mis" type="Intero" minOccurs="0"/>
+			<xs:element name="classe_nuovo_mis" type="Stringa10" minOccurs="0"/>
+			<xs:element name="anno_fabb_nuovo_mis" type="Anno" minOccurs="0"/>
+			<xs:element name="stato_nuovo_mis" type="StatoContatore" minOccurs="0"/>
+			<xs:element name="segn_nuovo_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="sost_conv" type="OnOff"/>
+			<xs:element name="matr_nuovo_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_nuovo_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="PdR" type="PdrFornitura" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrMatrTent">
+		<xs:sequence>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_lettura" type="DataIta" minOccurs="0"/>
+			<xs:element name="data_tentativo" type="DataIta" minOccurs="0"/>
+			<xs:element name="motivazione" type="Stringa255" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciM010150">
+		<xs:sequence>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_lettura" type="DataIta" minOccurs="0"/>
+			<xs:element name="motivazione" type="Stringa500" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrMatr">
+		<xs:complexContent>
+			<xs:extension base="PdrBase">
+				<xs:sequence>
+					<xs:element name="matr_mis" type="Matricola"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrMatrOpt">
+		<xs:complexContent>
+			<xs:extension base="PdrBase">
+				<xs:sequence>
+					<xs:element name="matr_mis" type="Matricola" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrMatrConv">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciM010050">
+		<xs:complexContent>
+			<xs:extension base="PdrBase"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione tipo PdrMatrOPt con l'aggiunta del dato potenzialità totale utilizzazione -->
+	<xs:complexType name="PdrMatOptPotTotale">
+		<xs:complexContent>
+			<xs:extension base="PdrMatrOpt">
+				<xs:sequence>
+					<xs:element name="pot_tot_util" type="Potenza"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione Pdr base con l'aggiunta della data riattivazione e info segnante -->
+	<xs:complexType name="PdrDataRiattivazioneSegnante">
+		<xs:complexContent>
+			<xs:extension base="PdrMatrOpt">
+				<xs:sequence>
+					<xs:element name="data_attivazione" type="DataIta"/>
+					<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataDisattivazioneSegnante">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_disattivazione" type="DataIta"/>
+					<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataSostituzione">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="anno_fabb_mis" type="Anno"/>
+					<xs:element name="data_prev_sost" type="DataIta"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione PdrDataRiattivazione con l'aggiunta della matricola convertitore e anno misuratore -->
+	<xs:complexType name="PdrDataAttivazione">
+		<xs:complexContent>
+			<xs:extension base="PdrDataRiattivazioneSegnante">
+				<xs:sequence>
+					<xs:element name="anno_fabb_mis" type="Anno" minOccurs="0"/>
+					<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione PdrDataRiattivazione con l'aggiunta della matricola misuratore -->
+	<xs:complexType name="PdrDataSospensione">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_sospensione" type="DataIta"/>
+					<xs:element name="segn_mis" type="Segnante"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+					<xs:element name="stato_mis" type="StatoContatoreSosp"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataAnnullamento">
+		<xs:complexContent>
+			<xs:extension base="PdrBase">
+				<xs:sequence>
+					<xs:element name="data_annul" type="DataIta"/>
+					<xs:element name="causale_annul" type="Stringa255"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione PdrDataSospensione con l'aggiunta delle info sulle rimozioni convertitore/misuratore -->
+	<xs:complexType name="PdrDataSospensioneRimozione">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_sospensione" type="DataIta"/>
+					<xs:element name="segn_mis" type="Segnante"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+					<xs:element name="rimoz_mis" type="OnOff"/>
+					<xs:element name="rimoz_conv" type="OnOff"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Estensione PdrDataAttivazione con l'aggiunta delle info sull'installazione misuratore/convertitore -->
+	<xs:complexType name="PdrDataAttivazioneInstallazione">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="segn_mis" type="Segnante"/>
+					<xs:element name="data_attivazione" type="DataIta"/>
+					<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+					<xs:element name="inst_mis" type="OnOff"/>
+					<xs:element name="inst_conv" type="OnOff"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataSwitch">
+		<xs:complexContent>
+			<xs:extension base="PdrBase">
+				<xs:sequence>
+					<xs:element name="data_switch" type="DataIta"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrREMI">
+		<xs:complexContent>
+			<xs:extension base="PdrBase">
+				<xs:sequence>
+					<xs:element name="cod_remi" type="CodiceREMI" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrREMIInt">
+		<xs:complexContent>
+			<xs:extension base="PdrREMI">
+				<xs:sequence>
+					<xs:element name="cau_int_mis" type="CausaleIntMisuratore"/>
+					<xs:element name="cau_int_cor" type="CausaleIntCorrettore" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrLetturaValid">
+		<xs:sequence>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_lettura" type="DataIta" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrLettura">
+		<xs:sequence>
+			<xs:element name="segn_mis" type="Segnante"/>
+			<xs:element name="data_lettura" type="DataIta"/>
+			<xs:element name="segn_cliente" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_lettura_cliente" type="DataIta" minOccurs="0"/>
+			<xs:element name="tipologia_lettura" type="TipologiaLettura"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PdrLetturaNuovoTent">
+		<xs:complexContent>
+			<xs:extension base="PdrLettura">
+				<xs:sequence>
+					<xs:element name="nuovo_tentativo" type="OnOff"/>
+					<xs:element name="appuntamento" type="OnOff" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrLetturaM010050">
+		<xs:complexContent>
+			<xs:extension base="PdrLettura">
+				<xs:sequence>
+					<xs:element name="nuovo_tentativo" type="OnOff"/>
+					<xs:element name="appuntamento" type="OnOff" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ** Sezione Misura   -->
+	<xs:complexType name="Convertitore">
+		<xs:sequence>
+			<xs:element name="pre_conv" type="OnOff"/>
+			<xs:element name="gruppo_mis_int" type="OnOff" minOccurs="0"/>
+			<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ***************Sezione prelievo -->
+	<xs:complexType name="ProfiloPrelievo">
+		<xs:sequence>
+			<xs:element name="cat_uso" type="CategoriaUso"/>
+			<xs:element name="classe_prelievo" type="ClassePrelievo"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProfiloPrelievoAllineamento">
+		<xs:sequence>
+			<xs:element name="cod_prof_prel_std" type="CodProfPrelStd"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Prelievo">
+		<xs:sequence>
+			<xs:element name="Profilo" type="ProfiloPrelievo"/>
+			<xs:element name="prel_annuo_prev" type="PrelievoAnnuoPrevisto"/>
+			<xs:element name="pot_max_ric" type="Potenza"/>
+			<xs:element name="pot_tot_inst" type="Potenza" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServizioEnergetico">
+		<xs:sequence>
+			<xs:element name="erog_servizio_energ" type="OnOff"/>
+			<xs:element name="AnagraficaBeneficiario" type="AnagraficaClienteTel" minOccurs="0"/>
+			<xs:element name="IndirizzoBeneficiario" type="IndirizzoBeneficiario" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciPrelAtt">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="tipo_pdr" type="TipologiaPdR"/>
+					<xs:element name="n_cifre_mis" type="Intero" minOccurs="0"/>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="anno_fabb_mis" type="Anno"/>
+					<xs:element name="segn_mis_avvio" type="Segnante"/>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="matr_conv" type="Matricola"/>
+							<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+							<xs:element name="segn_conv" type="Segnante"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:element name="coeff_corr" type="Coefficiente"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:element name="acc_mis" type="TipoAccessibilita" minOccurs="0"/>
+					<xs:element name="cod_profilo_prel" type="Stringa5" minOccurs="0"/>
+					<xs:element name="cod_remi" type="CodiceREMI"/>
+					<xs:element name="press_misura" type="Pressione" minOccurs="0"/>
+					<xs:element name="max_prelievo_ora" type="Potenza"/>
+					<xs:element name="Prelievo" type="ProfiloPrelievo"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciSwitchPdr">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="tipo_pdr" type="TipologiaPdR"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciSwitch">
+		<xs:sequence>
+			<xs:element name="cod_profilo_prel_std" type="CodProfPrelStd"/>
+			<xs:element name="prel_annuo" type="PrelievoAnnuoPrevisto"/>
+			<xs:element name="max_prelievo_ora" type="Potenza"/>
+			<xs:element name="cod_remi" type="CodiceREMI"/>
+			<xs:element name="press_misura" type="Pressione" minOccurs="0"/>
+			<xs:element name="data_scad_ds" type="DataIta"/>
+			<xs:element name="info_bonus" type="BonusSwitch"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciSwitchVendUsc">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_deco_switch" type="DataIta"/>
+					<xs:element name="vol_annuo_sost" type="Volume"/>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="n_cifre_mis" type="Intero"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiLetturaSwitchVend">
+		<xs:sequence>
+			<xs:element name="segn_mis_sost" type="Segnante"/>
+			<xs:element name="tipo_lettura" type="LetturaEffStiAut"/>
+			<xs:element name="pre_conv" type="OnOff"/>
+			<xs:element name="gruppo_mis_int" type="OnOff" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_mis_eff" type="DataIta"/>
+			<xs:element name="segn_mis_eff" type="Segnante" minOccurs="0"/>
+			<xs:element name="segn_conv_eff" type="Segnante" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciVolt">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_att_contr" type="DataIta"/>
+					<xs:element name="vol_annuo_sost" type="Volume"/>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="n_cifre_mis" type="Intero"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiLetturaVolt">
+		<xs:sequence>
+			<xs:element name="segn_mis_sost" type="Segnante"/>
+			<xs:element name="tipo_lettura" type="LetturaEffStiAut"/>
+			<xs:element name="pre_conv" type="OnOff"/>
+			<xs:element name="gruppo_mis_int" type="OnOff" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="data_mis_eff" type="DataIta"/>
+			<xs:element name="segn_mis_eff" type="Segnante" minOccurs="0"/>
+			<xs:element name="segn_conv_eff" type="Segnante" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciVer">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+					<xs:element name="sost_mis" type="OnOff"/>
+					<xs:element name="data_sostituzione" type="DataIta" minOccurs="0"/>
+					<xs:element name="matr_nuovo_mis" type="Matricola" minOccurs="0"/>
+					<xs:element name="segn_nuovo_mis" type="Segnante" minOccurs="0"/>
+					<xs:element name="classe_nuovo_mis" type="Stringa10" minOccurs="0"/>
+					<xs:element name="n_cifre_nuovo_mis" type="Intero" minOccurs="0"/>
+					<xs:element name="anno_fabb_nuovo_mis" type="Anno" minOccurs="0"/>
+					<xs:element name="cause_lab" type="Stringa255" minOccurs="0"/>
+					<xs:element name="data_verifica" type="DataIta"/>
+					<xs:element name="rif_resoconto" type="Stringa255" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciVerMin">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="data_verifica" type="DataIta"/>
+					<xs:element name="segn_verifica" type="Segnante" minOccurs="0"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+					<xs:element name="rif_resoconto" type="Stringa255" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciPrel">
+		<xs:complexContent>
+			<xs:extension base="PdrMatrOpt">
+				<xs:sequence>
+					<xs:element name="tipo_pdr" type="TipologiaPdR"/>
+					<xs:element name="Profilo" type="Prelievo"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataVerificaBP">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="aliment_BP" type="Conferma"/>
+					<xs:element name="data_ultima_ver" type="DataIta" minOccurs="0"/>
+					<xs:element name="costo" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PdrDataVerifica">
+		<xs:complexContent>
+			<xs:extension base="PdrMatr">
+				<xs:sequence>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="anno_fabb_mis" type="Anno"/>
+					<xs:element name="data_ultima_ver" type="DataIta" minOccurs="0"/>
+					<xs:element name="costo_loco" type="xs:double"/>
+					<xs:element name="costo_lab" type="xs:double"/>
+					<xs:element name="data_max_conf" type="DataIta"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ResponsabileVerifica">
+		<xs:sequence>
+			<xs:element name="cognome" type="Cognome"/>
+			<xs:element name="nome" type="Nome"/>
+			<xs:element name="tel_1" type="Telefono"/>
+			<xs:element name="tel_2" type="Telefono" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponsabileVerificaStima">
+		<xs:sequence>
+			<xs:element name="stima_tempi" type="DataIta"/>
+			<xs:element name="ResponsabileVerifica" type="ResponsabileVerifica"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Fine sezione Dati Tecnici -->
+	<xs:complexType name="ReclamoBase">
+		<xs:sequence>
+			<xs:element name="cod_reclamo" type="Stringa30"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReclamoRif">
+		<xs:complexContent>
+			<xs:extension base="ReclamoBase">
+				<xs:sequence>
+					<xs:element name="rif_reclamo" type="Stringa255" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- Tipo base anagrafica fornitura -->
+	<xs:complexType name="Fornitura">
+		<xs:sequence>
+			<xs:element name="toponimo" type="Toponimo"/>
+			<xs:element name="via" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="scala" type="Stringa10" minOccurs="0"/>
+			<xs:element name="piano" type="Stringa10" minOccurs="0"/>
+			<xs:element name="int" type="Stringa10" minOccurs="0"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="istat" type="CodIstat"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Immobile">
+		<xs:sequence>
+			<xs:element name="toponimo" type="Toponimo"/>
+			<xs:element name="via" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FornituraUbic">
+		<xs:sequence>
+			<xs:element name="UbicazionePdr" type="Fornitura"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FornituraImm">
+		<xs:sequence>
+			<xs:element name="UbicazioneImm" type="Immobile"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FornituraUbicImm">
+		<xs:sequence>
+			<xs:element name="UbicazionePdr" type="Fornitura"/>
+			<xs:element name="UbicazioneImm" type="Immobile" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Tipo base anagrafica fornitura per allineamento dati-->
+	<xs:complexType name="FornituraAllineamento">
+		<xs:sequence>
+			<xs:element name="toponimo" type="Toponimo"/>
+			<xs:element name="via" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="istat" type="CodIstat"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Tipo base anagrafica fornitura ubicazione pdr-->
+	<xs:complexType name="FornituraUbic1">
+		<xs:sequence>
+			<xs:element name="nomestrada" type="Via"/>
+			<xs:element name="civ" type="NumeroCivico"/>
+			<xs:element name="cap" type="CAP"/>
+			<xs:element name="comune" type="Comune"/>
+			<xs:element name="prov" type="Provincia"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Informazioni Bonus Gas -->
+	<xs:complexType name="InfoBonus">
+		<xs:sequence>
+			<xs:element name="data_ini" type="DataIta"/>
+			<xs:element name="data_fine" type="DataIta"/>
+			<xs:element name="mese_rin" type="Mese"/>
+			<xs:element name="importo" type="Importi"/>
+			<xs:element name="tipo_bonus" type="TipoBonus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InfoBonusNoImporto">
+		<xs:sequence minOccurs="0">
+			<xs:element name="data_ini" type="DataIta"/>
+			<xs:element name="data_fine" type="DataIta"/>
+			<xs:element name="mese_rin" type="Mese"/>
+			<xs:element name="tipo_bonus" type="TipoBonus"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BonusSwitch">
+		<xs:sequence>
+			<xs:element name="bonusGas" type="OnOff"/>
+			<xs:element name="DatiBonus" type="InfoBonusNoImporto" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciCA1">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente" minOccurs="0"/>
+			<xs:element name="tipo_lettura" type="LetturaEffSti" minOccurs="0"/>
+			<xs:element name="data_ril" type="DataIta" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Pratica">
+		<xs:sequence>
+			<xs:element name="cod_prat_utente" type="CodPratica"/>
+			<xs:element name="cod_prat_distr" type="CodPratica"/>
+			<xs:element name="compr_CAM" type="OnOff"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapacitaImpianto">
+		<xs:sequence>
+			<xs:element name="cod_remi" type="CodiceREMI"/>
+			<xs:element name="CAM" type="xs:double"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Pratica" type="Pratica"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Capacita">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Impianto" type="CapacitaImpianto"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciSM1">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente" minOccurs="0"/>
+			<xs:element name="tipo_lettura" type="LetturaEffSti" minOccurs="0"/>
+			<xs:element name="data_ril" type="DataIta" minOccurs="0"/>
+			<xs:element name="num_ten" type="xs:int" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciSM2">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola" minOccurs="0"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+			<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente" minOccurs="0"/>
+			<xs:element name="tipo_lettura" type="LetturaEffSti" minOccurs="0"/>
+			<xs:element name="data_ril" type="DataIta" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciR01">
+		<xs:complexContent>
+			<xs:extension base="PdrMatrOpt">
+				<xs:sequence>
+					<xs:element name="data_attivazione" type="DataIta"/>
+					<xs:element name="segn_mis" type="Segnante" minOccurs="0"/>
+					<xs:element name="segn_conv" type="Segnante" minOccurs="0"/>
+					<xs:element name="tipo_lettura" type="LetturaEffSti" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PraticaSosp">
+		<xs:sequence>
+			<xs:element name="cod_prat_utente" type="CodPratica"/>
+			<xs:element name="cod_prat_distr" type="CodPratica"/>
+			<xs:element name="compr_CSS" type="OnOff"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapacitaImpiantoSosp">
+		<xs:sequence>
+			<xs:element name="cod_remi" type="CodiceREMI"/>
+			<xs:element name="CSS" type="xs:double"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Pratica" type="PraticaSosp"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapacitaSosp">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Impianto" type="CapacitaImpiantoSosp"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PraticaInt">
+		<xs:sequence>
+			<xs:element name="cod_prat_utente" type="CodPratica"/>
+			<xs:element name="cod_prat_distr" type="CodPratica"/>
+			<xs:element name="compr_CIS" type="OnOff"/>
+			<xs:element name="atti_aut" type="OnOff"/>
+			<xs:element name="data_int" type="DataIta" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapacitaImpiantoInt">
+		<xs:sequence>
+			<xs:element name="cod_remi" type="CodiceREMI"/>
+			<xs:element name="CIS" type="xs:double"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Pratica" type="PraticaInt"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CapacitaInt">
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="Impianto" type="CapacitaImpiantoInt"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LettureCicloMesDetGio">
+		<xs:sequence>
+			<xs:element name="data_comp" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="tipo_lettura" type="LetturaEffSti"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiPdRCicloMesDetGio">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="val_dato_mens" type="OnOff"/>
+			<xs:element name="esito_raccolta" type="PN"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Lettura" type="LettureCicloMesDetGio"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiPdRCicloAltro">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="freq_let" type="FrequenzaLettura"/>
+			<xs:element name="acc_mis" type="TipoAccessibilita"/>
+			<xs:element name="data_racc" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="tipo_lettura" type="LetturaEffSti"/>
+			<xs:element name="val_dato" type="OnOff"/>
+			<xs:element name="num_tentativi" type="Numerico1"/>
+			<xs:element name="esito_raccolta" type="PNO"/>
+			<xs:element name="causa_manc_raccolta" type="CauseMancataRaccolta" minOccurs="0"/>
+			<xs:element name="mod_alt_racc" type="SN"/>
+			<xs:element name="dir_indennizzo" type="PN"/>
+			<xs:element name="pros_fin" type="Finestra"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiPdRAutolettura">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="data_com_autolet_cf" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiPdRAutoletturaValidazione">
+		<xs:complexContent>
+			<xs:extension base="DatiPdRAutolettura">
+				<xs:sequence>
+					<xs:element name="esito_val" type="VSIF"/>
+					<xs:element name="note" type="Stringa255" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RettificaDatiPdRCicloMesDetGio">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Lettura" type="RettificaLettureCicloMesDetGio"/>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RettificaDatiPdRCicloAltro">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="freq_let" type="FrequenzaLettura"/>
+			<xs:element name="data_comp" type="DataIta"/>
+			<xs:element name="data_racc" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="mot_rett_lett" type="MotivoRettificaLettura"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VolumeRettificatoDatiPdRCicloAltro">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="vol_ric" type="Volume"/>
+			<xs:element name="ini_periodo" type="DataIta"/>
+			<xs:element name="fine_periodo" type="DataIta"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RettificaLettureCicloMesDetGio">
+		<xs:sequence>
+			<xs:element name="data_racc" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="mot_rett_lett" type="MotivoRettificaLettura"/>
+			<xs:element name="vol_ric" type="Volume" minOccurs="0"/>
+			<xs:element name="periodo_ric" type="DataIta" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RettificaLettureSwitch">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="progr_anno_term" type="Volume"/>
+			<xs:element name="data_comp" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="mot_rett_lett" type="MotivoRettificaLettura"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RettificaLettureVolt">
+		<xs:sequence>
+			<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="cod_prat_attivazione" type="CodPratAtt"/>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+			<xs:element name="progr_anno_term" type="Volume"/>
+			<xs:element name="data_comp" type="DataIta"/>
+			<xs:element name="let_tot_prel" type="Segnante"/>
+			<xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+			<xs:element name="mot_rett_lett" type="MotivoRettificaLettura"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiGdM">
+		<xs:sequence>
+			<xs:element name="matr_mis" type="Matricola"/>
+			<xs:element name="anno_fabb" type="Anno"/>
+			<xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+			<xs:element name="n_cifre_mis" type="Intero"/>
+			<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+			<xs:element name="let_misuratore" type="Segnante"/>
+			<xs:element name="let_correttore" type="Segnante" minOccurs="0"/>
+			<xs:element name="coeff_corr" type="Coefficiente"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiGdMPreInte">
+		<xs:complexContent>
+			<xs:extension base="DatiGdM">
+				<xs:sequence>
+					<xs:element name="tipo_mis" type="LetturaEffSti"/>
+					<xs:element name="causa_stima" type="CauseStimaMisura" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiGdMPostInte">
+		<xs:complexContent>
+			<xs:extension base="DatiGdM">
+				<xs:sequence>
+					<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+					<xs:element name="access_punto" type="TipoAccessibilita"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+  <xs:complexType name="DatiTecniciPdr">
+    <xs:sequence>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="matr_mis"  type="Matricola" minOccurs="0"/>
+      <xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+      <xs:element name="n_cifre_mis" type="Intero" minOccurs="0"/>      
+      <xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+      <xs:element name="coeff_corr" type="Coefficiente"/>
+      <xs:element name="freq_let" type="FrequenzaLettura" minOccurs="0"/>
+      <xs:element name="acc_mis" type="TipoAccessibilita" minOccurs="0"/>
+      <xs:element name="Raccolta" type="RaccoltaType"/>
+      <xs:element name="esito_raccolta" type="PNO" minOccurs="0"/>
+      <xs:element name="causa_manc_raccolta" type="CauseMancataRaccolta" minOccurs="0"/>
+      <xs:element name="mod_alt_racc" type="SN" minOccurs="0"/>
+	  <xs:element name="causa_ostativa" type="OnOff" minOccurs="0"/>
+      <xs:element name="dir_indennizzo" type="PN" minOccurs="0"/>
+      <xs:element name="pros_fin_inizio" type="FinestraV2" minOccurs="0"/>
+      <xs:element name="pros_fin_fine" type="FinestraV2" minOccurs="0"/>   
+      <xs:element name="vol_annuo_sost" type="Volume" minOccurs="0"/>
+      <xs:element name="classe_gruppo_mis" type="Stringa10" minOccurs="0"/>
+      <xs:element name ="pre_conv" type="OnOff"  minOccurs="0" />
+      <xs:element name ="gruppo_mis_int" type="OnOff"  minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DettaglioDatiLettura">
+    <xs:sequence>
+      <xs:element name="tipo_lettura" type="LetturaEffStiAut" minOccurs="0"/>
+      <xs:element name="esito_val"  type="VSIF" minOccurs="0"/>
+      <xs:element name="note"  type="Stringa255" minOccurs="0"/>
+      <xs:element name="num_tentativi" type="Numerico1" minOccurs="0"/>
+      <xs:element name="data_racc" type="DataIta" minOccurs="0"/>
+      <xs:element name="let_tot_prel" type="Segnante" minOccurs="0"/>
+      <xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+      <xs:element name="data_mis_eff" type="DataIta" minOccurs="0"/>
+      <xs:element name="segn_mis_eff" type="Segnante" minOccurs="0"/>
+      <xs:element name="segn_conv_eff" type="Segnante" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="DettaglioLettureGiornaliere">
+    <xs:sequence>
+      <xs:element name="matr_mis"  type="Matricola" minOccurs="0"/>
+      <xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+      <xs:element name="data_comp" type="DataIta" minOccurs="0"/>
+      <xs:element name="tipo_lettura"  type="LetturaEffSti" minOccurs="0"/>
+      <xs:element name="let_tot_prel" type="Segnante" minOccurs="0"/>
+      <xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciPdrRett">
+    <xs:sequence>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="matr_mis"  type="Matricola" minOccurs="0"/>
+      <xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+      <xs:element name="coeff_corr" type="Coefficiente"/>
+      <xs:element name="freq_let" type="FrequenzaLettura" minOccurs="0"/>
+      <xs:element name="vol_annuo_rettificato" type="Volume" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DettaglioDatiLetturaRett">
+    <xs:sequence>
+      <xs:element name="data_racc" type="DataIta" minOccurs="0"/>
+      <xs:element name="let_tot_prel" type="Segnante" minOccurs="0"/>
+      <xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+      <xs:element name="vol_ric" type="Volume" minOccurs="0"/>
+      <xs:element name="ini_periodo" type="DataIta" minOccurs="0"/>
+      <xs:element name="fine_periodo" type="DataIta" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DettaglioLettureGiornaliereRett">
+    <xs:sequence>
+      <xs:element name="matr_mis"  type="Matricola" minOccurs="0"/>
+      <xs:element name="matr_conv" type="Matricola" minOccurs="0"/>
+      <xs:element name="data_racc" type="DataIta" minOccurs="0"/>
+      <xs:element name="let_tot_prel" type="Segnante" minOccurs="0"/>
+      <xs:element name="let_tot_conv" type="Segnante" minOccurs="0"/>
+	    <xs:element name="vol_ric" type="Volume" minOccurs="0"/>
+      <xs:element name="periodo_ric" type="DataIta" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.idea/
+*.iml
+*.log
+**/target/
+*.sc
+metastore_db/
+src/test/resources/Standard/ValidatePDRTest/*.csv
+src/test/resources/tempRootPath/**/*.csv
+src/test/resources/input/unzip/run/**/*.csv
+/src/test/resources/tmp/
+/src/test/resources/isilonshare_gas/**/*.csv
+/src/test/resources/ammiss/**
+src/test/resources/**/*.txt

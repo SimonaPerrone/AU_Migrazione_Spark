@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure  xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="SWG1">
+  <IdentificativiFlusso>
+    <piva_utente>12345678901</piva_utente>
+    <piva_distr>01234567890</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>00000000001234</cod_pdr>
+    <data_prest>15/01/2020</data_prest>
+    <CodPrat_SII>SII202001150000</CodPrat_SII>
+    <DatiTecnPdr>
+      <Trattamento>M</Trattamento>
+      <matr_mis>aaaaabbbbb1111122222</matr_mis>
+      <matr_conv>zzzzzxxxxxyyyyy11111</matr_conv>
+      <n_cifre_mis>9</n_cifre_mis>
+      <n_cifre_conv>9</n_cifre_conv>
+      <coeff_corr>0.9998</coeff_corr>
+      <Raccolta>S</Raccolta>
+      <vol_annuo_sost>2344</vol_annuo_sost>
+      <classe_gruppo_mis>G40</classe_gruppo_mis>
+      <pre_conv>SI</pre_conv>
+      <gruppo_mis_int>NO</gruppo_mis_int>
+    </DatiTecnPdr>
+    <DatiLettura>
+      <tipo_lettura>E</tipo_lettura>
+      <data_racc>31/12/2019</data_racc>
+      <let_tot_prel>000000122</let_tot_prel>
+      <let_tot_conv>000000124</let_tot_conv>
+      <data_mis_eff>17/01/2020</data_mis_eff>
+      <segn_mis_eff>000000123</segn_mis_eff>
+      <segn_conv_eff>000000125</segn_conv_eff>
+    </DatiLettura>
+  </DatiPdr> 
+</FlussoMisure>
+  

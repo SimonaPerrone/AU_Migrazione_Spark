@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure  xmlns:xs="http://www.w3.org/2001/XMLSchema" cod_flusso="A01">
+  <IdentificativiFlusso>
+    <piva_utente>12345678901</piva_utente>
+    <piva_distr>01234567890</piva_distr>
+  </IdentificativiFlusso>
+  <DatiPdr>
+    <cod_pdr>11122233345678</cod_pdr>
+    <DatiTecnPdr>
+      <Trattamento>M</Trattamento>
+      <n_cifre_mis>9</n_cifre_mis>
+      <n_cifre_conv>9</n_cifre_conv>
+      <coeff_corr>0.9</coeff_corr>
+      <Raccolta>T</Raccolta>
+      <classe_gruppo_mis>G6</classe_gruppo_mis>
+      <pre_conv>SI</pre_conv>
+      <gruppo_mis_int>NO</gruppo_mis_int>
+    </DatiTecnPdr>
+    <DatiLettura>
+      <tipo_lettura>S</tipo_lettura>
+      <let_tot_prel>000123456</let_tot_prel>
+      <let_tot_conv>000123466</let_tot_conv>
+      <data_mis_eff>01/05/2019</data_mis_eff>
+    </DatiLettura>
+  </DatiPdr> 
+</FlussoMisure>
+  
