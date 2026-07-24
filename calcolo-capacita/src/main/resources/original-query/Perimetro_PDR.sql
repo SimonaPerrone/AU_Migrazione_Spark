@@ -1,0 +1,30 @@
+--create table tmp_clg_perimetro_pdr as
+WITH INPUT_DATA AS (
+  SELECT    TRUNC(TO_DATE('15/02/2021','dd/mm/yyyy')) DATA_CALC
+            --,TO_NUMBER(TO_CHAR(TO_DATE('15/02/2021','dd/mm/yyyy'),'YYYYMMDDHH24MISS')) EXECUTION_ID
+            ,CASE
+                WHEN TO_NUMBER(TO_CHAR(TRUNC(TO_DATE('15/02/2021','dd/mm/yyyy')),'MM')) BETWEEN 10 AND 12 THEN TO_CHAR(ADD_MONTHS(TRUNC(TO_DATE('15/02/2021','dd/mm/yyyy')), 12),'YYYY')
+                ELSE TO_CHAR(TRUNC(TO_DATE('15/02/2021','dd/mm/yyyy')),'YYYY')
+            END   ANNO
+    FROM DUAL
+    )  
+SELECT  D.DATA_CALC      
+        ,PDR.N_ID_PDR
+        ,PDR.T_CODICE_PDR
+        ,DATI_PRELIEVO.N_PRELIEVO_ANNUO
+        --,DATI_PRELIEVO.T_ANNO   
+        ,CON.N_ID_REMI
+FROM    RCUGAS.RCUGAS_PDR PDR
+        JOIN INPUT_DATA D ON 1 = 1                           
+        JOIN RCUGAS.RCUGAS_CONNESSIONE CON ON CON.N_ID_PDR = PDR.N_ID_PDR
+            AND TRUNC(D.DATA_CALC) BETWEEN NVL(CON.D_DATA_INIZIO, (TO_DATE('01/01/1900','DD/MM/YYYY'))) AND NVL(CON.D_DATA_FINE, (TO_DATE('31/12/2099','DD/MM/YYYY'))) 
+        JOIN  RCUGAS.RCUGAS_PDR_STATO PDR_STATO ON PDR_STATO.N_ID_PDR =  PDR.N_ID_PDR
+            AND TRUNC(D.DATA_CALC) BETWEEN NVL(PDR_STATO.D_DATA_INIZIO, (TO_DATE('01/01/1900','DD/MM/YYYY'))) AND NVL(PDR_STATO.D_DATA_FINE, (TO_DATE('31/12/2099','DD/MM/YYYY')))
+            AND PDR_STATO.T_COD_STATO_PDR = 'P'             
+        -- Dati di prelievo
+        JOIN RCUGAS.RCUGAS_PDR_DATIPRELIEVO DATI_PRELIEVO ON DATI_PRELIEVO.N_ID_PDR = PDR.N_ID_PDR
+            AND DATI_PRELIEVO.T_ANNO = D.ANNO  
+            AND     NVL(T_TRATTAMENTO_SETTLEMENT,'Y') IN ('G','M')
+            AND     T_COD_CAT_USO IN ('T1','C2')                                             
+WHERE 1=1
+--and rownum <= 1000

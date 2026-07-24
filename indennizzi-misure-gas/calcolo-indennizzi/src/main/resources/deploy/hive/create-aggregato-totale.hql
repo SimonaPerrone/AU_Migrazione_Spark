@@ -1,0 +1,36 @@
+create external table ${cig.db}.${aggregatoTotale.tableName}
+(
+    id_indennizzo bigint,
+    piva_distr string,
+    rag_soc_distr string,
+    piva_udd string,
+    rag_soc_udd string,
+    percentage_lower_bound_om2 double,
+    percentage_upper_bound_om2 double,
+    percentage_lower_bound_om3 double,
+    percentage_upper_bound_om3 double,
+    pdr_g bigint,
+    pdr_g_om1 bigint,
+    pdr_g_om2 bigint,
+    pdr_g_om3 bigint,
+    target_percentage_om1 double,
+    target_percentage_om2 double,
+    target_percentage_om3 double,
+    achieved_percentage_om1 double,
+    achieved_percentage_om2 double,
+    achieved_percentage_om3 double,
+    pdr_target_om1 double,
+    pdr_target_om2 double,
+    pdr_target_om3 double,
+    delta_pdr_om1 double,
+    delta_pdr_om2 double,
+    delta_pdr_om3 double,
+    euro_fee_per_pdr_om1 double,
+    euro_fee_per_pdr_om2 double,
+    euro_fee_per_pdr_om3 double,
+    indennizzo_om1 double,
+    indennizzo_om2 double,
+    indennizzo_om3 double
+) partitioned by (annomese string, executionid bigint)
+stored as parquet
+location '${aggregatoTotale.basepath}'

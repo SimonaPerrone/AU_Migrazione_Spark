@@ -1,0 +1,108 @@
+# Calcolare la data di soglia
+MESI_NEL_PASSATO=24
+echo $(date -d "$MESI_NEL_PASSATO months ago" +"%Y-%m-%d")
+
+# Contare quanti documenti devono essere modificati dalla pulizia (sostuire la data con quella calcolata precedentemente)
+db.getCollection("AuditElettrico2").count({
+    "audit.data": { "$lt": "2022-04-09" }
+})
+db.getCollection("AuditGas2").count({
+    "audit.data": { "$lt": "2022-04-09" }
+})
+
+# Lanciare i comandi di inserimento dati nel database di test modificando le date in modo che un record venga mantenuto
+# e uno venga cancellato.
+
+# dati di test (da modificare le date se necessario)
+# -1: cancella un elemento su due
+# -2: non cancella la riga
+# -3: cancella la riga
+
+db.getCollection("AuditElettrico2").drop();
+db.getCollection("AuditElettrico2").insertMany([
+{
+    "codice_fiscale" : "1",
+    "audit" : [
+        {
+            "tipo" : "login",
+            "data" : "2022-04-09T08:47:03.193733",
+            "spid_code" : "XXXX",
+            "info" : "CF: , POD: , ESITO: "
+        },
+        {
+            "tipo" : "GetFornitureElettriche",
+            "data" : "2025-04-10T09:47:03.736173",
+            "spid_code" : "TITTj40Vd83BV6",
+            "info" : "CF: , ESITO: Dati visualizzati"
+        }
+    ]
+},
+{
+    "codice_fiscale" : "2",
+    "audit" : [
+        {
+            "tipo" : "login",
+            "data" : "2024-04-09T08:47:03.193733",
+            "spid_code" : "XXXX",
+            "info" : "CF: , POD: , ESITO: "
+        }
+    ]
+},
+{
+    "codice_fiscale" : "3",
+    "audit" : [
+        {
+            "tipo" : "login",
+            "data" : "2021-04-09T08:47:03.193733",
+            "spid_code" : "XXXX",
+            "info" : "CF: , POD: , ESITO: "
+        }
+    ]
+}
+]);
+
+db.getCollection("AuditGas2").drop();
+db.getCollection("AuditGas2").insertMany([
+{
+    "codice_fiscale" : "1",
+    "audit" : [
+        {
+            "tipo" : "GetMisureFornitureGas",
+            "data" : "2019-06-30T18:36:10.258761",
+            "spid_code" : null,
+            "info" : "CF: , PDR: 00883205324076, ESITO: Dati visualizzati"
+        },
+        {
+            "tipo" : "GetFornitureGas",
+            "data" : "2025-04-10T11:45:13.027566+0200",
+            "spid_code" : null,
+            "info" : "CF: , ESITO: Dati visualizzati"
+        }
+    ]
+},
+{
+    "codice_fiscale" : "2",
+    "audit" : [
+        {
+            "tipo" : "GetMisureFornitureGas",
+            "data" : "2024-06-30T18:36:10.258761",
+            "spid_code" : null,
+            "info" : "CF: , PDR: 00883205324076, ESITO: Dati visualizzati"
+        }
+    ]
+},
+{
+    "codice_fiscale" : "3",
+    "audit" : [
+        {
+            "tipo" : "GetMisureFornitureGas",
+            "data" : "2020-06-30T18:36:10.258761",
+            "spid_code" : null,
+            "info" : "CF: , PDR: 00883205324076, ESITO: Dati visualizzati"
+        }
+    ]
+}
+]);
+
+# Lanciare script pulizia su base dati di test.
+# Verificare che il numero dei modificati sia uguale al numero dei dati trovati nella query iniziale

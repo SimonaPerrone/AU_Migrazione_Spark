@@ -1,0 +1,25 @@
+#Crea collezione di test
+db.getCollection("Backup_test").insertOne(
+{
+    "codice_fiscale" : "",
+    "audit" : [
+        {
+            "tipo" : "GetMisureFornitureGas",
+            "data" : "2019-06-30T18:36:10.258761",
+            "spid_code" : null,
+            "info" : "CF: , PDR: 00883205324076, ESITO: Dati visualizzati"
+        },
+        {
+            "tipo" : "GetFornitureGas",
+            "data" : "2022-07-22T11:45:13.027566+0200",
+            "spid_code" : null,
+            "info" : "CF: , ESITO: Dati visualizzati"
+        }
+    ]
+})
+
+# Lancia lo script di backup ./backup_collezione.sh -c Backup_test
+# Verificare presenza collezione Backup_test_BKP
+
+# Modificare una riga della collezione originale e rilanciare il processo per verificare che la tabella di backup
+# prenda la nuova modifica e sostituisca la collezione di backup precedente

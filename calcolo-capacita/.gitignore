@@ -1,0 +1,7 @@
+.idea/
+calcolo-capacita.iml
+target/
+/src/test/resources/test/
+metastore_db/
+derby.log
+/src/test/resources/logs/job-spark/

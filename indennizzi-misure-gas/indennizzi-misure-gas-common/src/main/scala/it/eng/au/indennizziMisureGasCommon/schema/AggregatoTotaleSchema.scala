@@ -1,0 +1,38 @@
+package it.eng.au.indennizziMisureGasCommon.schema
+
+object AggregatoTotaleSchema extends SchemaEnum {
+  val id_indennizzo,
+  piva_distr,
+  rag_soc_distr,
+  piva_udd,
+  rag_soc_udd,
+  percentage_lower_bound_om2,
+  percentage_upper_bound_om2,
+  percentage_lower_bound_om3,
+  percentage_upper_bound_om3,
+  pdr_g,
+  pdr_g_om1,
+  pdr_g_om2,
+  pdr_g_om3,
+  target_percentage_om1,
+  target_percentage_om2,
+  target_percentage_om3,
+  achieved_percentage_om1,
+  achieved_percentage_om2,
+  achieved_percentage_om3,
+  pdr_target_om1,
+  pdr_target_om2,
+  pdr_target_om3,
+  delta_pdr_om1,
+  delta_pdr_om2,
+  delta_pdr_om3,
+  euro_fee_per_pdr_om1,
+  euro_fee_per_pdr_om2,
+  euro_fee_per_pdr_om3,
+  indennizzo_om1,
+  indennizzo_om2,
+  indennizzo_om3,
+  annomese,
+  executionid
+  = Value
+}

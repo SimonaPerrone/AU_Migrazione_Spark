@@ -1,0 +1,32 @@
+package it.eng.au.indennizziMisureGasCommon.model
+
+case class IndennizziRzg2(
+                           zip_file_name: String,
+                           piva_utente: String,
+                           piva_id: String,
+                           piva_udd: String,
+                           year_dir: String,
+                           month_dir: String,
+                           anno_mese_competenza: String,
+                           zip_timestamp: String,
+                           progressivo: String,
+                           csv_file_name: Option[String],
+                           csv_data: Option[String],
+                           csv_id_indennizzo: Option[Long],
+                           csv_piva_id: Option[String],
+                           csv_rag_soc_id: Option[String],
+                           csv_piva_udd: Option[String],
+                           csv_rag_soc_udd: Option[String],
+                           csv_euro_om1: Option[String],
+                           csv_euro_om2: Option[String],
+                           csv_euro_om3: Option[String],
+                           euro_sii_om1: Option[Double],
+                           euro_sii_om2: Option[Double],
+                           euro_sii_om3: Option[Double],
+                           delta_om1: Option[Double],
+                           delta_om2: Option[Double],
+                           delta_om3: Option[Double],
+                           ammissibilita: Boolean,
+                           status_code: String,
+                           status_message: String
+                         ) extends Serializable

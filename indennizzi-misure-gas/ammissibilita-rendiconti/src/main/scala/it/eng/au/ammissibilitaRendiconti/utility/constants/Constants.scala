@@ -1,0 +1,68 @@
+package it.eng.au.ammissibilitaRendiconti.utility.constants
+
+object Constants {
+  val APPLICATION_NAME = "[CIG] Ammissibilità Rendiconti"
+  val CIG_LOG = "CIG LOG:"
+
+  val CIG1 = "CIG1"
+
+  val YEARMONTH_MIN = "190001"
+  val YEARMONTH_MAX = "210012"
+
+  val COD_801 = "801"
+  val COD_802 = "802"
+  val COD_803 = "803"
+  val COD_804 = "804"
+  val COD_805 = "805"
+  val COD_901 = "901"
+  val COD_902 = "902"
+  val COD_903 = "903"
+  val COD_904 = "904"
+  val COD_905 = "905"
+  val COD_906 = "906"
+  val COD_919 = "919"
+  val COD_010 = "010"
+  val COD_011 = "011"
+
+  val MANDATORY_ERROR: String = "I campi obbligatori non sono stati correttamente compilati"
+  val STRUCTURE_ERROR: String = "Il file non rispetta la struttura prevista"
+  val MOTIVAZIONE_EMPTY_CSV: String = STRUCTURE_ERROR + " (header e/o contenuto del csv vuoti)"
+  val MOTIVAZIONE_CSV_LINE: String = STRUCTURE_ERROR + " (riga non formattata correttamente)"
+  val MOTIVAZIONE_CSV_HEADER: String = STRUCTURE_ERROR + " (nomenclatura file csv non coerente)"
+  val MOTIVAZIONE_804: String = "I campi obbligatori non sono stati compilati"
+  val MOTIVAZIONE_DATA: String = STRUCTURE_ERROR + " (campo DATA non conforme)"
+  val MOTIVAZIONE_ID_INDENNIZZO: String = STRUCTURE_ERROR + " (campo ID_INDENNIZZO non conforme)"
+  val MOTIVAZIONE_PIVA_ID: String = STRUCTURE_ERROR + " (campo PIVA_ID non conforme)"
+  val MOTIVAZIONE_PIVA_UDD: String = STRUCTURE_ERROR + " (campo PIVA_UDD non conforme)"
+  val MOTIVAZIONE_RAGSOC_ID: String = STRUCTURE_ERROR + " (campo RAG_SOC_ID non conforme)"
+  val MOTIVAZIONE_RAGSOC_UDD: String = STRUCTURE_ERROR + " (campo RAG_SOC_UDD non conforme)"
+  val MOTIVAZIONE_PIVA_ID_NON_COERENTE: String = STRUCTURE_ERROR + " (campo PIVA_ID non coerente con il nome file)"
+  val MOTIVAZIONE_PIVA_UDD_NON_COERENTE: String = STRUCTURE_ERROR + " (campo PIVA_UDD non coerente con il nome file)"
+  val MOTIVAZIONE_NOME_ZIP: String = STRUCTURE_ERROR + " (nome file zip errato o estensione errata)"
+  val MOTIVAZIONE_ZIP_CORROTTO: String = STRUCTURE_ERROR + " (file zip corrotto)"
+  val MOTIVAZIONE_ZIP_NON_CONFORME: String = STRUCTURE_ERROR + " (contenuto del file zip non conforme)"
+  val MOTIVAZIONE_CSV_NON_COERENTE: String = STRUCTURE_ERROR + " (nome file csv non coerente)"
+  val MOTIVAZIONE_PIVAID_NON_COERENTE: String = STRUCTURE_ERROR + " (piva ID non coerente)"
+  val MOTIVAZIONE_CODIFICA_ERRATA: String = STRUCTURE_ERROR + " (codifica file csv errata)"
+  val MOTIVAZIONE_919: String = "File già trasmesso"
+  val MOTIVAZIONE_010: String = MANDATORY_ERROR + " (almeno uno tra i campi OM1, OM2 e OM3 deve essere valorizzato)"
+  val MOTIVAZIONE_010_OM1: String = MANDATORY_ERROR + " (valore OM1 non conforme)"
+  val MOTIVAZIONE_010_OM2: String = MANDATORY_ERROR + " (valore OM2 non conforme)"
+  val MOTIVAZIONE_010_OM3: String = MANDATORY_ERROR + " (valore OM3 non conforme)"
+  val MOTIVAZIONE_011: String = MANDATORY_ERROR + " (ID_INDENNIZZO non presente a sistema o non associato all’UdD presente nel file)"
+
+  val CSV_DELIMITER = ";"
+
+  val _EURO_SYMBOL_ = "_EURO_SYMBOL_"
+  val EURO = "€"
+
+  val AMMISSIBILITA_SI_1 = "1"
+  val AMMISSIBILITA_NO_0 = "0"
+
+  val TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss"
+  val TIMESTAMP_MS_FORMAT = "yyyy-MM-dd HH:mm:ss.S"
+  val DATE_FORMAT = "yyyy-MM-dd"
+  val YEAR_MONTH_FORMAT = "yyyyMM"
+  val MONTH_YEAR_FORMAT = "MMyyyy"
+  val DATA_COMP_FORMAT = "dd/MM/yyyy"
+}
