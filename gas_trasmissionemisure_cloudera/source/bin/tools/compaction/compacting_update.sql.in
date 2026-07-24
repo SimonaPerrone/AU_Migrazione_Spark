@@ -1,0 +1,17 @@
+
+INSERT INTO cmg_gas.report_compact
+select 
+    __TGL__ d_compact_tgl,
+    __RGL__ d_compact_rgl,
+    __DEF__ d_compact_def,
+    __FUI__ d_compact_fui,
+    __IM1__ d_compact_im1,
+    __RML__ d_compact_rml,
+    __RSL__ d_compact_rsl,
+    __SW1__ d_compact_sw1,
+    __TAL__ d_compact_tal,
+    __TAS__ d_compact_tas,
+    __TAV__ d_compact_tav,
+    __TML__ d_compact_tml,
+    __TMV__ d_compact_tmv
+from cmg_gas.report_compact

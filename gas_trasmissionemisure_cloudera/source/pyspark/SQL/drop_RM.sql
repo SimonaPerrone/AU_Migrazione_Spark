@@ -1,0 +1,1 @@
+drop table au_test.gas_rml_55

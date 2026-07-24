@@ -1,0 +1,3 @@
+FROM aggregazioni_misure_orarie_ver_201901 ver  
+left outer JOIN (select K_TERNA FROM terne_sem_committed_201901 group by k_terna) sem_c ON ver.K_TERNA=sem_c.K_TERNA 
+where sem_c.K_TERNA is null

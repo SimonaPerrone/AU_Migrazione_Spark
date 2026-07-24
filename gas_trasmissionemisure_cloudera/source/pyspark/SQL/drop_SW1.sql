@@ -1,0 +1,1 @@
+drop table au_test.gas_sw1_50

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="FlussiDatiMisuraPrelievoEE-DefSimpleTypes.xsd"/>
+  <xs:include schemaLocation="FlussiDatiMisuraPrelievoEE-DefComplexTypes.xsd"/>
+  <xs:element name="FlussoMisure">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="IdentificativiFlusso" type="IdentificativiFlussoType"/>
+        <xs:element name="DatiPod" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pod" type="CodicePodType"/>
+              <xs:element name="MeseAnno" type="MeseAnnoItaType" minOccurs="0"/>
+              <xs:element name="DataMisura" type="DataItaType" minOccurs="0"/>
+              <xs:element name="TipoRettifica" type="TipoRettificaType"/>
+              <xs:element name="DataRilevazione" type="DataItaType" minOccurs="0"/>
+              <xs:element name="Motivazione" type="MotivazioneType"/>
+              <xs:element name="DataPrest" type="DataItaType" minOccurs="0"/>
+              <xs:element name="CodPrat_SII" type="CodPratAttType" minOccurs="0"/>
+              <xs:element name="DatiPdp" type="DatiPdp2GType"/>
+              <xs:choice minOccurs="0">
+                <xs:element name="Misura" type="DettaglioMisuraGenericoRType"/>
+                <xs:element name="Consumo" type="DettaglioConsumoRv2Type"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CodFlusso" type="TipoCodFlussoRType" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

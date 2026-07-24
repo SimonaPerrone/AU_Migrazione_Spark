@@ -1,0 +1,9 @@
+SELECT ver.pivadistributore,ver.pivautente, SUBSTR(ver.pod,1,14)pod, ver.anno, ver.mese,ver.giorno, ver.area, ver.validato ,ver.nomefile, ver.codcontrdisp,ver.coduc,
+ver.tipodato_e, ver.tipodato_s,ver.tensione, ver.trattamento_o, ver.potcontrimpl, ver.potdisp, ver.cifreatt, ver.cifrerea, ver.raccolta, ver.potmax,
+ver.perdita, ver.annomesegiornodir, ver.h1,ver.h2,ver.h3,ver.h4,ver.h5,ver.h6,ver.h7,ver.h8,ver.h9,ver.h10,ver.h11,ver.h12,ver.h13,ver.h14,
+ver.h15,ver.h16,ver.h17,ver.h18,ver.h19,ver.h20,ver.h21,ver.h22,ver.h23,ver.h24,ver.h25,ver.time_stamp, ver.versione,ver.dataelaborazione,
+ver.flaguddpod, ver.stato,ver.trattamento,ver.flagarea, ver.n_id_udd, ver.t_piva, ver.n_id_distr, ver.n_id_distr_rif ,ver.flag_validazione,
+ver.KC,ver.K_TERNA
+FROM aggregazioni_misure_orarie_ver_201812 ver  
+left outer JOIN (select K_TERNA FROM terne_sem_committed_201812 group by k_terna) sem_c ON ver.K_TERNA=sem_c.K_TERNA ----IMPORTANTE GROUP BY
+where sem_c.K_TERNA is null

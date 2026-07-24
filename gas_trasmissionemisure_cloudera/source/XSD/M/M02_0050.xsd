@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../def_dati_tecnici.xsd"/>
+	<xs:include schemaLocation="../def_cliente.xsd"/>
+	<xs:include schemaLocation="../def_identificativi.xsd"/>
+	<xs:element name="Prestazione">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IdentificativiRichiesta" type="IdentificativiRichiestaM020050"/>
+				<xs:element name="DatiTecnici" type="PdrBase"/>
+				<xs:element name="Copia_reclamo" type="Allegato" minOccurs="0"/>
+				<xs:element name="ClienteFinale" type="ClienteFinaleBase" minOccurs="0"/>
+				<xs:element name="FornituraUbicazionePdR" type="FornituraUbic1"/>
+				<xs:element name="dati_tec_ric" type="Stringa500"/>
+				<xs:element name="data_competenza" type="DataIta" minOccurs="0"/>
+				<xs:element name="rif_quesiti" type="Allegato" minOccurs="0"/>
+				<xs:element name="correttezza_completezza" type="OnOff" minOccurs="0"/>
+				<xs:element name="elenco_dati" type="Stringa500" minOccurs="0"/>
+				<xs:element name="nuovo_tentativo" type="OnOff"/>
+				<xs:element name="appuntamento" type="OnOff" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="cod_servizio" type="xs:string" use="required" fixed="M02"/>
+			<xs:attribute name="cod_flusso" type="xs:string" use="required" fixed="0050"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

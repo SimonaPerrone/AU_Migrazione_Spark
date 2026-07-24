@@ -1,0 +1,106 @@
+{
+	"job13": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_PARAMETRI_CARATTERISTICI_PROF_PREL",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_PARAMETRI_CARATTERISTICI_PROF_PREL",
+
+		"table": "au_test.TAB_PARAMETRI_CARATTERISTICI_PROF_PREL",
+		"pathTabellaHDFS":"/user/acutest/au/misure_gas_au/TAB_PARAMETRI_CARATTERISTICI_PROF_PREL",
+		"database": "au_test"
+	},
+
+	"job14": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_PROFILI_GIORN_STD_PERC",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_PROFILI_GIORN_STD_PERC",
+		"table": "au_test.TAB_PROFILI_GIORN_STD_PERC",
+
+		"TAB_PARAMETRI_PERC_ANNUI_PREL_STD":"/user/acutest/au/misure_gas_au/TAB_PARAMETRI_PERC_ANNUI_PREL_STD",
+        	"TAB_FATT_CLIM_WK": "/user/acutest/au/misure_gas_au/TAB_FATT_CLIM_WK",
+		"database": "au_test"
+	},
+
+	"job15": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_COMUNE_ZONA_CLIM",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_COMUNE_ZONA_CLIM",
+
+		"table": "au_test.TAB_COMUNE_ZONA_CLIM",
+		"pathTabellaGradiGiorni":"/user/acutest/au/misure_gas_au/TAB_COMUNE_ZONA_CLIM",
+		"database": "au_test"
+	},
+
+	"job16": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_RCUGAS_SETTLE_GAS_PDR",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_RCUGAS_SETTLE_GAS_PDR",
+		"table": "au_test.TAB_RCUGAS_SETTLE_GAS_PDR",
+		"database": "au_test"
+	},
+
+	"job17": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_RCUGAS_NEW_SETTLE_GAS_PDR",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_RCUGAS_NEW_SETTLE_GAS_PDR",
+		"table": "au_test.TAB_RCUGAS_SETTLE_GAS_PDR",
+		"database": "au_test"
+	},
+
+	"job18": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_SETTLE_GAS_PROF_PDR",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_SETTLE_GAS_PROF_PDR",
+		"table": "au_test.TAB_SETTLE_GAS_PROF_PDR",
+		"database": "au_test"
+	},
+
+	"job19": {
+		"nameTableHiveDELTA": "/user/acutest/au/misure_gas_au/TAB_PDR_SEGMENTO_DELTA_MIS_MM",
+		"cmdTableRefreshDELTA": "MSCK REPAIR TABLE au_test.TAB_PDR_SEGMENTO_DELTA_MIS_MM",
+		"tableDelta": "au_test.TAB_PDR_SEGMENTO_DELTA_MIS_MM",
+
+		"nameTableHivePDR": "/user/acutest/au/misure_gas_au/TAB_PDR_SEGMENTO_PDR_MIS_MM",
+		"cmdTableRefreshPDR": "MSCK REPAIR TABLE au_test.TAB_PDR_SEGMENTO_PDR_MIS_MM",
+		"tablePDR": "au_test.TAB_PDR_SEGMENTO_PDR_MIS_MM",
+		"database": "au_test"
+	},
+
+	"job20": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_CONSUMO_ANNUO",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_CONSUMO_ANNUO",
+		"table": "au_test.TAB_CONSUMO_ANNUO",
+		"database": "au_test"
+	},
+
+	"job21": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_PDR_SEGMENTO_CONSUMO_MM",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_PDR_SEGMENTO_CONSUMO_MM",
+		"table": "au_test.TAB_PDR_SEGMENTO_CONSUMO_MM",
+		"database": "au_test"
+	},
+
+	"job22": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_CONSUMO_ANNUO",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_CONSUMO_ANNUO",
+		"table": "au_test.TAB_CONSUMO_ANNUO",
+		"database": "au_test"
+	},
+
+	"job23": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_DATI_SETTLE_SAG",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_DATI_SETTLE_SAG",
+		"table": "au_test.TAB_DATI_SETTLE_SAG",
+		"database": "au_test"
+	},
+
+	"job24": {
+		"nameTableHive": "/user/acutest/au/misure_gas_au/TAB_DATI_ANOMALIE_CA_CATUSO",
+		"cmdTableRefresh": "MSCK REPAIR TABLE au_test.TAB_DATI_ANOMALIE_CA_CATUSO",
+		"cmdTableRefresh2": "MSCK REPAIR TABLE au_test.TAB_CA_CATUSO_CHECKER",
+		"table": "au_test.TAB_DATI_ANOMALIE_CA_CATUSO",
+		"database": "au_test",
+
+		"tableExternal":"au_test.TAB_CA_CATUSO_CHECKER",
+		"pathTabellaHDFS":"/user/acutest/au/misure_gas_au/TAB_CA_CATUSO_CHECKER"
+
+
+	}
+
+
+	
+	 
+}

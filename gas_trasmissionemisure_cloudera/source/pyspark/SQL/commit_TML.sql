@@ -1,0 +1,22 @@
+INSERT INTO TABLE au.gas_tml 
+SELECT  cod_servizio    ,
+        cod_flusso      ,
+        dataElaborazione,
+        piva_utente     ,
+        piva_distr      ,
+        cod_pdr         ,
+        matr_mis        ,
+        coeff_corr      ,
+        freq_let        ,
+        acc_mis         ,
+        data_racc       ,
+        let_tot_prel    ,
+        let_tot_conv    ,
+        tipo_lettura    ,
+        val_dato        ,
+        num_tentativi   ,
+        esito_raccolta  ,
+        mod_alt_racc    ,
+        dir_indennizzo  ,
+        pros_fin 
+from au_test.gas_tml

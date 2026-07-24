@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../def_dati_tecnici.xsd"/>
+	<xs:include schemaLocation="../def_cliente.xsd"/>
+	<xs:include schemaLocation="../def_identificativi.xsd"/>
+	<xs:element name="Prestazione">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IdentificativiRichiesta" type="IdentificativiRichiestaCodDistr"/>
+				<xs:element name="DatiTecnici" type="PdrBase"/>
+				<xs:element name="Esito" type="EsitoRichiesta"/>
+			</xs:sequence>
+			<xs:attribute name="cod_servizio" type="xs:string" use="required" fixed="SW1"/>
+			<xs:attribute name="cod_flusso" type="xs:string" use="required" fixed="0700"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

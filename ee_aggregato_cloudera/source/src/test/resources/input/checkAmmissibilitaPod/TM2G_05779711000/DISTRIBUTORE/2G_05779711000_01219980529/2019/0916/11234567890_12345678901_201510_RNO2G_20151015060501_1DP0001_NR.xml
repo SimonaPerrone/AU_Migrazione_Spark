@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FlussoMisure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CodFlusso="RNO2G">
+    <IdentificativiFlusso>
+        <PIvaUtente>12345678901</PIvaUtente>
+        <PIvaDistributore>11234567890</PIvaDistributore>
+        <CodContrDisp>DP0001</CodContrDisp>
+    </IdentificativiFlusso>
+    <DatiPod>
+        <Pod>IT999E00000100</Pod>
+        <DataMisura>15/10/2015</DataMisura>
+        <TipoRettifica>P</TipoRettifica>
+        <DataRilevazione>29/06/2018</DataRilevazione>
+        <Motivazione>2</Motivazione>
+        <DatiPdp>
+            <Trattamento>O</Trattamento>
+            <Tensione>400</Tensione>
+            <Forfait>NO</Forfait>
+            <GruppoMis>SI</GruppoMis>
+            <Ka>1,000</Ka>
+            <Kr>1,000</Kr>
+            <Kp>1,000</Kp>
+        </DatiPdp>
+        <Misura xsi:type="DettaglioMisuraRNRType" >
+            <PotMax>100,000</PotMax>
+            <EaF1>2,000</EaF1>
+            <EaF2>1,333</EaF2>
+            <EaF3>2,000</EaF3>
+            <EaF4>3,000</EaF4>
+            <ErF1>3,567</ErF1>
+            <ErF2>2,674</ErF2>
+            <ErF3>0,654</ErF3>
+            <ErF4>2,567</ErF4>
+            <PotF1>100,000</PotF1>
+            <PotF2>85,000</PotF2>
+            <PotF3>90,000</PotF3>
+            <PotF4>95,000</PotF4>
+        </Misura>
+    </DatiPod>
+</FlussoMisure>

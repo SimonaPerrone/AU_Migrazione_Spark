@@ -1,0 +1,31 @@
+#!/bin/sh
+
+export HADOOP_USER_NAME=${hadoop.username}
+
+file_properties_path=${sqoop.config.path}
+
+JDBC_USERNAME=$(hdfs dfs -cat $file_properties_path | grep 'spark.app.user' |  sed 's/spark.app.user=//')
+JDBC_URL=$(hdfs dfs -cat $file_properties_path | grep 'spark.app.url' |  sed 's/spark.app.url=//')
+JDBC_PASSWORD=$(hdfs dfs -cat $file_properties_path | grep 'spark.app.password' |  sed 's/spark.app.password=//')
+
+SQOOP_DATE=$(date +'%Y-%m-%d %H:%M:%S')
+echo "sqoop date: $SQOOP_DATE"
+
+sqoop import \
+    --connect "${JDBC_URL}" \
+    --username "${JDBC_USERNAME}" \
+    --password "${JDBC_PASSWORD}" \
+    --columns "N_ID_GSE_RICHIESTA_ER_A,T_STATO,T_ANNO,D_DATA_MODIFICA,D_DATA_INSERIMENTO" \
+    --table "GSE.GSE_RICHIESTA_ER_A" \
+    --fields-terminated-by ';' \
+    --lines-terminated-by '\n' \
+    --null-string '\\N' \
+    --null-non-string '\\N' \
+    --delete-target-dir \
+    --hive-import \
+    --hive-database "${gse.db}" \
+    --hive-table "GSE_RICHIESTA_ER_A" \
+    --split-by "N_ID_GSE_RICHIESTA_ER_A" \
+    --num-mappers 10 \
+    --hive-overwrite \
+    --map-column-hive N_ID_GSE_RICHIESTA_ER_A=bigint,T_STATO=string,T_ANNO=string,D_DATA_MODIFICA=timestamp,D_DATA_INSERIMENTO=timestamp

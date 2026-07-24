@@ -1,0 +1,130 @@
+import xml.etree.ElementTree as ET
+import constants
+
+from pyspark import SparkContext, SparkConf, SQLContext
+from functions.time import UtilTime 
+import hashlib
+import datetime
+import os
+import re
+
+from pyspark.sql import HiveContext
+from pyspark.sql import functions as F
+from pyspark.sql.functions import *
+from pyspark.sql.functions import expr, lit, monotonicallyIncreasingId
+from pyspark.sql.types import *
+from pyspark.sql.types import DoubleType
+
+class FlussoTML:
+
+    def __init__(self, codFlusso):
+        self.codFlusso = codFlusso
+
+    def isValidFile(self, filename):
+        pattern = "^\\d{11}_\\d{11}_\\d{6}_(T|t)(M|m)(L|l)(\\d{4}|.\\d{4})_\\d*(_\\d{1,}|).\\w{3}$"
+        return bool(re.match(pattern, filename))
+
+    def makeError(self, dataElaborazione, anno, mese, local_file):
+        result = []   
+        result.append( ("", "", dataElaborazione, \
+                        "", "", "", \
+                        "","", \
+                        "","","","","","",anno, mese, local_file ) )
+        return result
+
+    def getFileXSD(self, codice_servizio, codice_flusso):
+        file_xsd = ""
+        # Flusso TML
+        if codice_servizio == constants.CODSERVIZIO_TML and codice_flusso == "0050":
+            file_xsd = constants.FILE_XSD_TML_0050
+        return file_xsd
+
+    def write(self, rdd, pool_id, sc, sqlCtx):
+        print("Thread TML")
+        sc.setLocalProperty("spark.scheduler.pool", str(pool_id))
+        dfTML = sqlCtx.createDataFrame(rdd, schema=constants.schemaFlussoTML)
+
+        n_id_file_udf = udf(
+            lambda x: hashlib.md5(x.encode('utf-8')).hexdigest()
+        )
+
+        annomese_rif_udf = udf(
+            lambda d: str(os.path.basename(d).split("_")[2][0:4] if (len(os.path.basename(d).split("_")[2]) > 4) else os.path.basename(d).split("_")[2][2:4]) + str(os.path.basename(d).split("_")[2][4:6] if (len(os.path.basename(d).split("_")[2]) > 4) else os.path.basename(d).split("_")[2][0:2])
+        )
+
+        filename_udf = udf(
+            lambda d: os.path.basename(d)
+        )
+
+        dfTML = dfTML.withColumn("t_name_file",  filename_udf(col('local_file')))
+        dfTML = dfTML.withColumn("n_id_file", n_id_file_udf(col('local_file')))
+        dfTML = dfTML.withColumn("annomese_riferimento", annomese_rif_udf(col('local_file')))
+
+        dataElaborazione = str(datetime.datetime.now().isoformat())
+        dfTML = dfTML.withColumn("d_caricamento",  lit(dataElaborazione))
+        dfTML = dfTML.withColumn("data_racc", expr("from_unixtime(unix_timestamp(data_racc, 'dd/MM/yyyy'))").cast("timestamp"))
+        
+        #test
+        #constants.PATHDFS_TML= "/user/silvia/au/misure_gas_au/cmg_gas/gas_tml_test"
+        print ("Write: ", constants.PATHDFS_TML)
+        dfTML.write.parquet(constants.PATHDFS_TML, 'append')
+        #dfTML.write.partitionBy(constants.PARTITIONLIST_TML).parquet(constants.PATHDFS_TML, 'append')
+        sqlCtx.sql(constants.CMD_REFRESH_TML)
+        sc.setLocalProperty("spark.scheduler.pool", None)
+
+    # Ritorna l'elemento
+    # codice_servizio, cod_flusso, dataElaborazione, pivaUtente, piva_distr, cod_pdr,matr_mis,coeff_corr,freq_let,acc_mis,data_racc,let_tot_prel,tipo_lettura, val_dato, num_tentativi, esito_raccolta, mod_alt_racc,dir_indennizzo,pros_fin
+    def getItems(self, root, dataElaborazione, anno, mese, local_file):
+        result          = []   
+
+        if root == None:
+            result.append( ("" ,"" , dataElaborazione, "", "", \
+                    "","","","","","","","","","" ,"" ,"" ,"" ,"","", \
+                        anno, mese, local_file   ))
+            return result
+ 
+        codice_servizio = "" if root.get("cod_servizio") is None else root.get("cod_servizio")
+        cod_flusso      = "" if root.get("cod_flusso") is None else root.get("cod_flusso")
+
+        pivaUtente      = "" if root.find("IdentificativiRichiesta/piva_utente") is None else root.find("IdentificativiRichiesta/piva_utente").text
+        piva_distr      = "" if root.find("IdentificativiRichiesta/piva_distr") is None else root.find("IdentificativiRichiesta/piva_distr").text
+
+
+        if anno == "" or mese == "" or piva_distr == "" or pivaUtente =="":
+            result.append( ("" ,"" , dataElaborazione, pivaUtente, piva_distr, \
+                    "","","","","","","","","","" ,"" ,"" ,"" ,"","", \
+                        "EE", "EE", local_file   ))
+            return result
+
+
+        DatiPdR = root.findall("DatiPdR")
+        
+        if DatiPdR == None:
+            print ("Warn", "flusso TML non valido")
+            result.append( (codice_servizio, cod_flusso, dataElaborazione, pivaUtente, piva_distr, \
+                    "","","","","","","","","","" ,"" ,"" ,"" ,"","", \
+                        anno, mese, local_file  ))
+            return result
+
+        for item in DatiPdR:
+            cod_pdr             = "" if item.find("cod_pdr")        is None else item.find("cod_pdr").text
+            matr_mis            = "" if item.find("matr_mis")       is None else item.find("matr_mis").text
+            coeff_corr          = 0 if item.find("coeff_corr")      is None else float(item.find("coeff_corr").text)
+            freq_let            = "" if item.find("freq_let")       is None else item.find("freq_let").text
+            acc_mis             = "" if item.find("acc_mis")        is None else item.find("acc_mis").text
+            data_racc           = "" if item.find("data_racc")      is None else item.find("data_racc").text
+            let_tot_prel        = 0 if item.find("let_tot_prel")    is None else float(item.find("let_tot_prel").text)
+            let_tot_conv        = 0 if item.find("let_tot_conv")    is None else float(item.find("let_tot_conv").text)
+            tipo_lettura        = "" if item.find("tipo_lettura")   is None else item.find("tipo_lettura").text
+            val_dato            = "" if item.find("val_dato")       is None else item.find("val_dato").text
+            num_tentativi       = 0 if item.find("num_tentativi")   is None else float(item.find("num_tentativi").text)
+            esito_raccolta      = "" if item.find("esito_raccolta") is None else item.find("esito_raccolta").text
+            mod_alt_racc        = "" if item.find("mod_alt_racc")   is None else item.find("mod_alt_racc").text
+            dir_indennizzo      = "" if item.find("dir_indennizzo") is None else item.find("dir_indennizzo").text
+            pros_fin            = "" if item.find("pros_fin")       is None else item.find("pros_fin").text
+
+            result.append( (codice_servizio, cod_flusso, dataElaborazione, pivaUtente, piva_distr, \
+                            cod_pdr,matr_mis,coeff_corr,freq_let,acc_mis,data_racc,let_tot_prel,let_tot_conv,tipo_lettura, val_dato, num_tentativi, esito_raccolta, mod_alt_racc,dir_indennizzo,pros_fin, \
+                            anno, mese, local_file  )  )
+            
+        return result

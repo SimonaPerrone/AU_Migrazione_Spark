@@ -1,0 +1,51 @@
+
+create table au.TAB_SETTLE_GAS_PROF_PDR_tmp stored as PARQUET  as
+  select * from au.TAB_SETTLE_GAS_PROF_PDR;
+
+  
+drop table au.TAB_SETTLE_GAS_PROF_PDR;
+create table au.TAB_SETTLE_GAS_PROF_PDR stored as PARQUET  as
+select TAB_SETTLE_GAS_PROF_PDR_tmp.*  from au.TAB_SETTLE_GAS_PROF_PDR_tmp
+left join (
+select * from au.TAB_SETTLE_GAS_PROF_PDR_tmp
+where pdr in (
+'00594200346379',
+'00600036002528',
+'00600040005258',
+'00600055000094',
+'00594200622035',
+'01340000335630',
+'00080000233652',
+'00600036001432',
+'15104203493340',
+'15104203495825',
+'00594203378106',
+'15964204308673',
+'00600001000458',
+'11060000002404',
+'11060000014663',
+'11060000017138',
+'11060000020396',
+'15964204280533',
+'00600001003184',
+'10720000702532',
+'11060000007097',
+'15104203475946',
+'15104203544219',
+'15964204289384',
+'00594201807460',
+'00600037002006',
+'03660000036882',
+'11060000016744'
+)
+
+and trattamento_sag <> trattamento and (trattamento_sag = 'G' or trattamento = 'G')
+) as t on
+t.pdr = TAB_SETTLE_GAS_PROF_PDR_tmp.pdr and
+t.trattamento = TAB_SETTLE_GAS_PROF_PDR_tmp.trattamento and 
+t.trattamento_sag = TAB_SETTLE_GAS_PROF_PDR_tmp.trattamento_sag  
+
+where t.pdr is null
+
+
+

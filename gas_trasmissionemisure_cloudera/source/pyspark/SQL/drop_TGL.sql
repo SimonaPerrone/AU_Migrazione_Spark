@@ -1,0 +1,1 @@
+drop table au_test.gas_tgl_50

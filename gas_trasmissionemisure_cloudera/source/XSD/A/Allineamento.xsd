@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../def_dati_tecnici.xsd"/>
+	<xs:include schemaLocation="../def_cliente.xsd"/>
+	<xs:include schemaLocation="../def_identificativi.xsd"/>
+	<xs:element name="Allineamento">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="piva_utente" type="PIVA"/>
+				<xs:element name="piva_distr" type="PIVA"/>
+				<xs:element name="cod_pdr" type="CodicePdr"/>
+				<xs:element name="cod_remi" type="CodiceREMI"/>
+				<xs:element name="stato_pdr" type="StatoPdR"/>
+				<xs:element name="tipo_pdr" type="TipologiaPdR"/>
+				<xs:element name="data_attivazione" type="DataIta"/>
+				<xs:element name="acc_mis" type="TipoAccessibilita"/>
+				<xs:element name="matr_mis" type="Matricola"/>
+				<xs:element name="classe_gruppo_mis" type="Stringa10"/>
+				<xs:element name="n_cifre_mis" type="Intero"/>
+				<xs:element name="anno_fabb_mis" type="Anno"/>
+				<xs:element name="convertitore" type="OnOff"/>
+				<xs:element name="gruppo_mis_int" type="OnOff" minOccurs="0"/>
+				<xs:element name="n_cifre_conv" type="Intero" minOccurs="0"/>
+				<xs:element name="coeff_corr" type="Coefficiente"/>
+				<xs:element name="prel_annuo_prev" type="PrelievoAnnuoPrevisto"/>
+				<xs:element name="profilo" type="ProfiloPrelievoAllineamento"/>
+				<xs:element name="cliente" type=" AnagraficaClienteTelCF "/>
+				<xs:element name="indirizzo" type="FornituraAllineamento"/>
+				<xs:element name="bonusGas" type="OnOff"/>
+				<xs:element name="info_bonus" type="InfoBonus" minOccurs="0"/>
+				<xs:element name="Fatturazione" type="DatiFatturazione" minOccurs="0"/>
+				<xs:element name="ServEnergetico" type="ServizioEnergetico" minOccurs="0"/>
+				<xs:element name="IvaImposte" type="Imposte"/>
+				<xs:element name="max_prelievo_ora" type="Potenza"/>
+				<xs:element name="press_misura" type="Pressione" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,515 @@
+from pyspark.sql.types import *
+import os
+
+
+APPNAME = "flusso gas"                                                   # Nome dell'applicazione
+PARTITIONS = 10 
+
+CMD_REFRESH_TAL = "MSCK REPAIR TABLE cmg_gas.gas_tal_500" 
+CMD_REFRESH_RML = "MSCK REPAIR TABLE cmg_gas.gas_rml" 
+CMD_REFRESH_SW1 = "MSCK REPAIR TABLE cmg_gas.gas_sw1_50" 
+CMD_REFRESH_TGL = "MSCK REPAIR TABLE cmg_gas.prt_cmg_tgl_p"
+CMD_REFRESH_TML = "MSCK REPAIR TABLE cmg_gas.gas_tml" 
+CMD_REFRESH_CA_ALTREFREQ = "MSCK REPAIR TABLE au_test.gas_ca_altrefreq"
+CMD_REFRESH_CA_MENSILI = "MSCK REPAIR TABLE au_test.gas_ca_mensili"
+CMD_REFRESH_RSL = "MSCK REPAIR TABLE cmg_gas.gas_rsl" 
+CMD_REFRESH_RGL = "MSCK REPAIR TABLE cmg_gas.prt_cmg_rgl_p" 
+CMD_REFRESH_TAV = "MSCK REPAIR TABLE cmg_gas.gas_tav" 
+CMD_REFRESH_TAS = "MSCK REPAIR TABLE cmg_gas.gas_tas" 
+CMD_REFRESH_RMV = "MSCK REPAIR TABLE cmg_gas.gas_rmv"
+CMD_REFRESH_FUI = "MSCK REPAIR TABLE cmg_gas.gas_fui"
+CMD_REFRESH_DEF = "MSCK REPAIR TABLE cmg_gas.gas_def"
+CMD_REFRESH_TMV = "MSCK REPAIR TABLE cmg_gas.gas_tmv"
+#CMD_REFRESH_ELABORATEFILES = "MSCK REPAIR TABLE cmg_gas.gas_elaborate_file"
+#CMD_REFRESH_ELABORATEFILES = "MSCK REPAIR TABLE cmg_gas.prt_cmg_file"
+CMD_REFRESH_ELABORATEFILES = "MSCK REPAIR TABLE cmg_gas.prt_cmg_file_p"
+
+
+CMD_REFRESH_DATANOTPARSED = "MSCK REPAIR TABLE au_test.gas_error_parsed" 
+
+PATHDFS_TAL =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_tal_500"
+PATHDFS_RML =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_rml"
+PATHDFS_SW1 =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_sw1_50"
+PATHDFS_TML =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_tml"
+PATHDFS_TGL =                  "/user/silvia/au/misure_gas_au/cmg_gas/prt_cmg_tgl_p"
+PATHDFS_RSL =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_rsl"
+PATHDFS_RGL =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_rgl"
+PATHDFS_TAV =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_tav"
+PATHDFS_TAS =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_tas"
+PATHDFS_RMV =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_rmv"
+PATHDFS_FUI =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_fui"
+PATHDFS_DEF =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_def"
+PATHDFS_TMV =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_tmv"
+PATHDFS_DATANOTPARSED =        "/user/silvia/au/misure_gas_au/gas_error_parsed"
+PATHPROFSTD =                   "/user/silvia/au/misure_gas_au/gas_profstand"		      # Path hdfs in cui e' contenuto il file profili standard in formato parquet
+PATHPREVSTAND =                 "/user/silvia/au/misure_gas_au/gas_param_carat"
+PATHCATEGORIATERMICA =          "/user/silvia/au/misure_gas_au/gas_categtermica"
+PATHCLASSIPRELIEVO =            "/user/silvia/au/misure_gas_au/gas_classiprelievo"
+PATHWK =                        "/user/silvia/au/misure_gas_au/gas_wk"
+PATHPROFSTANDARD =              "/user/silvia/au/misure_gas_au/gas_prof_standard"
+PATHHDFS_RESULT_CA_ALTRFREQ =   "/user/silvia/au/misure_gas_au/gas_ca_AltreFreq"
+PATHHDFS_RESULT_CA_MENSILI =    "/user/silvia/au/misure_gas_au/gas_ca_mensili"
+#PATHHDFS_ELEBORATEFILES =       "/user/silvia/au/misure_gas_au/cmg_gas/gas_elaborate_file"
+PATHHDFS_ELEBORATEFILES =       "/user/silvia/au/misure_gas_au/cmg_gas/prt_cmg_file"
+PATHHDFS_ZIP =                  "/user/silvia/au/misure_gas_au/cmg_gas/gas_zip"
+
+EXT_ZIP = ".zip"                # estensione file ZIP
+EXT_XML = ".xml"                # estensione file XML      
+SEPARATOR_DATE = "/"            # Separatore per le date 
+DECIMAL_FLOAT = "."             # Nuovo carattere da sostituire
+DECIMAL_FLOAT_OLD = ","         # Carattere da sostituire 
+ZIP_TEMPDIRECTORY = "/mnt/isilonshare_gas/"          # cartella di sorgente dei file zip
+#ZIP_TEMPDIRECTORY = "/mnt/share/data/GAS/ZIP/"          # cartella di sorgente dei file zip
+
+#TEMPDIRECTORY_XML = "/mnt/isilonshare1/TEST_GAS_INJ" # cartella di destinazione dei file xml
+#TEMPDIRECTORY_LOG = "/mnt/isilonshare1/TEST_GAS_INJ/LOG" # cartella di destinazione dei log
+
+TEMPDIRECTORY_XML = "/mnt/isilonshare1/GAS_INJ"
+TEMPDIRECTORY_LOG = "/mnt/isilonshare1/GAS_INJ/LOG"
+
+#TEMPDIRECTORY_XML = "/mnt/share/data/GAS/TEMP3" # cartella di destinazione dei file xml
+#DIRECTORY_HOME ="/mnt/share/data/GAS/TMPFUI/"
+DIRECTORY_HOME ="/mnt/isilonshare_gas/"
+
+LOCAL_PATH = "/home/acutest/20190826_GAS/pyspark/"
+#LOCAL_PATH = "/home/acu/AU/PY/pyspark/"
+
+
+#************************************************ Definizione dei file XSD:  /mnt/isilonshare1/XSD_GAS
+#XSD_SCHEMAS_DIR = "file:///mnt/isilonshare1/XSD_GAS/"
+# DEBUG - Cluster TEST
+#XSD_SCHEMAS_DIR = "file:///home/acutest/20190826_GAS/XSD/"
+XSD_SCHEMAS_DIR = "file:///mnt/isilonshare1/XSD_GAS/"
+
+#XSD_HOME_PATH = "/home/acutest/20190826_GAS/XSD/schemas/"
+XSD_HOME_PATH = "/mnt/isilonshare1/XSD_GAS/schemas/"
+
+CODSERVIZIO_STR = "cod_servizio"
+CODFLUSSO_STR = "cod_flusso"
+
+CODSERVIZIO_TAL = 'TAL'         # Indicatore del Servizio TAL
+CODSERVIZIO_TML = 'TML'         # Indicatore del Servizio TML
+CODSERVIZIO_RML = 'RML'         # Indicatore del Servizio RML
+CODSERVIZIO_SW1 = 'SW1'         # Indicatore del Servizio SW1
+CODSERVIZIO_TGL = 'TGL'         # Indicatore del Servizio TGL
+CODSERVIZIO_RGL = 'RGL'         # Indicatore del Servizio RGL
+CODSERVIZIO_RSL = 'RSL'         # Indicatore del Servizio RSL
+CODSERVIZIO_TAV = 'TAV'         # Indicatore del Servizio TAV
+CODSERVIZIO_TAS = 'TAS'         # Indicatore del Servizio TAS
+CODSERVIZIO_RMV = 'RMV'         # Indicatore del Servizio RMV
+CODSERVIZIO_FUI = 'FUI'         # Indicatore del Servizio FUI
+CODSERVIZIO_DEF = 'DEF'         # Indicatore del Servizio DEF
+CODSERVIZIO_TMV = 'TMV'         # Indicatore del Servizio TMV
+                                               
+FILE_XSD_TAL_0050   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAL_0050.xsd') # Trasmissione flusso autoletture - Trasmissione dall utente al distributore
+FILE_XSD_TAL_0150   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAL_0150.xsd') # Trasmissione flusso autoletture - Trasmissione dall utente al distributore
+
+FILE_XSD_RML_0055   = os.path.join(XSD_SCHEMAS_DIR, 'letture/RML_0055.xsd') # Trasmissione flusso rettifica letture di ciclo - Altre frequenze di lettura
+FILE_XSD_RML_0056   = os.path.join(XSD_SCHEMAS_DIR, 'letture/RML_0056.xsd') # Trasmissione flusso rettifica letture di ciclo - Altre frequenze di lettura
+
+FILE_XSD_TML_0050   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TML_0050.xsd') # Trasmissione flusso letture di ciclo - Altre frequenze di lettura
+
+FILE_XSD_TGL_0050   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TGL_0050.xsd') # Trasmissione flusso letture di ciclo - Misurati mensilmente con dettaglio giornaliero
+FILE_XSD_SW1_0351   = os.path.join(XSD_SCHEMAS_DIR, 'SW/SW1_0351.xsd')      # Trasmissione al venditore entrante della lettura di switching
+FILE_XSD_SW1_0350   = os.path.join(XSD_SCHEMAS_DIR, 'SW/SW1_0350.xsd')      # Trasmissione al venditore entrante della lettura di switching
+
+FILE_XSD_RGL_0055   = os.path.join(XSD_SCHEMAS_DIR, 'letture/RGL_0055.xsd') # Flusso rettifica letture di ciclo - Misurati mensilmente con dettaglio giornaliero
+
+FILE_XSD_RSL_0400   = os.path.join(XSD_SCHEMAS_DIR, 'letture/RSL_0400.xsd') # Flusso rettifica letture di switching
+
+FILE_XSD_TAV_0050   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAV_0050.xsd') # Flusso autoletture - Trasmissione dall utente al distributore
+FILE_XSD_TAV_0150   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAV_0150.xsd') # Flusso autoletture - Trasmissione dal distributore all utente
+
+FILE_XSD_TAS_0050   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAS_0050.xsd') # Flusso autoletture - Trasmissione dall utente al distributore
+FILE_XSD_TAS_0150   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TAS_0150.xsd') # Flusso autoletture - Trasmissione dal distributore all utente
+
+FILE_XSD_RMV_0400   = os.path.join(XSD_SCHEMAS_DIR, 'letture/RMV_0400.xsd') # Flusso di rettifica delle letture di voltura
+
+FILE_XSD_FUI_0350   = os.path.join(XSD_SCHEMAS_DIR, 'FUI-DEF/FUI_0350.xsd') # Flusso FUI ???
+FILE_XSD_FUI_0351   = os.path.join(XSD_SCHEMAS_DIR, 'FUI-DEF/FUI_0351.xsd') # Flusso FUI ???
+
+FILE_XSD_DEF_0350   = os.path.join(XSD_SCHEMAS_DIR, 'FUI-DEF/DEF_0350.xsd') # Flusso DEF ???
+FILE_XSD_DEF_0351   = os.path.join(XSD_SCHEMAS_DIR, 'FUI-DEF/DEF_0351.xsd') # Flusso DEF ???
+
+FILE_XSD_TMV_0350   = os.path.join(XSD_SCHEMAS_DIR, 'letture/TMV_0350.xsd') 
+
+#************************************************ Definizione delle strutture dati:
+
+# Definizione schema per il calcolo del C1 e T1
+schemaC1T1 = StructType([
+        StructField("id3", LongType(), True),
+        StructField("C1", DoubleType(), True),
+        StructField("T1", DoubleType(), True),
+        StructField("dataI", DateType(), True),
+        StructField("dataF", DateType(), True)
+])
+
+schemaZip = StructType([
+        StructField("result", StringType(), True),
+        StructField("type", StringType(), True),
+        StructField("file", StringType(), True),
+        StructField("error", StringType(), True)
+])
+
+
+########################  TAL ########################
+
+PARTITIONLIST_TAL = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+# Definizione dello schema TAL
+schemaFlussoTAL_0050 = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataelaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("data_com_autolet_cf", StringType(), True),
+    StructField("let_tot_prel", DoubleType(), True),
+    StructField("esito_val", StringType(), True),
+    StructField("note", StringType(), True),
+    StructField("anno", StringType(), True),
+    StructField("mese", StringType(), True),
+    StructField("local_file", StringType(), True),
+
+])
+
+######################## SW1 ########################
+PARTITIONLIST_SW1 = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema SW1 
+schemaFlussoSW1 = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("cod_prat_utente", StringType(), True),
+    StructField("cod_prat_distr", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("data_deco_switch", StringType(), True),
+    StructField("vol_annuo_sost", DoubleType(), True),
+    StructField("classe_gruppo_mis", StringType(), True),
+    StructField("n_cifre_mis", StringType(), True),
+    StructField("segn_mis_sost", StringType(), True),
+    StructField("tipo_lettura", StringType(), True),
+    StructField("pre_conv", StringType(), True),
+    StructField("gruppo_mis_int", StringType(), True),
+    StructField("coeff_corr", DoubleType(), True),
+    StructField("data_mis_eff", StringType(), True),
+    StructField("segn_mis_eff", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("n_cifre_conv", StringType(), True),
+    StructField("segn_conv", StringType(), True),
+    StructField("segn_conv_eff", StringType(), True),
+    StructField("note", StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+])
+
+######################## TGL ########################
+PARTITIONLIST_TGL = ["mese_comp", "piva_distr", "piva_utente"]  # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema TGL
+schemaFlussoTGL = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("mese_comp", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("val_dato_mens", StringType(), True),
+    StructField("esito_raccolta", StringType(), True),
+    StructField("data_comp", StringType(), True),
+    StructField("let_tot_prel", StringType(), True),
+    StructField("let_tot_conv", StringType(), True),
+    StructField("tipo_lettura", StringType(), True),
+    StructField("anno", StringType(), True),
+    StructField("mese", StringType(), True),
+    StructField("local_file", StringType(), True),
+])
+
+######################## RML ########################
+PARTITIONLIST_RML  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+
+# Definizione dello schema RML 
+schemaFlussoRML_0055 = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("coeff_corr", StringType(), True),
+    StructField("freq_let", StringType(), True),
+    StructField("data_comp", StringType(), True),
+    StructField("data_racc", StringType(), True),
+    StructField("let_tot_prel", DoubleType(), True),
+    StructField("let_tot_conv", DoubleType(), True),
+    StructField("mot_rett_lett", StringType(), True),
+    StructField("vol_ric",              StringType(), True),
+    StructField("ini_periodo",          StringType(), True),
+    StructField("fine_periodo",         StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+])
+
+######################## TML ########################
+PARTITIONLIST_TML  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema TML
+schemaFlussoTML = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("coeff_corr", DoubleType(), True),
+    StructField("freq_let", StringType(), True),
+    StructField("acc_mis", StringType(), True),
+    StructField("data_racc", StringType(), True),
+    StructField("let_tot_prel", DoubleType(), True),
+    StructField("let_tot_conv", DoubleType(), True),
+    StructField("tipo_lettura", StringType(), True),
+    StructField("val_dato", StringType(), True),
+    StructField("num_tentativi", DoubleType(), True),
+    StructField("esito_raccolta", StringType(), True),
+    StructField("mod_alt_racc", StringType(), True),
+    StructField("dir_indennizzo", StringType(), True),
+    StructField("pros_fin", StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+    StructField("causa_manc_raccolta",             StringType(), True),
+    StructField("matr_conv",             StringType(), True),
+])
+
+######################## RGL ########################
+
+PARTITIONLIST_RGL  = ["mese_comp", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+schemaFlussoRGL_0055 = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("mese_comp", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("data_racc", StringType(), True),
+    StructField("let_tot_prel", StringType(), True),
+    StructField("let_tot_conv", StringType(), True),
+    StructField("tipo_lettura", StringType(), True),
+    StructField("mot_rett_lett", DoubleType(), True),
+    StructField("vol_ric", StringType(), True),
+    StructField("periodo_ric", StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file"	            , StringType(), True)
+
+])
+
+
+######################## RSL ########################
+PARTITIONLIST_RSL  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema RSL
+schemaFlussoRSL = StructType([
+    StructField("cod_servizio", StringType(), True),
+    StructField("cod_flusso", StringType(), True),
+    StructField("dataElaborazione", StringType(), True),
+    StructField("piva_utente", StringType(), True),
+    StructField("piva_distr", StringType(), True),
+    StructField("cod_pdr", StringType(), True),
+    StructField("matr_mis", StringType(), True),
+    StructField("matr_conv", StringType(), True),
+    StructField("coeff_corr", DoubleType(), True),
+    StructField("progr_anno_term", DoubleType(), True),
+    StructField("data_comp", StringType(), True),
+    StructField("let_tot_prel", DoubleType(), True),
+    StructField("let_tot_conv", StringType(), True),
+    StructField("mot_rett_lett", StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+])
+
+######################## TAV ########################
+PARTITIONLIST_TAV  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema TAV
+schemaFlussoTAV = StructType([
+    StructField("cod_servizio",         StringType(), True),
+    StructField("cod_flusso",           StringType(), True),
+    StructField("dataElaborazione",     StringType(), True),
+    StructField("piva_utente",          StringType(), True),
+    StructField("piva_distr",           StringType(), True),
+    StructField("cod_pdr",              StringType(), True),
+    StructField("matr_mis",             StringType(), True),
+    StructField("matr_conv",            StringType(), True),
+    StructField("data_com_autolet_cf",  StringType(), True),
+    StructField("let_tot_prel",         DoubleType(), True),
+    StructField("let_tot_conv",         StringType(), True),
+    StructField("esito_val",            StringType(), True),
+    StructField("note",                 StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+])
+
+######################## TAS ########################
+PARTITIONLIST_TAS  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema TAS
+schemaFlussoTAS = StructType([
+    StructField("cod_servizio",         StringType(), True),
+    StructField("cod_flusso",           StringType(), True),
+    StructField("dataElaborazione",     StringType(), True),
+    StructField("piva_utente",          StringType(), True),
+    StructField("piva_distr",           StringType(), True),
+    StructField("cod_pdr",              StringType(), True),
+    StructField("matr_mis",             StringType(), True),
+    StructField("matr_conv",            StringType(), True),
+    StructField("data_com_autolet_cf",  StringType(), True),
+    StructField("let_tot_prel",         DoubleType(), True),
+    StructField("let_tot_conv",         StringType(), True),
+    StructField("esito_val",            StringType(), True),
+    StructField("note",                 StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file",             StringType(), True),
+])
+
+######################## RMV ########################
+PARTITIONLIST_RMV  = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+
+# Definizione dello schema RMV
+schemaFlussoRMV = StructType([
+    StructField("cod_servizio",         StringType(), True),
+    StructField("cod_flusso",           StringType(), True),
+    StructField("dataElaborazione",     StringType(), True),
+    StructField("piva_utente",          StringType(), True),
+    StructField("piva_distr",           StringType(), True),
+    StructField("cod_pdr",              StringType(), True),
+    StructField("cod_prat_attivazione", StringType(), True),
+    StructField("matr_mis",             StringType(), True),
+    StructField("matr_conv",            StringType(), True),
+    StructField("coeff_corr",           DoubleType(), True),
+    StructField("progr_anno_term",      DoubleType(), True),
+    StructField("data_comp",            StringType(), True),
+    StructField("let_tot_prel",         DoubleType(), True),
+    StructField("let_tot_conv",         StringType(), True),
+    StructField("mot_rett_lett",        StringType(), True),
+    StructField("anno",             StringType(), True),
+    StructField("mese",             StringType(), True),
+    StructField("local_file"              , StringType(), True),
+])
+
+######################## FUI ########################
+PARTITIONLIST_FUI = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+schemaFlussoFUI = StructType([
+    StructField("codice_servizio"	, StringType(), True), 
+    StructField("cod_flusso"	    , StringType(), True), 
+    StructField("dataElaborazione"  , StringType(), True), 
+    StructField("piva_utente"       , StringType(), True),
+    StructField("piva_distr"        , StringType(), True),
+    StructField("cod_prat_utente"   , StringType(), True),
+    StructField("cod_prat_distr"    , StringType(), True),
+    StructField("data_deco_switch"	, StringType(), True), 
+    StructField("vol_annuo_sost"    , StringType(), True), 
+    StructField("classe_gruppo_mis"	, StringType(), True), 
+    StructField("n_cifre_mis"	    , StringType(), True), 
+    StructField("matr_mis"	        , StringType(), True), 
+    StructField("cod_pdr"	        , StringType(), True), 
+    StructField("segn_mis_sost"	    , StringType(), True), 
+    StructField("tipo_lettura"	    , StringType(), True), 
+    StructField("pre_conv"	        , StringType(), True), 
+    StructField("gruppo_mis_int"	, StringType(), True), 
+    StructField("coeff_corr"	    , StringType(), True), 
+    StructField("matr_conv"	        , StringType(), True), 
+    StructField("n_cifre_conv"	    , StringType(), True), 
+    StructField("segn_conv"	        , StringType(), True), 
+    StructField("data_mis_eff"	    , StringType(), True), 
+    StructField("segn_mis_eff"	    , StringType(), True), 
+    StructField("segn_conv_eff"	    , StringType(), True), 
+    StructField("note"	            , StringType(), True),
+    StructField("anno"              , StringType(), True),
+    StructField("mese"              , StringType(), True),
+    StructField("local_file"              , StringType(), True),
+
+])
+
+######################## DEF ########################
+PARTITIONLIST_DEF = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+schemaFlussoDEF = StructType([
+    StructField("codice_servizio"	, StringType(), True), 
+    StructField("cod_flusso"	    , StringType(), True), 
+    StructField("dataElaborazione"  , StringType(), True), 
+    StructField("piva_utente"       , StringType(), True),
+    StructField("piva_distr"        , StringType(), True),
+    StructField("cod_prat_utente"   , StringType(), True),
+    StructField("cod_prat_distr"    , StringType(), True),
+    StructField("data_deco_switch"	, StringType(), True), 
+    StructField("vol_annuo_sost"    , StringType(), True), 
+    StructField("classe_gruppo_mis"	, StringType(), True), 
+    StructField("n_cifre_mis"	    , StringType(), True), 
+    StructField("matr_mis"	        , StringType(), True), 
+    StructField("cod_pdr"	        , StringType(), True), 
+    StructField("segn_mis_sost"	    , StringType(), True), 
+    StructField("tipo_lettura"	    , StringType(), True), 
+    StructField("pre_conv"	        , StringType(), True), 
+    StructField("gruppo_mis_int"	, StringType(), True), 
+    StructField("coeff_corr"	    , StringType(), True), 
+    StructField("matr_conv"	        , StringType(), True), 
+    StructField("n_cifre_conv"	    , StringType(), True), 
+    StructField("segn_conv"	        , StringType(), True), 
+    StructField("data_mis_eff"	    , StringType(), True), 
+    StructField("segn_mis_eff"	    , StringType(), True), 
+    StructField("segn_conv_eff"	    , StringType(), True), 
+    StructField("note"	            , StringType(), True),
+    StructField("anno"              , StringType(), True),
+    StructField("mese"              , StringType(), True),
+    StructField("local_file"              , StringType(), True),
+])
+
+PARTITIONLIST_TMV = ["anno", "mese", "piva_distr", "piva_utente"]        # Lista degli attributi per il partizionamento del flusso PDO 2G
+schemaFlussoTMV = StructType([
+    StructField("codice_servizio"	        , StringType(), True), 
+    StructField("cod_flusso"	            , StringType(), True), 
+    StructField("dataElaborazione"          , StringType(), True), 
+    StructField("piva_utente"               , StringType(), True),
+    StructField("piva_distr"                , StringType(), True),
+    StructField("cod_prat_attivazione"      , StringType(), True),
+    StructField("cod_pdr"                   , StringType(), True),
+    StructField("matr_mis"	                , StringType(), True), 
+    StructField("data_att_contr"            , StringType(), True), 
+    StructField("vol_annuo_sost"	        , StringType(), True), 
+    StructField("classe_gruppo_mis"	        , StringType(), True), 
+    StructField("n_cifre_mis"	            , StringType(), True), 
+    StructField("segn_mis_sost"	            , StringType(), True), 
+    StructField("tipo_lettura"	            , StringType(), True), 
+    StructField("pre_conv"	                , StringType(), True), 
+    StructField("gruppo_mis_int"	        , StringType(), True), 
+    StructField("coeff_corr"	            , StringType(), True), 
+    StructField("data_mis_eff"	            , StringType(), True), 
+    StructField("segn_mis_eff"	            , StringType(), True),
+    StructField("anno"	            , StringType(), True),
+    StructField("mese"	            , StringType(), True),
+    StructField("local_file"	            , StringType(), True)
+
+])
+

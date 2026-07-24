@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="../def_dati_tecnici.xsd"/>
+	<xs:include schemaLocation="../def_cliente.xsd"/>
+	<xs:include schemaLocation="../def_identificativi.xsd"/>
+	<xs:include schemaLocation="../def_documentazione.xsd"/>
+	<xs:element name="Prestazione">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IdentificativiRichiesta" type="IdentificativiRichiestaCodDistr"/>
+				<xs:element name="DatiTecnici" type="DatiTecniciSwitchVendUsc"/>
+                                                               <xs:element name="DatiLettura" type="DatiLetturaSwitchVend"/>
+				<xs:element name="note" type="Stringa255" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="cod_servizio" type="xs:string" use="required" fixed="SW1"/>
+			<xs:attribute name="cod_flusso" type="xs:string" use="required" fixed="0351"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

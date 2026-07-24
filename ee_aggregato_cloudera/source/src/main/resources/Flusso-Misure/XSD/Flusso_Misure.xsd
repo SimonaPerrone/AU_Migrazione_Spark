@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="FlussoMisure">
+        <xsd:complexType mixed="true">
+            <xsd:sequence>
+                <xsd:element name="IdentificativiFlusso" minOccurs="0">
+                    <xsd:complexType mixed="true">
+                        <xsd:sequence>
+                            <xsd:element name="PIvaUtente" minOccurs="0" type="xsd:long"/>
+                            <xsd:element name="PIvaDistributore" minOccurs="0" type="xsd:long"/>
+                            <xsd:element name="CodContrDisp" minOccurs="0" type="xsd:normalizedString"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="DatiPod" maxOccurs="unbounded">
+                    <xsd:complexType mixed="true">
+                        <xsd:sequence>
+                            <xsd:element name="Pod" minOccurs="0" type="xsd:normalizedString"/>
+                            <xsd:element name="MeseAnno" minOccurs="0" type="xsd:normalizedString"/>
+                            <xsd:element name="DatiPdp" minOccurs="0">
+                                <xsd:complexType mixed="true">
+                                    <xsd:sequence>
+                                        <xsd:element name="PuntoDispacciamento" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="Trattamento" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="Tensione" minOccurs="0" type="xsd:int"/>
+                                        <xsd:element name="CifreAtt" minOccurs="0" type="xsd:int"/>
+                                        <xsd:element name="CifreRea" minOccurs="0" type="xsd:int"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="Curva" minOccurs="0">
+                                <xsd:complexType mixed="true">
+                                    <xsd:sequence>
+                                        <xsd:element name="Raccolta" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="TipoDato" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="Validato" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="PotMax" minOccurs="0" type="xsd:normalizedString"/>
+                                        <xsd:element name="Ea" maxOccurs="unbounded">
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:int">
+                                                        <xsd:attribute name="E1" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E2" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E3" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E4" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E5" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E6" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E7" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E8" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E9" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E10" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E11" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E12" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E13" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E14" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E15" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E16" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E17" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E18" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E19" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E20" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E21" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E22" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E23" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E24" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E25" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E26" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E27" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E28" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E29" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E30" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E31" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E32" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E33" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E34" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E35" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E36" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E37" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E38" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E39" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E40" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E41" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E42" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E43" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E44" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E45" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E46" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E47" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E48" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E49" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E50" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E51" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E52" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E53" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E54" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E55" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E56" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E57" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E58" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E59" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E60" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E61" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E62" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E63" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E64" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E65" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E66" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E67" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E68" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E69" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E70" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E71" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E72" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E73" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E74" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E75" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E76" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E77" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E78" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E79" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E80" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E81" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E82" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E83" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E84" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E85" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E86" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E87" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E88" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E89" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E90" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E91" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E92" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E93" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E94" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E95" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E96" type="xsd:normalizedString" use="required"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Er" maxOccurs="unbounded">
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:int">
+                                                        <xsd:attribute name="E1" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E2" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E3" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E4" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E5" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E6" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E7" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E8" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E9" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E10" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E11" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E12" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E13" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E14" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E15" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E16" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E17" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E18" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E19" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E20" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E21" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E22" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E23" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E24" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E25" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E26" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E27" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E28" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E29" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E30" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E31" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E32" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E33" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E34" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E35" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E36" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E37" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E38" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E39" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E40" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E41" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E42" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E43" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E44" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E45" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E46" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E47" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E48" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E49" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E50" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E51" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E52" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E53" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E54" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E55" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E56" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E57" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E58" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E59" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E60" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E61" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E62" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E63" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E64" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E65" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E66" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E67" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E68" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E69" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E70" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E71" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E72" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E73" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E74" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E75" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E76" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E77" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E78" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E79" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E80" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E81" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E82" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E83" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E84" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E85" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E86" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E87" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E88" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E89" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E90" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E91" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E92" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E93" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E94" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E95" type="xsd:normalizedString" use="required"/>
+                                                        <xsd:attribute name="E96" type="xsd:normalizedString" use="required"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="CodFlusso" type="xsd:normalizedString" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

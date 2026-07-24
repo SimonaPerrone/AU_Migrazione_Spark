@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:include schemaLocation="../def_dati_tecnici.xsd"/>
+    <xs:include schemaLocation="../def_cliente.xsd"/>
+    <xs:include schemaLocation="../def_identificativi.xsd"/>
+    
+    <xs:element name="Prestazione">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" name="IdentificativiRichiesta"
+                    type="IdentificativiRichiestaCodDistrOpt"/>
+                <xs:element maxOccurs="1" minOccurs="1" name="Ammissibilita" type="Ammissibilita"/>
+            </xs:sequence>
+            <xs:attribute fixed="PN1" name="cod_servizio" type="xs:string" use="required"/>
+            <xs:attribute fixed="0100" name="cod_flusso" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
