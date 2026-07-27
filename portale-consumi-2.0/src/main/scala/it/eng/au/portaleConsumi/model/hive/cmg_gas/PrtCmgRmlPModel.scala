@@ -1,0 +1,40 @@
+package it.eng.au.portaleConsumi.model.hive.cmg_gas
+
+import java.sql.Timestamp
+
+case class PrtCmgRmlPModel(
+                            n_id_file: String = null,
+                            t_name_file: String = null,
+                            annomese_riferimento: String = null,
+                            cod_servizio: String = null,
+                            cod_flusso: String = null,
+                            piva_utente: String = null,
+                            piva_distr: String = null,
+                            d_caricamento: Timestamp = null,
+                            cod_pdr: String = null,
+                            matr_mis: String = null,
+                            matr_conv: String = null,
+                            coeff_corr: String = null,
+                            freq_let: String = null,
+                            data_racc: Timestamp = null,
+                            data_comp: String = null,
+                            let_tot_prel: Integer = null,
+                            let_tot_conv: String = null,
+                            mot_rett_lett: String = null,
+                            vol_ric: String = null,
+                            ini_periodo: String = null,
+                            fine_periodo: String = null,
+                            local_file: String = null,
+                            anno: String = null,
+                            mese: String = null,
+                            mese_comp: String = null,
+                            tipo_rettifica: String = null,
+                            data_prest: String = null,
+                            codprat_sii: String = null,
+                            trattamento: String = null,
+                            vol_annuo_rettificato: String = null,
+                            periodo_ric: String = null,
+                            ammissibilita: String = null,
+                            causa_ostativa: String = null,
+                            annomese: String = null
+                          )

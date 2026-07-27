@@ -1,0 +1,1 @@
+0 13 17-23 7 * ${deploy.path.local}/run_gas_forniture_misure_full_portale_consumi.sh >/dev/null 2>&1

@@ -1,0 +1,1 @@
+00 13 * * 1-5 .${deploy.path.local}/run_gas_portale_consumi_schedule.sh > /dev/null 2>&1
