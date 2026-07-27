@@ -1,0 +1,40 @@
+package it.eng.au.ccgPubblicazione.model.agg
+
+import java.sql.Timestamp
+
+case class DailyConsumptionAgg(
+                                pdr: String = "",
+                                date: Timestamp = Timestamp.valueOf("2022-01-01 00:00:00"),
+                                value: String = "1",
+                                pprof: String = "",
+                                coefficient: Option[String] = None,
+                                ca: String = "",
+                                idRegClim: String = "",
+                                codProfStd: String = "",
+                                segnante: String = "",
+                                idFormula: String = "",
+                                errorCode: String = "0",
+                                pivaDistr: String = "",
+                                pivaUdd: String = "",
+                                pivaUdb: String = "",
+                                pivaIt: String = "",
+                                pivaRdb: String = "",
+                                dtg: String = "",
+                                codRemi: String = "",
+                                tipoCliente: String = "",
+                                unitMisPrel: String = "",
+                                session: String = "AGG",
+                                treatment: String = "G",
+                                causale: String = "",
+                                isValid: Boolean = true,
+                                leftMeasureLocalFile: String = "/mnt/isilon/piva11111111_piva000000000/2020/0101/piva11111111_piva000000000_file.AAOOlls._sx.zip",
+                                rightMeasureLocalFile: String = "/mnt/isilon/piva11111111_piva000000000/2020/0101/piva11111111_piva000000000_file.AAOOlls._dx.zip",
+                                forceExclusion: Boolean = false,
+                                tCodIstat: String = "",
+                                classeMisuratore: String = "",
+                                valueNotSterilized: String = "",
+                                valuef3: String = "",
+                                preconv: String = "",
+                                annoMese: String = "",
+                                executionid: String = ""
+                              )

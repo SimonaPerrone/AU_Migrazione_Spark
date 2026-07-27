@@ -1,0 +1,32 @@
+package it.eng.au.mid.common
+
+object CostantiMid {
+
+  // CALCOLO
+  val STATO_VALIDO = "V"
+  val STATO_INVALIDO = "I"
+  val STATO_FORZATO = "F"
+  val STATO_ESCLUSO_FORZATO = "EF"
+
+  val PROCESSO_SBG = "SBG"
+  val PROCESSO_AGG = "AGG"
+
+  val CAUSALE_ESCLUSI = "E"
+  val CAUSALE_INCOERENTI = "I"
+  val CAUSALE_ESCLUSI_INCOERENTI = "EI"
+
+  val TIPO_CALCOLO_ORDINARIO = "ORDINARIO"
+  val TIPO_CALCOLO_STRAORDINARIO = "STRAORDINARIO"
+
+  //PREDISPOSIZIONE
+  val SOC_ATTIVO = "Attivo"
+  val SOC_SOSPESO = "Sospeso"
+
+  // PUBBLICAZIONE
+  val NOME_OPERAZIONE_MID1 = "MID1"
+  val DESTINAZIONE_MID1 = "ID"
+
+  val NOME_OPERAZIONE_MID2 = "MID2"
+  val DESTINAZIONE_MID2 = "CSEA"
+
+}

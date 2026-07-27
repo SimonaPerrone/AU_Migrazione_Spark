@@ -1,0 +1,47 @@
+{
+  "autorun": true,
+  "terminals": [
+
+    {
+      "name": "INT",
+      "color": "terminal.ansiYellow",
+      "icon": "terminal",
+      "command": " "
+    },
+    {
+      "name": "local",
+      "color": "terminal.ansiWhite",
+      "icon": "terminal",
+      "command": " "
+    },
+
+    {
+      "name": "NO",
+      "color": "terminal.ansiYellow",
+      "icon": "terminal",
+      "command": " "
+    },
+    
+    {
+      "name": "server debug",
+      "color": "terminal.ansiYellow",
+      "icon": "debug",
+      "command": " "
+    },
+
+    {
+      "name": "Cluster Status",
+      "color": "terminal.ansiCyan",
+      "icon": "percentage",
+      "command": " "
+    },
+
+    {
+      "name": "local debug",
+      "color": "terminal.ansiWhite",
+      "icon": "debug",
+      "command": " "
+    }
+    
+  ]
+}

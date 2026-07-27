@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<FlussoMisure CodFlusso="F2G" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IdentificativiFlusso>
+    <PIvaUtente>12345678901</PIvaUtente>
+    <PIvaDistributore>01234567890</PIvaDistributore>
+    <CodContrDisp>DP0234</CodContrDisp>
+  </IdentificativiFlusso>
+  <FlussoMisure CodFlusso="F2G" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <IdentificativiFlusso>
+      <PIvaUtente>XXX1234567890YYY</PIvaUtente>
+      <PIvaDistributore>12345678901</PIvaDistributore>
+      <CodContrDisp>DP9876</CodContrDisp>
+    </IdentificativiFlusso>
+    <DatiPod>
+      <Pod>IT1234567890123</Pod>
+      <CodPrat_SII>SII202001000000</CodPrat_SII>
+      <DataInizio>01/02/2020</DataInizio>
+      <DatiPdp>
+        <PuntoDispacciamento>NORD</PuntoDispacciamento>
+        <TipoMisuratore>G</TipoMisuratore>
+        <DataMessaRegime2G>01/10/2019</DataMessaRegime2G>
+        <Trattamento>O</Trattamento>
+        <Tensione>380</Tensione>
+        <PotImp>550,000</PotImp>
+        <PotDisp>480,000</PotDisp>
+        <Ka>1,000</Ka>
+        <Kr>0,899</Kr>
+        <Kp>1,000</Kp>
+        <MatrAtt>aaabbbccccdddd111</MatrAtt>
+        <MatrRea>bbbcccvvvv1112222</MatrRea>
+        <MatrPot>tttyyyuuuu1234567</MatrPot>
+        <DataInstMisAtt>12/12/2019</DataInstMisAtt>
+        <DataInstMisRea>12/12/2019</DataInstMisRea>
+        <DataInstMisPot>12/12/2019</DataInstMisPot>
+        <CifreAtt>12</CifreAtt>
+        <CifreRea>12</CifreRea>
+        <CifrePot>12</CifrePot>
+        <GruppoMis>SI</GruppoMis>
+        <Forfait>SI</Forfait>
+        <CodiceTariffa>aaa</CodiceTariffa>
+        <Residenza>SI</Residenza>
+        <Disaliment>NO</Disaliment>
+        <ServizioTutela>MT</ServizioTutela>
+        <ConfMis>SI</ConfMis>
+      </DatiPdp>
+    </DatiPod>
+  </FlussoMisure>
+</FlussoMisure>

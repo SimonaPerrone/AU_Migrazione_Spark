@@ -1,0 +1,45 @@
+### REPORT 1
+
+-- Caricare i dati di test sottostanti
+-- copiare la query del report e sostituire le variabili
+    ${hive.table.agg_daily_consumption} -> eng_test.test_mid_agg
+    ${hivevar:executionId} -> 1697561996337
+    ${hive.table.mid_contatori} -> eng_test.test_mid_mid
+    ${hive.table.rcu_azienda_p} -> eng_test.test_mid_azienda
+-- rimuovere le operazioni di INSERT e TRUNCATE
+-- lanciare la query
+
+### Risultato atteso:
+-- atteso 2 righe per pdr1, pdr2 atteso escluso in quanto invalido:
+    annomese 202401 -> 1 sola riga possibile
+    annomese 202402 -> attesa riga con contatore 4 (massimo executionid_tracciatura)
+
+-- Cancellare le tabelle di test
+
+
+### COMANDI HQL per generare i dati di test
+CREATE TABLE eng_test.test_mid_agg AS SELECT
+'pdr1' as pdr, '202401' as annomese, 'pivadistr1' as pivadistr, 'codremi1' as codremi, 'G4' as classemisuratore, CAST('1697561996337' AS BIGINT) as executionid
+UNION ALL
+SELECT
+'pdr1' as pdr, '202402' as annomese, 'pivadistr1' as pivadistr, 'codremi1' as codremi, 'G4' as classemisuratore, CAST('1697561996337' AS BIGINT) as executionid;
+
+CREATE TABLE eng_test.test_mid_mid AS SELECT
+'pdr1' as pdr, '202401' as annomese, 'Y' as treatment, 'V' as stato, 2 as contatore, CAST('1697561998000' AS BIGINT) as executionid_tracciatura
+UNION ALL
+SELECT
+'pdr1' as pdr, '202402' as annomese, 'Y' as treatment, 'V' as stato, 3 as contatore, CAST('1697561998000' AS BIGINT) as executionid_tracciatura
+UNION ALL
+SELECT
+'pdr1' as pdr, '202402' as annomese, 'Y' as treatment, 'V' as stato, 4 as contatore, CAST('1697561999999' AS BIGINT) as executionid_tracciatura
+UNION ALL
+SELECT
+'pdr2' as pdr, '202402' as annomese, 'Y' as treatment, 'I' as stato, 4 as contatore, CAST('1697561999999' AS BIGINT) as executionid_tracciatura;
+
+CREATE TABLE eng_test.test_mid_azienda AS SELECT
+'distributoreRagSoc' as t_rag_soc, 'pivadistr1' as t_piva;
+
+### COMANDI CANCELLAZIONE TABELLE
+DROP TABLE IF EXISTS eng_test.test_mid_agg;
+DROP TABLE IF EXISTS eng_test.test_mid_mid;
+DROP TABLE IF EXISTS eng_test.test_mid_azienda;

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><FlussoMisure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" CodFlusso="RNO">
+        <IdentificativiFlusso>
+        <PIvaUtente>12300020158</PIvaUtente>
+        <PIvaDistributore>05779711000</PIvaDistributore>
+          <CodContrDisp>DP7001</CodContrDisp>
+        </IdentificativiFlusso>
+<DatiPod>
+<Pod>IT001E98716449</Pod>
+<DataMisura>30/11/2020</DataMisura>
+<TipoRettifica>P</TipoRettifica>
+<DataRilevazione>11/09/2020</DataRilevazione>
+<Motivazione>1</Motivazione>
+<DatiPdp>
+<Trattamento>F</Trattamento>
+<Tensione>220</Tensione>
+<Forfait>NO</Forfait>
+<GruppoMis>SI</GruppoMis>
+<Ka>1,000</Ka>
+<Kr>1,000</Kr>
+<Kp>1,000</Kp>
+</DatiPdp>
+<Misura xsi:type="DettaglioMisuraRNOv2Type">
+<EaF1>7516,701</EaF1>
+<EaF2>6554,897</EaF2>
+<EaF3>7949,291</EaF3>
+<ErF1>2329,299</ErF1>
+<ErF2>1650,986</ErF2>
+<ErF3>3349,861</ErF3>
+<PotF1>1,000</PotF1>
+<PotF2>1,000</PotF2>
+<PotF3>1,000</PotF3>
+</Misura>
+</DatiPod>
+</FlussoMisure>

@@ -1,0 +1,10 @@
+/.idea/
+/aggregatore-consumi-agg.iml
+/target/
+metastore_db/
+src/test/resources/local/tmp/AGG
+src/test/resources/local/AGG/AGG1
+src/test/resources/local/AGG/AGG2
+**/*header.csv*
+/derby.log
+

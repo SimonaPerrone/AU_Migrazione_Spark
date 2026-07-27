@@ -1,0 +1,124 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_SCHEDA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_POTENZA_DISPONIBILE",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "N_POTENZA_IMPEGNATA",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "N_TENSIONE",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "T_TIPO_MISURATORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_K_TRASFORMAZIONE",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "D_INST_MISURATORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_RIMOZ_MISURATORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_ARCHIVIAZIONE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_SUCC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VALIDO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_NUM_CIFRE_EA",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "N_NUM_CIFRE_ER",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "N_K_TRASFOR_ATT",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "N_K_TRASFOR_REA",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "N_K_TRASFOR_POT",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "T_MAT_MISURATORE_ATT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MAT_MISURATORE_REA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MAT_MISURATORE_POT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_INST_MISURATOR_ATT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_INST_MISURATOR_REA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_INST_MISURATOR_POT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_NUM_CIFRE_ATT",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "N_NUM_CIFRE_REA",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "N_NUM_CIFRE_POT",
+    "type" : [ "null", "int" ]
+  }, {
+    "name" : "B_PRESENZA_MIS",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_GEST_FORFAIT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_TIPO_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_FINE_TIPO_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_OPER_MISURATOR_ATT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_OPER_MISURATOR_REA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_OPER_MISURATOR_POT",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MOTIVAZIONE",
+    "type" : [ "null", "string" ]
+  },{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  }
+  ]
+}

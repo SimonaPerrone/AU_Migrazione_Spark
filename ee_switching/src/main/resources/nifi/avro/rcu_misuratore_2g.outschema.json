@@ -1,0 +1,94 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_MISURATORE_2G",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_FASCE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_VENDITORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_TELEFONOV",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_DATAINICONTR",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_DATAINIZIOFREEZING",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_MESSAGGICLIENTE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_VIS_CODCLI",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_CODCLI",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_VENDITORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_TELEFONOV",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_DATA_INICONTR",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_DATA_INIZIOFREEZING",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MESSAGGIO_CLIENTE_1",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MESSAGGIO_CLIENTE_2",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MESSAGGIO_CLIENTE_3",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MESSAGGIO_CLIENTE_4",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_MESSAGGIO_CLIENTE_5",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_NUM_FASCE",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "D_INIZIO_VALIDITA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_FINE_VALIDITA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_DATA_RIF",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_TIPO_CONFIGURAZIONE",
+    "type" : [ "null", "string" ]
+  },{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  } 
+	]
+}

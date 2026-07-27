@@ -1,0 +1,4 @@
+00 18 15,28-31 * * [[("$(date +\%d)" == "15") || ("$(date --date=tomorrow +\%d)" == "01")]] && ${isilon.deploy.path}/run_cdp_ccg.sh -s CCG_FIN -p ${hdfs.deploy.path}/config_ccg_fin.properties >> ${isilon.deploy.path}/log/calcolo_cdp_ccg_fin_`date +\%Y\%m\%d\%H\%M\%S`.log
+00 19 14 * * ${isilon.deploy.path}/run_cdp_ccg.sh -s CCG_RIC -p ${hdfs.deploy.path}/config_ccg_ric.properties >> ${isilon.deploy.path}/log/calcolo_cdp_ccg_ric_`date +\%Y\%m\%d\%H\%M\%S`.log
+00 19 29 1,3-12 * ${isilon.deploy.path}/run_cdp_ccg.sh -s CCG_RIC -p ${hdfs.deploy.path}/config_ccg_ric.properties >> ${isilon.deploy.path}/log/calcolo_cdp_ccg_ric_`date +\%Y\%m\%d\%H\%M\%S`.log
+00 19 27 2 * ${isilon.deploy.path}/run_cdp_ccg.sh -s CCG_RIC -p ${hdfs.deploy.path}/config_ccg_ric.properties >> ${isilon.deploy.path}/log/calcolo_cdp_ccg_ric_`date +\%Y\%m\%d\%H\%M\%S`.log

@@ -1,0 +1,71 @@
+create external table eng_test.daily_consumption_sbg_ccg
+(
+    pdr string,
+    date timestamp,
+    value double,
+    pprof double,
+    coefficient double,
+    ca double,
+    idRegClim int,
+    codProfStd string,
+    segnante string,
+    idFormula int,
+    errorCode int,
+    pivaDistr string,
+    pivaUdd string,
+    pivaUdb string,
+    pivaIt string,
+    pivaRdb string,
+    dtg string,
+    codRemi string,
+    tipoCliente string,
+    unitMisPrel string,
+    treatment string,
+    causale string,
+    isValid boolean,
+    leftMeasureLocalFile string,
+    rightMeasureLocalFile string,
+    forceExclusion boolean,
+    tCodIstat string,
+    classeMisuratore string,
+    valueNotSterilized double,
+    valueF3 double
+    ) partitioned by (session string, annoMese string, executionid bigint)
+stored as parquet
+location '/user/eng_test/sbg/daily_consumption_sbg_ccg'
+
+
+INSERT OVERWRITE TABLE eng_test.daily_consumption_sbg_ccg PARTITION(session='CCG', annoMese='202205', executionid=1659362514449) SELECT
+as select
+pdr,
+date,
+value,
+pprof,
+coefficient,
+ca,
+idRegClim,
+codProfStd,
+segnante,
+idFormula,
+errorCode,
+pivaDistr,
+pivaUdd,
+pivaUdb,
+pivaIt,
+pivaRdb,
+dtg,
+codRemi,
+tipoCliente,
+unitMisPrel,
+treatment,
+causale,
+isValid,
+leftMeasureLocalFile,
+rightMeasureLocalFile,
+forceExclusion,
+tCodIstat,
+classeMisuratore,
+valueNotSterilized,
+valueF3
+from eng_test.daily_consumption_sbg2
+where executionid = 1659362514449

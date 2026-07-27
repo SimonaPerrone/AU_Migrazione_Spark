@@ -1,0 +1,37 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_ANNO_MESE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_TRATTAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_TRATTAMENTO_SUCC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_CONSUMO_ANNUO",
+    "type" : [ "null", "double" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  } ,{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_FASCE_MISURATORE_2G",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_MISURATORE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_COD_GIORNO_2G",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "D_DATA_GIORNO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_FASCIA_1",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_1",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_2",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_2",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_3",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_3",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_4",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_4",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_5",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_5",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_6",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_6",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_7",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_7",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_8",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_8",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_9",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_9",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FASCIA_10",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "N_FINE_FASCIA_10",
+    "type" : [ "null", "long" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_DATA_RIF",
+    "type" : [ "null", "string" ]
+  },{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  }
+  ]
+}

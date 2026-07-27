@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.eng.au</groupId>
+    <artifactId>ERP</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <artifactId>erp-e-profilazione-punti-no</artifactId>
+        <groupId>it.eng.au</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+
+        <resources>
+            <!-- Default resources -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <filters>
+            <filter>src/main/resources/profiles/${active.profile}/config.properties</filter>
+        </filters>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <!-- see http://davidb.github.com/scala-maven-plugin -->
+            <groupId>net.alchim31.maven</groupId>
+            <artifactId>scala-maven-plugin</artifactId>
+            <version>3.2.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>compile</goal>
+                        <goal>testCompile</goal>
+                    </goals>
+                    <configuration>
+                        <args>
+                            <arg>-dependencyfile</arg>
+                            <arg>${project.build.directory}/.scala_dependencies</arg>
+                            <arg>-nobootcp</arg>
+                        </args>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.18.1</version>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                            <finalName>${project.artifactId}</finalName>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                        <filters>
+                            <filter>
+                                <artifact>com.github.scopt:scopt_${scala.compat.version}</artifact>
+                                <excludes>
+                                    <exclude>META-INF/MANIFEST.MF</exclude>
+                                </excludes>
+                            </filter>
+                        </filters>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>pl.project13.maven</groupId>
+            <artifactId>git-commit-id-plugin</artifactId>
+            <version>${git.commit.id.plugin}</version>
+            <executions>
+                <execution>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>revision</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <dateFormat>yyyy-MM-dd HH:mm:ss</dateFormat><!--  human-readable part of the version number -->
+                <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                <generateGitPropertiesFile>false
+                </generateGitPropertiesFile><!-- somehow necessary. otherwise the variables are not available in the pom -->
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>${build.helper.maven.plugin}</version>
+            <executions>
+                <execution>
+                    <id>timestamp-property</id>
+                    <goals>
+                        <goal>timestamp-property</goal>
+                    </goals>
+                    <configuration>
+                        <name>build.time</name>
+                        <pattern>yyyy-MM-dd HH:mm:ss</pattern>
+                        <locale>it_IT</locale>
+                        <timeZone>Europe/Rome</timeZone>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>${maven.resources.plugin}</version>
+            <configuration>
+                <includeEmptyDirs>true</includeEmptyDirs>
+            </configuration>
+            <executions>
+                <!-- Copy filtered resources -->
+                <execution>
+                    <id>copy-filtered-resources</id>
+                    <phase>process-resources</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+<!--                        <outputDirectory>${project.build.directory}/deploy</outputDirectory>-->
+                        <outputDirectory>${project.build.directory}/</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>src/main/resources</directory>
+                                <filtering>true</filtering>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+
+                <!-- Copy the JAR after it is built -->
+                <execution>
+                    <id>copy-jar</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/deploy</outputDirectory>
+<!--                        <outputDirectory>${project.build.directory}/deploy</outputDirectory>-->
+                        <resources>
+                            <resource>
+                                <directory>${project.build.directory}</directory>
+                                <includes>
+                                    <include>${project.build.finalName}.jar</include>
+                                </includes>
+                                <filtering>false</filtering>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+
+
+    </plugins>
+
+</build>
+</project>

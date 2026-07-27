@@ -1,0 +1,64 @@
+MAPREDUCEPARAM-FILTER
+
+----TABELLA CON RICONFIGURAZIONE dopo tabella sos_202012_202101_RICON.sw_misure_no_12m_202002_delta_sm_H1---
+set Data=to_date(from_unixtime(unix_timestamp(DATA-FILTER)));
+DROP TABLE IF EXISTS ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.test_giorni_somma ;
+
+CREATE
+TEMPORARY TABLE ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.${hiveconf:SWITCHING_EE_HIVE_STORICI_RICONF_TABLE_NAME_PURGED} AS
+SELECT `(d_creazione_next)?+.+`
+FROM
+  (SELECT *,
+          lead(d_creazione) over (partition BY pod_config, d_data_decorrenza
+                                  ORDER BY d_creazione ASC) AS d_creazione_next
+   FROM ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.${hiveconf:SWITCHING_EE_HIVE_STORICI_RICONF_TABLE_NAME}
+   where( 1=1 and PODRICONF-FILTER and ANNOMESE-FILTER and SINGLE-DATA-DECORRENZA-FILTER))t1
+WHERE t1.d_creazione_next IS NULL;
+
+CREATE TABLE ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.test_giorni_somma AS
+SELECT kk.*, ---FASCIA 1
+CASE
+    WHEN GIORNO_CAL IN ('LUN',
+                        'MAR',
+                        'MER',
+                        'GIO',
+                        'VEN')
+         AND data_misura NOT IN (HOLIDAYLIST-FILTER) THEN NVL(E33,0)+NVL(E34,0)+NVL(E35,0)+NVL(E36,0)+NVL(E37,0)+NVL(E38,0)+NVL(E39,0)+NVL(E40,0)+NVL(E41,0)+NVL(E42,0)+NVL(E43,0)+NVL(E44,0)+NVL(E45,0)+NVL(E46,0)+NVL(E47,0)+NVL(E48,0)+NVL(E49,0)+NVL(E50,0)+NVL(E51,0)+NVL(E52,0)+NVL(E53,0)+NVL(E54,0)+NVL(E55,0)+NVL(E56,0)+NVL(E57,0)+NVL(E58,0)+NVL(E59,0)+NVL(E60,0)+NVL(E61,0)+NVL(E62,0)+NVL(E63,0)+NVL(E64,0)+NVL(E65,0)+NVL(E66,0)+NVL(E67,0)+NVL(E68,0)+NVL(E69,0)+NVL(E70,0)+NVL(E71,0)+NVL(E72,0)+NVL(E73,0)+NVL(E74,0)+NVL(E75,0)+NVL(E76,0)
+    ELSE 0
+                        END AS EAF1_RICONF, ---FASCIA 2
+CASE
+    WHEN GIORNO_CAL IN ('LUN',
+                        'MAR',
+                        'MER',
+                        'GIO',
+                        'VEN')
+         AND data_misura NOT IN (HOLIDAYLIST-FILTER) THEN NVL(E29,0)+NVL(E30,0)+NVL(E31,0)+NVL(E32,0)+ NVL(E77,0)+NVL(E78,0)+NVL(E79,0)+NVL(E80,0)+NVL(E81,0)+NVL(E82,0)+NVL(E83,0)+NVL(E84,0)+NVL(E85,0)+NVL(E86,0)+NVL(E87,0)+NVL(E88,0)+NVL(E89,0)+NVL(E90,0)+NVL(E91,0)+NVL(E92,0)
+    WHEN GIORNO_CAL IN ('SAB')
+         AND data_misura NOT IN (HOLIDAYLIST-FILTER) THEN NVL(E29,0)+NVL(E30,0)+NVL(E31,0)+NVL(E32,0)+NVL(E33,0)+NVL(E34,0)+NVL(E35,0)+NVL(E36,0)+NVL(E37,0)+NVL(E38,0)+NVL(E39,0)+NVL(E40,0) +NVL(E41,0)+NVL(E42,0)+NVL(E43,0)+NVL(E44,0)+NVL(E45,0)+NVL(E46,0)+NVL(E47,0)+NVL(E48,0)+NVL(E49,0)+NVL(E50,0)+NVL(E51,0)+NVL(E52,0)+NVL(E53,0)+NVL(E54,0)+NVL(E55,0)+NVL(E56,0)+NVL(E57,0)+NVL(E58,0)+NVL(E59,0)+NVL(E60,0)+ NVL(E61,0)+NVL(E62,0)+NVL(E63,0)+NVL(E64,0)+NVL(E65,0)+NVL(E66,0)+NVL(E67,0)+NVL(E68,0)+NVL(E69,0)+NVL(E70,0)+NVL(E71,0)+NVL(E72,0)+NVL(E73,0)+NVL(E74,0)+NVL(E75,0)+NVL(E76,0)+NVL(E77,0)+NVL(E78,0)+NVL(E79,0)+NVL(E80,0)+ NVL(E81,0)+NVL(E82,0)+NVL(E83,0)+NVL(E84,0)+NVL(E85,0)+NVL(E86,0)+NVL(E87,0)+NVL(E88,0)+NVL(E89,0)+NVL(E90,0)+NVL(E91,0)+NVL(E92,0)
+    ELSE 0
+                                                       END AS EAF2_RICONF, ---FASCIA 3
+ CASE
+     WHEN GIORNO_CAL IN ('LUN',
+                         'MAR',
+                         'MER',
+                         'GIO',
+                         'VEN',
+                         'SAB')
+          AND data_misura NOT IN (HOLIDAYLIST-FILTER) THEN NVL(E1,0)+NVL(E2,0)+NVL(E3,0)+NVL(E4,0)+NVL(E5,0)+NVL(E6,0)+NVL(E7,0)+NVL(E8,0)+NVL(E9,0)+NVL(E10,0)+NVL(E11,0)+NVL(E12,0)+NVL(E13,0)+NVL(E14,0)+NVL(E15,0)+NVL(E16,0)+NVL(E17,0)+NVL(E18,0)+NVL(E19,0)+NVL(E20,0)+NVL(E21,0)+NVL(E22,0)+NVL(E23,0)+NVL(E24,0)+NVL(E25,0)+NVL(E26,0)+NVL(E27,0)+NVL(E28,0) +NVL(E93,0)+NVL(E94,0)+NVL(E95,0)+NVL(E96,0)+NVL(E97,0)+NVL(E98,0)+NVL(E99,0)+NVL(E100,0)
+     WHEN (GIORNO_CAL IN ('DOM')
+           OR data_misura IN (HOLIDAYLIST-FILTER)) THEN NVL(E1,0)+NVL(E2,0)+NVL(E3,0)+NVL(E4,0)+NVL(E5,0)+NVL(E6,0)+NVL(E7,0)+NVL(E8,0)+NVL(E9,0)+NVL(E10,0)+NVL(E11,0)+NVL(E12,0)+NVL(E13,0)+NVL(E14,0)+NVL(E15,0)+NVL(E16,0)+NVL(E17,0)+NVL(E18,0)+NVL(E19,0)+NVL(E20,0)+NVL(E21,0)+NVL(E22,0)+NVL(E23,0)+NVL(E24,0)+NVL(E25,0)+NVL(E26,0)+NVL(E27,0)+NVL(E28,0)+NVL(E29,0)+NVL(E30,0)+NVL(E31,0)+NVL(E32,0)+NVL(E33,0)+NVL(E34,0)+NVL(E35,0)+NVL(E36,0)+NVL(E37,0)+NVL(E38,0)+NVL(E39,0)+NVL(E40,0)+NVL(E41,0)+NVL(E42,0)+NVL(E43,0)+NVL(E44,0)+NVL(E45,0)+NVL(E46,0)+NVL(E47,0)+NVL(E48,0)+NVL(E49,0)+NVL(E50,0)+NVL(E51,0)+NVL(E52,0)+NVL(E53,0)+NVL(E54,0)+NVL(E55,0)+NVL(E56,0)+NVL(E57,0)+NVL(E58,0)+NVL(E59,0)+NVL(E60,0)+NVL(E61,0)+NVL(E62,0)+NVL(E63,0)+NVL(E64,0)+NVL(E65,0)+NVL(E66,0)+NVL(E67,0)+NVL(E68,0)+NVL(E69,0)+NVL(E70,0)+NVL(E71,0)+NVL(E72,0)+NVL(E73,0)+NVL(E74,0)+NVL(E75,0)+NVL(E76,0)+NVL(E77,0)+NVL(E78,0)+NVL(E79,0)+NVL(E80,0)+NVL(E81,0)+NVL(E82,0)+NVL(E83,0)+NVL(E84,0)+NVL(E85,0)+NVL(E86,0)+NVL(E87,0)+NVL(E88,0)+NVL(E89,0)+NVL(E90,0)+NVL(E91,0)+NVL(E92,0)+NVL(E93,0)+NVL(E94,0)+NVL(E95,0)+NVL(E96,0)+NVL(E97,0)+NVL(E98,0)+NVL(E99,0)+NVL(E100,0)
+     ELSE 0
+ END AS EAF3_RICONF,
+ KK.ANNO_MISURA AS ANNO_MISURA_RICONF,
+ KK.MESE_MISURA AS MESE_MISURA_RICONF
+FROM
+  ( SELECT x.*,
+           regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(regexp_replace(from_unixtime(unix_timestamp(DATA_MISURA,'dd/MM/yyyy'),'EEE'),'Mon','LUN'),'Tue','MAR'),'Wed','MER'),'Thu','GIO'),'Fri','VEN'),'Sat','SAB'),'Sun','DOM') AS GIORNO_cal
+   FROM
+     (SELECT *
+      FROM ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.sw_misure_no_12m_202002_delta_sm_H1 x
+      WHERE concat(x.pod14,x.d_data_decorrenza,x.trattamento_online,x.NOME_flusso) IN
+          (SELECT concat(pod_config,d_data_decorrenza,'O','S2G')
+           FROM ${hiveconf:SWITCHING_EE_HIVE_DB_NAME}.${hiveconf:SWITCHING_EE_HIVE_STORICI_RICONF_TABLE_NAME_PURGED})
+
+            ) x )kk ;

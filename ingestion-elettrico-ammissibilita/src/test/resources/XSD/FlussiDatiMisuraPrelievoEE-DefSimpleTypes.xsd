@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Codice pratica di switching rilasciato dal SII ai sensi del comma 8.2 della deliberazione 487/2015/R/EEL (15 caratteri)--> 
+  <xs:simpleType name="CodPratAttType">
+    <xs:restriction base="xs:string">
+    <xs:pattern value="[a-zA-Z0-9]{15}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Codice Contratto Dispacciamento come definito da Terna -->
+  <xs:simpleType name="CodContrDispType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- CodFlusso per parametrizzare il codice RNO e gestire anche RSN per le rettifiche delle letture di switching-->
+  <xs:simpleType name="CodFlusso">
+		<xs:restriction base="xs:string">
+       <xs:enumeration value="RNO"/>
+       <xs:enumeration value="RSN"/>
+       <xs:minLength value="3"/>
+       <xs:maxLength value="3"/>
+    </xs:restriction>
+	</xs:simpleType>
+  <!-- Codice POD per esempio IT 123 E 12345678 -->
+  <xs:simpleType name="CodicePodType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="14"/>
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="TestoMovType">
+    <xs:restriction base="xs:string">
+     <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+ 
+  
+  <!-- Codice Tariffa -->
+  <xs:simpleType name="CodiceTariffaType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Data (Formato italiano dd/MM/yyyy) -->
+  <xs:simpleType name="DataItaType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Dst: 0=no DST     - potenziali 96 quarti d'ora;
+            1=Inizio DST - potenziali 92 quarti d'ora;
+            2=Fine DST   - Prima parte curva;
+            3=Fine DST   - Seconda parte curva -->
+  <xs:simpleType name="DstType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Giorno (Formato dd) -->
+  <xs:simpleType name="GiornoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Alfanumerico 3. Formato: 3 cifre (massimo) -->
+  <xs:simpleType name="Intero3Type">
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[1-9]\d{0,2}|[0]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Alfanumerico 10. Formato: 10 cifre (massimo) -->
+  <xs:simpleType name="Intero10Type">
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[1-9]\d{0,9}|[0]{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Matricola Misuratore -->
+  <xs:simpleType name="MatrMisType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="17"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Mese Anno (Formato italiano MM/yyyy) -->
+  <xs:simpleType name="MeseAnnoItaType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Motivazione rettifica -->
+  <xs:simpleType name="MotivazioneType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Alfanumerico 10. Formato: 6 cifre (massimo), Virgola, 3 cifre -->
+  <xs:simpleType name="Numerico6v3Type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[1-9]\d{0,5}[,][0-9]{3}|[0][,][0-9]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Alfanumerico 11. Formato: 7 cifre (massimo), Virgola, 3 cifre -->
+  <xs:simpleType name="Numerico7v3Type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[1-9]\d{0,6}[,][0-9]{3}|[0][,][0-9]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Alfanumerico 16. Formato: 12 cifre (massimo), Virgola, 3 cifre -->
+  <xs:simpleType name="Numerico12v3Type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[1-9]\d{0,11}[,][0-9]{3}|[0][,][0-9]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Semplice con scelta SI/NO -->
+  <xs:simpleType name="OnOffType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SI"/>
+      <xs:enumeration value="NO"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Partita IVA -->
+  <!-- Validato solo sulla lunghezza (11) e il tipo dato (numerico) -->
+  <xs:simpleType name="PIVAType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{11}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  	<!-- Partita IVA -->
+	<!-- Validato solo sulla lunghezza max (16) e il tipo dato (alfanumerico) -->
+	<xs:simpleType name="PIVAType_AlfNmr">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>
+  <!-- Punto Dispacciamento -->
+  <xs:simpleType name="PuntoDispacciamentoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NORD"/>
+      <xs:enumeration value="CNOR"/>
+      <xs:enumeration value="CSUD"/>
+      <xs:enumeration value="SUD"/>
+      <xs:enumeration value="SICI"/>
+      <xs:enumeration value="SARD"/>
+	  <xs:enumeration value="NORE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Raccolta -->
+  <xs:simpleType name="RaccoltaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="T"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Nuova Raccolta v2 -->
+  <xs:simpleType name="RaccoltaV2Type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="V"/>
+      <xs:enumeration value="T"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Rettifica  -->
+  <xs:simpleType name="TipoRettificaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="V"/>
+      <xs:enumeration value="T"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Servizio Tutela -->
+  <xs:simpleType name="ServizioTutelaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MT"/>
+      <xs:enumeration value="S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Dato -->
+  <xs:simpleType name="TipoDatoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E"/>
+      <xs:enumeration value="S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Dato V2-->
+  <xs:simpleType name="TipoDatoV2Type">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="A"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Trattamento -->
+  <xs:simpleType name="TrattamentoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="F"/>
+      <xs:enumeration value="O"/>
+      <xs:enumeration value="C"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Validato -->
+  <xs:simpleType name="ValidatoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- TipoMisuratore -->
+  <xs:simpleType name="TipoMisuratoreType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="O"/>
+      <xs:enumeration value="G"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- TipoCodiceFlussoPeriodico -->
+  <xs:simpleType name="TipoCodFlussoPType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PDO"/>
+      <xs:enumeration value="PDO2G"/>
+      <xs:enumeration value="PNO"/>
+      <xs:enumeration value="PNO2G"/>
+      <xs:enumeration value="VNO"/>
+      <xs:enumeration value="VNO2G"/>
+      <xs:enumeration value="SNM"/>
+      <xs:enumeration value="SNM2G"/>
+      <xs:enumeration value="SM"/>
+      <xs:enumeration value="SM2G"/>
+      <xs:enumeration value="RT"/>
+      <xs:enumeration value="RT2G"/>
+      <xs:enumeration value="EIN"/>
+      <xs:enumeration value="EIN2G"/>
+      <xs:enumeration value="DS"/>
+      <xs:enumeration value="DS2G"/>
+      <xs:enumeration value="AV"/>
+      <xs:enumeration value="AV2G"/>
+      <xs:enumeration value="VP"/>
+      <xs:enumeration value="VP2G"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- TipoCodiceFlussoRettifica -->
+  <xs:simpleType name="TipoCodFlussoRType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RFO"/>
+      <xs:enumeration value="RFO2G"/>
+      <xs:enumeration value="RNO"/>
+      <xs:enumeration value="RNO2G"/>
+      <xs:enumeration value="RNV"/>
+      <xs:enumeration value="RNV2G"/>
+      <xs:enumeration value="RSN"/>
+      <xs:enumeration value="RSN2G"/>
+      <xs:enumeration value="SMR"/>
+      <xs:enumeration value="SMR2G"/>
+      <xs:enumeration value="RTR"/>
+      <xs:enumeration value="RTR2G"/>
+      <xs:enumeration value="RIN"/>
+      <xs:enumeration value="RIN2G"/>
+      <xs:enumeration value="DSR"/>
+      <xs:enumeration value="AVR"/>
+      <xs:enumeration value="VPR"/>
+      <xs:enumeration value="DSR2G"/>
+      <xs:enumeration value="AVR2G"/>
+      <xs:enumeration value="VPR2G"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

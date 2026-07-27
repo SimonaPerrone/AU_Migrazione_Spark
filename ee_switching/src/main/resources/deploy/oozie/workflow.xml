@@ -1,0 +1,131 @@
+<workflow-app name="${workflowName}" xmlns="uri:oozie:workflow:0.5">
+    <start to="fork-f856"/>
+    <kill name="Kill">
+        <message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+    </kill>
+    <action name="shell-d8dc">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>ee-switching-load-storici.sh</exec>
+            <argument>-v</argument>
+            <env-var>HADOOP_USER_NAME=${hdfs.user}</env-var>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching-load-storici.sh#ee-switching-load-storici.sh</file>
+            <file>${HDFS_DEPLOY_PATH}/conf#conf</file>
+            <file>${HDFS_DEPLOY_PATH}/queries#queries</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </shell>
+        <ok to="shell-fbed"/>
+        <error to="Kill"/>
+    </action>
+    <action name="shell-1a6f">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>ee-switching-load-funzionali-switching.sh</exec>
+            <argument>-v</argument>
+            <env-var>HADOOP_USER_NAME=${hdfs.user}</env-var>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching-load-funzionali-switching.sh#ee-switching-load-funzionali-switching.sh</file>
+            <file>${HDFS_DEPLOY_PATH}/conf#conf</file>
+            <file>${HDFS_DEPLOY_PATH}/queries#queries</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </shell>
+        <ok to="join-3ebe"/>
+        <error to="Kill"/>
+    </action>
+    <fork name="fork-f856">
+        <path start="shell-d8dc" />
+        <path start="fork-faa3" />
+    </fork>
+    <join name="join-1bbd" to="End"/>
+    <action name="shell-ec80">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>ee-switching-dati-funzionali.sh</exec>
+            <argument>-v</argument>
+            <env-var>HADOOP_USER_NAME=${hdfs.user}</env-var>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching-dati-funzionali.sh#ee-switching-dati-funzionali.sh</file>
+            <file>${HDFS_DEPLOY_PATH}/conf#conf</file>
+            <file>${HDFS_DEPLOY_PATH}/queries#queries</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </shell>
+        <ok to="spark-ac68"/>
+        <error to="Kill"/>
+    </action>
+    <action name="shell-d5f8">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>ee-switching-load-funzionali-na.sh</exec>
+            <argument>-v</argument>
+            <env-var>HADOOP_USER_NAME=${hdfs.user}</env-var>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching-load-funzionali-na.sh#ee-switching-load-funzionali-na.sh</file>
+            <file>${HDFS_DEPLOY_PATH}/conf#conf</file>
+            <file>${HDFS_DEPLOY_PATH}/queries#queries</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </shell>
+        <ok to="join-3ebe"/>
+        <error to="Kill"/>
+    </action>
+    <fork name="fork-faa3">
+        <path start="shell-1a6f" />
+        <path start="shell-d5f8" />
+    </fork>
+    <join name="join-3ebe" to="shell-ec80"/>
+    <action name="shell-fbed">
+        <shell xmlns="uri:oozie:shell-action:0.1">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <exec>ee-switching-dati-storici.sh</exec>
+            <env-var>HADOOP_USER_NAME=${hdfs.user}</env-var>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching-dati-storici.sh#ee-switching-dati-storici.sh</file>
+            <file>${HDFS_DEPLOY_PATH}/conf#conf</file>
+            <file>${HDFS_DEPLOY_PATH}/app-data#app-data</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </shell>
+        <ok to="spark-1d41"/>
+        <error to="Kill"/>
+    </action>
+    <action name="spark-1d41">
+        <spark xmlns="uri:oozie:spark-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <master>yarn</master>
+            <mode>cluster</mode>
+            <name>Switching EE storici</name>
+            <class>it.au.misure.ee_switching.driver.FlowDriver</class>
+            <jar>ee-switching.jar</jar>
+            <spark-opts>--driver-java-options &quot;-Dlog4j.configuration=file:log4j.properties&quot; --num-executors 40 --executor-cores 5 --executor-memory 45G --driver-memory 5G </spark-opts>
+            <arg>--flow-name</arg>
+            <arg>storici</arg>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching.jar#ee-switching.jar</file>
+            <file>${HDFS_DEPLOY_PATH}/conf/application.conf#application.conf</file>
+            <file>${HDFS_DEPLOY_PATH}/conf/storici_log4j.properties#log4j.properties</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </spark>
+        <ok to="join-1bbd"/>
+        <error to="Kill"/>
+    </action>
+    <action name="spark-ac68">
+        <spark xmlns="uri:oozie:spark-action:0.2">
+            <job-tracker>${jobTracker}</job-tracker>
+            <name-node>${nameNode}</name-node>
+            <master>yarn</master>
+            <mode>cluster</mode>
+            <name>Switching EE funzionali</name>
+            <class>it.au.misure.ee_switching.driver.FlowDriver</class>
+            <jar>ee-switching.jar</jar>
+            <spark-opts>--driver-java-options &quot;-Dlog4j.configuration=file:log4j.properties&quot; --num-executors 40 --executor-cores 5 --executor-memory 45G --driver-memory 5G </spark-opts>
+            <arg>--flow-name</arg>
+            <arg>funzionali</arg>
+            <file>${HDFS_DEPLOY_PATH}/ee-switching.jar#ee-switching.jar</file>
+            <file>${HDFS_DEPLOY_PATH}/conf/application.conf#application.conf</file>
+            <file>${HDFS_DEPLOY_PATH}/conf/funzionali_log4j.properties#log4j.properties</file>
+            <file>${HIVE_SITE_XML_PATH}#hive-site.xml</file>
+        </spark>
+        <ok to="join-1bbd"/>
+        <error to="Kill"/>
+    </action>
+    <end name="End"/>
+</workflow-app>

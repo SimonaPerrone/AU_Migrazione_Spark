@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="FlussiDatiMisuraPrelievoEE-DefSimpleTypes.xsd"/>
+  <!-- Dati PdP Orari Periodici -->
+  <xs:complexType name="DatiPdpOPType">
+    <xs:sequence>
+      <xs:element name="PuntoDispacciamento" type="PuntoDispacciamentoType"/>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="Tensione" type="Intero10Type"/>
+      <xs:element name="PotContrImp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="PotDisp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="CifreAtt" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifreRea" type="Intero3Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dati PdP Orari Switching -->
+  <xs:complexType name="DatiPdpOSType">
+    <xs:sequence>
+      <xs:element name="PuntoDispacciamento" type="PuntoDispacciamentoType"/>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="Tensione" type="Intero10Type"/>
+      <xs:element name="PotImp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="PotDisp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="CifreAtt" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifreRea" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CodiceTariffa" type="CodiceTariffaType"/>
+      <xs:element name="ServizioTutela" type="ServizioTutelaType"/>
+      <xs:element name="Prestazioni" type="OnOffType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dati PdP non orari Periodici-->
+  <xs:complexType name="DatiPdpNPType">
+    <xs:sequence>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="Tensione" type="Intero10Type"/>
+      <xs:element name="PotContrImp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="PotDisp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="Ka" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kr" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kp" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="MatrAtt" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrRea" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrPot" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="DataInstMisAtt" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisRea" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisPot" type="DataItaType" minOccurs="0"/>
+      <xs:element name="CifreAtt" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifreRea" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifrePot" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="GruppoMis" type="OnOffType" default="SI"/>
+      <xs:element name="Forfait" type="OnOffType" default="NO"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dati PdP non orari Switching -->
+  <xs:complexType name="DatiPdpNSType">
+    <xs:sequence>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="Tensione" type="Intero10Type"/>
+      <xs:element name="PotImp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="PotDisp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="Ka" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kr" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kp" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="MatrAtt" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrRea" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrPot" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="DataInstMisAtt" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisRea" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisPot" type="DataItaType" minOccurs="0"/>
+      <xs:element name="CifreAtt" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifreRea" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifrePot" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="GruppoMis" type="OnOffType" default="SI"/>
+      <xs:element name="Forfait" type="OnOffType" default="NO"/>
+      <xs:element name="CodiceTariffa" type="CodiceTariffaType"/>
+      <xs:element name="ServizioTutela" type="ServizioTutelaType"/>
+      <xs:element name="Prestazioni" type="OnOffType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Consumi non orari forfait -->
+  <xs:complexType name="DettaglioConsumiFType">
+    <xs:sequence>
+      <xs:element name="DataInizioPeriodo" type="DataItaType"/>
+      <xs:element name="EaM" type="Numerico12v3Type"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Consumi non orari ricostruiti -->
+  <xs:complexType name="DettaglioConsumiRType">
+    <xs:sequence>
+      <xs:element name="DataInizioPeriodo" type="DataItaType"/>
+      <xs:element name="EaM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF3" type="Numerico12v3Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Consumi non orari -->
+  <xs:complexType name="DettaglioConsumiSType">
+    <xs:sequence>
+      <xs:element name="TipoDato" type="TipoDatoType"/>
+      <xs:element name="Validato" type="ValidatoType"/>
+      <xs:element name="EaM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF3" type="Numerico12v3Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Curva oraria -->
+  <xs:complexType name="DettaglioCurvaType">
+    <xs:sequence>
+      <xs:element name="Raccolta" type="RaccoltaType"/>
+      <xs:element name="TipoDato" type="TipoDatoType"/>
+      <xs:element name="Validato" type="ValidatoType"/>
+      <xs:element name="PotMax" type="Numerico7v3Type"/>
+      <xs:element name="Ea" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+      <xs:element name="Er" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Curva oraria Rettifica -->
+  <xs:complexType name="DettaglioCurvaRType">
+    <xs:sequence>
+      <xs:element name="PotMax" type="Numerico7v3Type"/>
+      <xs:element name="Ea" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+      <xs:element name="Er" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Curva oraria Switching -->
+  <xs:complexType name="DettaglioCurvaSType">
+    <xs:sequence>
+      <xs:element name="TipoDato" type="TipoDatoType"/>
+      <xs:element name="Validato" type="ValidatoType"/>
+      <xs:element name="PotMax" type="Numerico7v3Type"/>
+      <xs:element name="Ea" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+      <xs:element name="Er" type="EnergiaType" minOccurs="1" maxOccurs="32"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Misura non oraria -->
+  <xs:complexType name="DettaglioMisuraType">
+    <xs:sequence>
+      <xs:element name="Raccolta" type="RaccoltaType"/>
+      <xs:element name="TipoDato" type="TipoDatoType"/>
+      <xs:element name="Validato" type="ValidatoType"/>
+      <xs:element name="EaM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF3" type="Numerico12v3Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Dettaglio Misura non oraria Rettifica -->
+  <xs:complexType name="DettaglioMisuraRType">
+    <xs:sequence>
+      <xs:element name="EaM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotM" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="ErF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF3" type="Numerico12v3Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Energia TO -->
+  <xs:complexType name="EnergiaType">
+    <xs:simpleContent>
+      <xs:extension base="GiornoType">
+        <xs:attribute name="Dst" type="DstType" default="0"/>
+        <xs:attribute name="E1" type="Numerico6v3Type"/>
+        <xs:attribute name="E2" type="Numerico6v3Type"/>
+        <xs:attribute name="E3" type="Numerico6v3Type"/>
+        <xs:attribute name="E4" type="Numerico6v3Type"/>
+        <xs:attribute name="E5" type="Numerico6v3Type"/>
+        <xs:attribute name="E6" type="Numerico6v3Type"/>
+        <xs:attribute name="E7" type="Numerico6v3Type"/>
+        <xs:attribute name="E8" type="Numerico6v3Type"/>
+        <xs:attribute name="E9" type="Numerico6v3Type"/>
+        <xs:attribute name="E10" type="Numerico6v3Type"/>
+        <xs:attribute name="E11" type="Numerico6v3Type"/>
+        <xs:attribute name="E12" type="Numerico6v3Type"/>
+        <xs:attribute name="E13" type="Numerico6v3Type"/>
+        <xs:attribute name="E14" type="Numerico6v3Type"/>
+        <xs:attribute name="E15" type="Numerico6v3Type"/>
+        <xs:attribute name="E16" type="Numerico6v3Type"/>
+        <xs:attribute name="E17" type="Numerico6v3Type"/>
+        <xs:attribute name="E18" type="Numerico6v3Type"/>
+        <xs:attribute name="E19" type="Numerico6v3Type"/>
+        <xs:attribute name="E20" type="Numerico6v3Type"/>
+        <xs:attribute name="E21" type="Numerico6v3Type"/>
+        <xs:attribute name="E22" type="Numerico6v3Type"/>
+        <xs:attribute name="E23" type="Numerico6v3Type"/>
+        <xs:attribute name="E24" type="Numerico6v3Type"/>
+        <xs:attribute name="E25" type="Numerico6v3Type"/>
+        <xs:attribute name="E26" type="Numerico6v3Type"/>
+        <xs:attribute name="E27" type="Numerico6v3Type"/>
+        <xs:attribute name="E28" type="Numerico6v3Type"/>
+        <xs:attribute name="E29" type="Numerico6v3Type"/>
+        <xs:attribute name="E30" type="Numerico6v3Type"/>
+        <xs:attribute name="E31" type="Numerico6v3Type"/>
+        <xs:attribute name="E32" type="Numerico6v3Type"/>
+        <xs:attribute name="E33" type="Numerico6v3Type"/>
+        <xs:attribute name="E34" type="Numerico6v3Type"/>
+        <xs:attribute name="E35" type="Numerico6v3Type"/>
+        <xs:attribute name="E36" type="Numerico6v3Type"/>
+        <xs:attribute name="E37" type="Numerico6v3Type"/>
+        <xs:attribute name="E38" type="Numerico6v3Type"/>
+        <xs:attribute name="E39" type="Numerico6v3Type"/>
+        <xs:attribute name="E40" type="Numerico6v3Type"/>
+        <xs:attribute name="E41" type="Numerico6v3Type"/>
+        <xs:attribute name="E42" type="Numerico6v3Type"/>
+        <xs:attribute name="E43" type="Numerico6v3Type"/>
+        <xs:attribute name="E44" type="Numerico6v3Type"/>
+        <xs:attribute name="E45" type="Numerico6v3Type"/>
+        <xs:attribute name="E46" type="Numerico6v3Type"/>
+        <xs:attribute name="E47" type="Numerico6v3Type"/>
+        <xs:attribute name="E48" type="Numerico6v3Type"/>
+        <xs:attribute name="E49" type="Numerico6v3Type"/>
+        <xs:attribute name="E50" type="Numerico6v3Type"/>
+        <xs:attribute name="E51" type="Numerico6v3Type"/>
+        <xs:attribute name="E52" type="Numerico6v3Type"/>
+        <xs:attribute name="E53" type="Numerico6v3Type"/>
+        <xs:attribute name="E54" type="Numerico6v3Type"/>
+        <xs:attribute name="E55" type="Numerico6v3Type"/>
+        <xs:attribute name="E56" type="Numerico6v3Type"/>
+        <xs:attribute name="E57" type="Numerico6v3Type"/>
+        <xs:attribute name="E58" type="Numerico6v3Type"/>
+        <xs:attribute name="E59" type="Numerico6v3Type"/>
+        <xs:attribute name="E60" type="Numerico6v3Type"/>
+        <xs:attribute name="E61" type="Numerico6v3Type"/>
+        <xs:attribute name="E62" type="Numerico6v3Type"/>
+        <xs:attribute name="E63" type="Numerico6v3Type"/>
+        <xs:attribute name="E64" type="Numerico6v3Type"/>
+        <xs:attribute name="E65" type="Numerico6v3Type"/>
+        <xs:attribute name="E66" type="Numerico6v3Type"/>
+        <xs:attribute name="E67" type="Numerico6v3Type"/>
+        <xs:attribute name="E68" type="Numerico6v3Type"/>
+        <xs:attribute name="E69" type="Numerico6v3Type"/>
+        <xs:attribute name="E70" type="Numerico6v3Type"/>
+        <xs:attribute name="E71" type="Numerico6v3Type"/>
+        <xs:attribute name="E72" type="Numerico6v3Type"/>
+        <xs:attribute name="E73" type="Numerico6v3Type"/>
+        <xs:attribute name="E74" type="Numerico6v3Type"/>
+        <xs:attribute name="E75" type="Numerico6v3Type"/>
+        <xs:attribute name="E76" type="Numerico6v3Type"/>
+        <xs:attribute name="E77" type="Numerico6v3Type"/>
+        <xs:attribute name="E78" type="Numerico6v3Type"/>
+        <xs:attribute name="E79" type="Numerico6v3Type"/>
+        <xs:attribute name="E80" type="Numerico6v3Type"/>
+        <xs:attribute name="E81" type="Numerico6v3Type"/>
+        <xs:attribute name="E82" type="Numerico6v3Type"/>
+        <xs:attribute name="E83" type="Numerico6v3Type"/>
+        <xs:attribute name="E84" type="Numerico6v3Type"/>
+        <xs:attribute name="E85" type="Numerico6v3Type"/>
+        <xs:attribute name="E86" type="Numerico6v3Type"/>
+        <xs:attribute name="E87" type="Numerico6v3Type"/>
+        <xs:attribute name="E88" type="Numerico6v3Type"/>
+        <xs:attribute name="E89" type="Numerico6v3Type"/>
+        <xs:attribute name="E90" type="Numerico6v3Type"/>
+        <xs:attribute name="E91" type="Numerico6v3Type"/>
+        <xs:attribute name="E92" type="Numerico6v3Type"/>
+        <xs:attribute name="E93" type="Numerico6v3Type"/>
+        <xs:attribute name="E94" type="Numerico6v3Type"/>
+        <xs:attribute name="E95" type="Numerico6v3Type"/>
+        <xs:attribute name="E96" type="Numerico6v3Type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <!-- Identificativi Flusso -->
+  <xs:complexType name="IdentificativiFlussoType">
+    <xs:sequence>
+      <xs:element name="PIvaUtente" type="PIVAType_AlfNmr" />
+      <xs:element name="PIvaDistributore" type="PIVAType_AlfNmr"/>
+      <xs:element name="CodContrDisp" type="CodContrDispType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <!-- Dati Pdp Flussi Storici 2G -->
+  <xs:complexType name="DatiPdpS2GType">
+    <xs:sequence>
+      <xs:element name="MessaRegime" type="OnOffType" minOccurs="0"/>
+      <xs:element name="Trattamento" type="TrattamentoType"/>
+      <xs:element name="TipoMisuratore" type="TipoMisuratoreType"/>      
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Dati Pdp Flussi Funzionali 2G -->
+  <xs:complexType name="DatiPdpF2GType">
+    <xs:sequence>
+      <xs:element name="PuntoDispacciamento" type="PuntoDispacciamentoType"/>
+      <xs:element name="TipoMisuratore" type="TipoMisuratoreType" minOccurs="0"/>
+      <xs:element name="DataMessaRegime2G" type="DataItaType" minOccurs="0"/>
+      <xs:element name="Trattamento" type="TrattamentoType" minOccurs="0"/>
+      <xs:element name="Tensione" type="Intero10Type"/>
+      <xs:element name="PotImp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="PotDisp" type="Numerico6v3Type" minOccurs="0"/>
+      <xs:element name="Ka" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kr" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="Kp" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="MatrAtt" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrRea" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="MatrPot" type="MatrMisType" minOccurs="0"/>
+      <xs:element name="DataInstMisAtt" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisRea" type="DataItaType" minOccurs="0"/>
+      <xs:element name="DataInstMisPot" type="DataItaType" minOccurs="0"/>
+      <xs:element name="CifreAtt" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifreRea" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="CifrePot" type="Intero3Type" minOccurs="0"/>
+      <xs:element name="GruppoMis" type="OnOffType" default="SI" minOccurs="0"/>
+      <xs:element name="Forfait" type="OnOffType" default="NO" minOccurs="0"/>
+      <xs:element name="CodiceTariffa" type="CodiceTariffaFType" minOccurs="0"/>
+      <xs:element name="Residenza" type="OnOffType" minOccurs="0"/>
+      <xs:element name="Disaliment" type="OnOffType" minOccurs="0"/>
+      <xs:element name="ServizioTutela" type="ServizioTutelaType"/>
+      <xs:element name="RegimeComp" type="RegimeCompType" minOccurs="0"/>
+      <xs:element name="ConfMis" type="OnOffType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+    
+  <xs:complexType name="DettaglioConsumoV2Type" >
+    <xs:sequence>
+      <xs:element name="TipoDato" type="TipoDatoType"/>      
+      <xs:element name="PotMax" type="Numerico7v3Type" minOccurs="0"/>
+      <xs:element name="Ea" type="EnergiaType" minOccurs="0" maxOccurs="32"/>
+      <xs:element name="EaF1" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="EaF2" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="EaF3" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="EaF4" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="EaF5" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="EaF6" type="Numerico12v3TypeV2" minOccurs="0"/>
+      <xs:element name="PotF1" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF2" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF3" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF4" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF5" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="PotF6" type="Numerico12v3Type" minOccurs="0"/>
+      <xs:element name="EaM" type="Numerico12v3Type" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="PotM" type="Numerico12v3Type" minOccurs="0" maxOccurs="1"/>           
+    </xs:sequence>
+  </xs:complexType>   
+  <xs:complexType name="DettaglioConsumoStDType">
+      <xs:sequence>
+        <xs:element name="EaF1_StD" type="Numerico12v3TypeV2" minOccurs="0"/>
+        <xs:element name="EaF2_StD" type="Numerico12v3TypeV2" minOccurs="0"/>
+        <xs:element name="EaF3_StD" type="Numerico12v3TypeV2" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+    
+    
+    
+
+</xs:schema>

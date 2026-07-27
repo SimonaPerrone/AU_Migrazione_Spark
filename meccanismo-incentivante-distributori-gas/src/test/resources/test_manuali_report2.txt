@@ -1,0 +1,41 @@
+### REPORT 2
+
+-- Caricare i dati di test sottostanti
+-- copiare la query del report e sostituire le variabili
+    ${hive.table.mid_contatori} -> eng_test.test_mid_mid
+    ${hive.table.agg_daily_consumption} -> eng_test.test_mid_agg
+    ${hive.table.rcu_azienda_p} -> eng_test.test_mid_azienda
+-- rimuovere le operazioni di INSERT e TRUNCATE
+-- lanciare la query
+
+### Risultato atteso:
+-- atteso le 3 righe associate alla corretta anagrafica
+
+
+-- Cancellare le tabelle di test
+
+### COMANDI HQL per generare i dati di test
+
+CREATE TABLE eng_test.test_mid_mid AS SELECT
+'pdr1' AS pdr, '202401' AS annomese, CAST('2024-01-01' AS DATE) AS data_tracciatura, 'Y' AS treatment, 2 AS contatore, 'E' AS causale_tracciatura, 'AGG_2S_FIN' AS sessione_tracciatura,  CAST('1697561998000' AS BIGINT) AS executionid_daily_consumption
+UNION ALL SELECT
+'pdr2' AS pdr, '202402' AS annomese, CAST('2024-02-03' AS DATE) AS data_tracciatura, 'Y' AS treatment, 2 AS contatore, 'I' AS causale_tracciatura, 'AGG_2S_FIN' AS sessione_tracciatura,  CAST('1697561998000' AS BIGINT) AS executionid_daily_consumption
+UNION ALL SELECT
+'pdr2' AS pdr, '202402' AS annomese, CAST('2024-01-01' AS DATE) AS data_tracciatura, 'Y' AS treatment, 2 AS contatore, 'E' AS causale_tracciatura, 'SBG' AS sessione_tracciatura,  CAST('1697561999999' AS BIGINT) AS executionid_daily_consumption
+;
+
+CREATE TABLE eng_test.test_mid_agg AS SELECT
+'pdr1' AS pdr, '202401' AS annomese, 'pivadistr1' AS pivadistr, 'codremi1' AS codremi, 'G4' AS classemisuratore, CAST('1697561998000' AS BIGINT) AS executionid
+UNION ALL SELECT
+'pdr2' AS pdr, '202402' AS annomese, 'pivadistrX' AS pivadistr, 'codremiX' AS codremi, 'G4' AS classemisuratore, CAST('1697561998000' AS BIGINT) AS executionid
+UNION ALL SELECT
+'pdr2' AS pdr, '202402' AS annomese, 'pivadistr1' AS pivadistr, 'codremi1' AS codremi, 'G4' AS classemisuratore, CAST('1697561999999' AS BIGINT) AS executionid
+;
+
+CREATE TABLE eng_test.test_mid_azienda AS SELECT
+'distributoreRagSoc' AS t_rag_soc, 'pivadistr1' AS t_piva;
+
+### COMANDI CANCELLAZIONE TABELLE
+DROP TABLE IF EXISTS eng_test.test_mid_agg;
+DROP TABLE IF EXISTS eng_test.test_mid_mid;
+DROP TABLE IF EXISTS eng_test.test_mid_azienda;

@@ -1,0 +1,41 @@
+{
+  "mode": "localhost:8080",
+  "sync": false,
+  "autoBackup": false,
+  "passthrough": "",
+  "theme": "",
+  "container": {},
+  "commands": {
+    "setProxy": "",
+    "setTabProxy": "",
+    "includeHost": "",
+    "excludeHost": ""
+  },
+  "data": [
+    {
+      "active": true,
+      "title": "AU",
+      "type": "socks5",
+      "hostname": "localhost",
+      "port": "8080",
+      "username": "",
+      "password": "",
+      "cc": "",
+      "city": "",
+      "color": "#66cc66",
+      "pac": "",
+      "pacString": "",
+      "proxyDNS": true,
+      "include": [
+        {
+          "type": "wildcard",
+          "title": "all URLs",
+          "pattern": "*://*/",
+          "active": true
+        }
+      ],
+      "exclude": [],
+      "tabProxy": []
+    }
+  ]
+}

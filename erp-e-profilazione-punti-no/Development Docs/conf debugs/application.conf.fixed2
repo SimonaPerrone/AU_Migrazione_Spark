@@ -1,0 +1,42 @@
+include "ammissibilita.conf"
+
+hive{
+  table {
+    au {
+    flusso_misure_interconnessione=eng_test.flusso_misure_interconnessione
+    aggregazioni_misure_quartorarie=eng_test.aggregazioni_misure_quartorarie
+    v_aggregazioni_misure_quartorarie=eng_test.v_aggregazioni_misure_quartorarie
+    v_aggregazione_misure_ip=eng_test.v_aggregazione_misure_ip
+    pod_connessione=eng_test.pod_connessione
+    flusso_misure_smis=eng_test.flusso_misure_smis
+    flusso_misure_noaggr=eng_test.flusso_misure_noaggr
+    flussi_tecnici=eng_test.flussi_tecnici
+    }
+    rcu {
+    rcu_pod_p=rcu.rcu_pod_p
+    pod_connessione=au.pod_connessione
+    rcu_azienda_p=rcu.rcu_azienda_p
+    rcu_pod_interconnessione_p=rcu.rcu_pod_interconnessioni_p
+    rcu_pod_distr_p=rcu.rcu_pod_distr_p
+    }
+    rcus {
+    rcus_pod_distr=rcus.rcus_pod_distr
+    }
+    erp {
+    erp_aggregato_o=eng_test.erp_aggregato_o
+    erp_aggregato_ip_o=eng_test.erp_aggregato_ip
+    erp_validated_int=eng_test.erp_validated_int
+    erp_dettaglio_int=eng_test.erp_dettaglio_int
+    erp_aggregato_int=eng_test.erp_aggregato_int
+    erp_validated_mis_no=eng_test.erp_validated_mis_no
+    erp_consumption_no=eng_test.erp_consumption_no
+    erp_daily_dima=eng_test.erp_daily_dima
+    erp_daily_no=eng_test.erp_daily_no
+    erp_aggregato_no=eng_test.erp_aggregato_no
+    erp_aggregato_pub=eng_test.erp_aggregato_pub
+    }
+    tratt_pod {
+        tratt_pod_all_annomese_partitioned=tratt_pod.tratt_pod_all_annomese_partitioned
+        }
+  }
+}

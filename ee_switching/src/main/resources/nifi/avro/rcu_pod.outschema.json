@@ -1,0 +1,43 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_CODICE_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_AREA_RIF",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_RICH_INDENNIZZO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "B_RICH_PREST_DISTR",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_INDIRIZZO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_IND_FORN",
+    "type" : [ "null", "string" ]
+  } ,{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  }
+  ]
+}

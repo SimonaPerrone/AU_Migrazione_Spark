@@ -1,0 +1,7 @@
+*.idea/
+*.iml
+*.log
+**/target/
+*.sc
+metastore_db/
+src/main/resources/deploy/app-data/compilated/

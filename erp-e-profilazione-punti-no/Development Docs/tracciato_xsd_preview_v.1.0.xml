@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="ERP_MISURE_MASTER">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="DETAIL">
+					<xs:complexType>
+						<xs:attribute name="DATA" type="xs:date" use="required"/>
+						<xs:attribute name="ZONA_MERCATO" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:maxLength value="4"/>
+									<xs:enumeration value="NORD"/>
+									<xs:enumeration value="CNOR"/>
+									<xs:enumeration value="CSUD"/>
+									<xs:enumeration value="SUD"/>
+									<xs:enumeration value="SICI"/>
+									<xs:enumeration value="SARD"/>
+									<xs:enumeration value="NORE"/>
+									<xs:enumeration value="CALA"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH1" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH2" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH3" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH4" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH5" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH6" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH7" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH8" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH9" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH10" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH11" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH12" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH13" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH14" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH15" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH16" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH17" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH18" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH19" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH20" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH21" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH22" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH23" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH24" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH25" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH26" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH27" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH28" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH29" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH30" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH31" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH32" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH33" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH34" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH35" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH36" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH37" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH38" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH39" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH40" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH41" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH42" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH43" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH44" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH45" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH46" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH47" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH48" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH49" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH50" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH51" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH52" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH53" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH54" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH55" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH56" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH57" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH58" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH59" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH60" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH61" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH62" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH63" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH64" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH65" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH66" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH67" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH68" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH69" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH70" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH71" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH72" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH73" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH74" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH75" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH76" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH77" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH78" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH79" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH80" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH81" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH82" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH83" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH84" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH85" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH86" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH87" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH88" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH89" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH90" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH91" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH92" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH93" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH94" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH95" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH96" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH97" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH98" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH99" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="QH100" use="optional">
+							<xs:simpleType>
+								<xs:restriction base="xs:long">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="99999999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ANNO" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="2002"/>
+						<xs:maxInclusive value="2999"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="MESE" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PIVA_GESTORE_DI_RETE" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="11"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="RAGIONE_SOCIALE_GESTORE_DI_RETE" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

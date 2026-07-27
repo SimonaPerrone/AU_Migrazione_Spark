@@ -1,0 +1,1 @@
+15 00 * * * ${deploy.path}/run_ccg.sh >> ${deploy.path}/log_crontab/ccg_`date +\%Y\%m\%d\%H\%M\%S`.log

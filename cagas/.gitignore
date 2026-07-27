@@ -1,0 +1,81 @@
+# use glob syntax.
+syntax: glob
+*.ser
+*.class
+*~
+*.bak
+#*.off
+*.old
+
+# eclipse conf file
+.settings
+.classpath
+.project
+.manager
+.scala_dependencies
+
+# idea
+.idea
+*.iml
+
+# building
+target
+build
+null
+tmp*
+temp*
+dist
+test-output
+build.log
+classes
+
+# other scm
+.svn
+.CVS
+.hg*
+
+# switch to regexp syntax.
+#  syntax: regexp
+#  ^\.pc/
+
+
+dependency-reduced-pom.xml
+*.idea/
+*.log
+**/target/
+*.sc
+metastore_db/
+
+source/src/test/resources/AppTest/output
+!source/src/test/resources/AppTest/input/cmg_gas/**
+!source/src/test/resources/AppTest/input/rcugas.db/**
+!source/src/test/resources/AppTest/input/settle_gas.db/**
+!source/src/test/resources/AppTest/input/acquirente_unico/**
+source/src/test/resources/AppTest/input/ca_final_to_export
+source/src/test/resources/AppTest/filter*
+source/src/test/resources/AppTest/Filter*
+source/src/test/resources/inputParamFile/**
+!source/src/test/resources/inputParamFile/**/*.csv
+
+
+source/src/main/resources/profiles/dev/hdfs/**
+source/src/main/resources/profiles/dev/hdfs/**/_common_metadata
+source/src/main/resources/profiles/dev/hdfs/**/_metadata
+source/src/main/resources/profiles/dev/hdfs/**/_SUCCESS
+/source/src/test/resources/AppTest/input/ca_final/
+/source/src/test/resources/AppTest/input/RCUGAS.RCUGAS_BILANCIAMENTO_p/
+/source/src/test/resources/AppTest/input/RCUGAS.RCUGAS_CONNESSIONI_DISTR2_p/
+/source/src/test/resources/AppTest/input/prt.istat_regione_climatica_p/
+/source/src/test/resources/AppTest/input/RCUGAS.RCUGAS_MASSIVO_p/
+!/source/src/test/resources/AppTest/MeasureFilter/**/*.csv
+/source/src/test/resources/AppTest/MeasureFilter/**
+/source/src/test/resources/AppTest/input/ca_pre_final/**
+source/src/test/resources/AppTest/input/gas_tds_part/
+source/src/test/resources/AppTest/input/
+source/src/test/resources/integrazione-ca/misure/swg1/compilated/version_old/
+source/src/test/resources/integrazione-ca/misure/swg1/compilated/
+source/src/test/resources/integrazione-ca/misure/fui/compilated/
+source/src/test/resources/integrazione-ca/misure/sw1/compilated/
+source/src/test/resources/integrazione-ca/misure/tmv/compilated_new/
+source/src/test/resources/integrazione-ca/misure/tmv/compilated_old/
+source/src/test/resources/integrazione-ca/misure/fdd/compilated/

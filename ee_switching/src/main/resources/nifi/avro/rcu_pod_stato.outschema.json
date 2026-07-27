@@ -1,0 +1,58 @@
+{
+  "type" : "record",
+  "name" : "NiFi_ExecuteSQL_Record",
+  "namespace" : "any.data",
+  "fields" : [ {
+    "name" : "N_ID_POD",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_STATO_ATTIVAZIONE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_ATTIVAZIONE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_DISATTIVAZIONE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_CAUSALE_NO_RIATTIV",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_CAUSALE_NO_DISATTIV",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_STATO_SOSP",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_SOSPENSIONE",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_REVOCA_SOSP",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_CAUSALE_NO_SOSP",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_SWITCHING",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_NOTA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "D_AGGIORNAMENTO",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_TRACCIA",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "N_ID_S_PREC",
+    "type" : [ "null", "string" ]
+  }, {
+    "name" : "T_COD_DISATTIVAZIONE",
+    "type" : [ "null", "string" ]
+  } ,{
+      "name": "d_creazione",
+      "type": ["null","string"]
+  }
+  ]
+}
