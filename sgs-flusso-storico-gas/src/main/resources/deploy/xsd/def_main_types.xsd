@@ -1,0 +1,1197 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa4">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Stringa5">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Stringa10">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa15">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa16">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa20">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa30">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="30"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa50">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa100">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa200">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa255">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa500">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="500"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza minima e massima-->
+  <xs:simpleType name="Stringa255Obbl">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo stringa con restrizione sulla lunghezza -->
+  <xs:simpleType name="Stringa4000">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Inizio definizione tipi semplici e constraints -->
+  <!-- Partita IVA -->
+  <!-- Validato solo sulla lunghezza (11) e il tipo dato (numerico) -->
+  <xs:simpleType name="PIVA">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{11}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  
+ <!-- Partita IVA modificata Alfanumerico con lunghezza fino a 16 -->
+	<xs:simpleType name="PIVA_new">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+		</xs:restriction>
+	</xs:simpleType>	
+		
+  
+  <!-- Codice pratica (utente/distributore) e cod preventivo -->
+  <xs:simpleType name="CodPratica">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Codice pratica attivazione rilasciato dal SII ai sensi dell'Allegato A alla deliberazione 102/2016/R/com (15 caratteri)-->
+  <xs:simpleType name="CodPratAtt">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z0-9]{15}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Codice PDR -->
+  <xs:simpleType name="CodicePdr">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{14}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+<!-- Regione Climatica -->
+<xs:simpleType name="regClim">
+    <xs:restriction base="xs:string">
+		<xs:pattern value="\d{4}"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<!-- Regione Climatica -->
+<xs:simpleType name="regClimType">
+    <xs:restriction base="xs:string">
+		<xs:pattern value="\d{2}"/>
+    </xs:restriction>
+</xs:simpleType>
+
+  <!-- Codice REMI -->
+  <xs:simpleType name="CodiceREMI">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="14"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Matricola (contatore, misuratore) esteso da 10 digit (Determina 1/11) a 20 digit -->
+  <xs:simpleType name="Matricola">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Lettura (segnante) -->
+  <xs:simpleType name="Segnante">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{9}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Data (Formato italiano dd/MM/yyyy) -->
+  <xs:simpleType name="DataIta">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Fascia oraria (Formato hh:mm/hh:mm) -->
+  <xs:simpleType name="FasciaOraria">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[0-9]|[1][0-9]|2[0123])[:](0[0-9]|[1-5][0-9])[/](0[0-9]|[1][0-9]|2[0123])[:](0[0-9]|[1-5][0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Anno (Formato yyyy) -->
+  <xs:simpleType name="Anno">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Misura Pressione -->
+  <xs:simpleType name="Pressione">
+    <xs:restriction base="xs:double">
+      <xs:minExclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Misura Voume -->
+  <xs:simpleType name="Volume">
+    <xs:restriction base="xs:double">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Coefficiente correttivo -->
+  <xs:simpleType name="Coefficiente">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+  <!-- Nome Cliente -->
+  <xs:simpleType name="Nome">
+    <xs:restriction base="Stringa50"/>
+  </xs:simpleType>
+  <!-- Cognome Cliente -->
+  <xs:simpleType name="Cognome">
+    <xs:restriction base="Stringa50"/>
+  </xs:simpleType>
+  <!-- Codice fiscale -->
+  <xs:simpleType name="CodiceFiscale">
+    <xs:restriction base="Stringa16"/>
+  </xs:simpleType>
+  <!-- Ragione sociale -->
+  <xs:simpleType name="RagioneSociale">
+    <xs:restriction base="Stringa100"/>
+  </xs:simpleType>
+  <!-- Telefono -->
+  <xs:simpleType name="Telefono">
+    <xs:restriction base="Stringa20"/>
+  </xs:simpleType>
+  <!-- Toponimo -->
+  <xs:simpleType name="Toponimo">
+    <xs:restriction base="Stringa30"/>
+  </xs:simpleType>
+  <!-- Via -->
+  <xs:simpleType name="Via">
+    <xs:restriction base="Stringa100"/>
+  </xs:simpleType>
+  <!-- Numero civico -->
+  <xs:simpleType name="NumeroCivico">
+    <xs:restriction base="Stringa10"/>
+  </xs:simpleType>
+  <!-- CAP -->
+  <xs:simpleType name="CAP">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Codice ISTAT -->
+  <xs:simpleType name="CodIstat">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Comune -->
+  <xs:simpleType name="Comune">
+    <xs:restriction base="Stringa100"/>
+  </xs:simpleType>
+  <!-- Provincia -->
+  <xs:simpleType name="Provincia">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z]{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Categoria d'uso -->
+  <xs:simpleType name="CategoriaUso">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C1"/>
+      <xs:enumeration value="C2"/>
+      <xs:enumeration value="C3"/>
+      <xs:enumeration value="C4"/>
+      <xs:enumeration value="C5"/>
+      <xs:enumeration value="T1"/>
+      <xs:enumeration value="T2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Classe prelievo -->
+  <xs:simpleType name="ClassePrelievo">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Codice profilo prelievo standard -->
+  <xs:simpleType name="CodProfPrelStd">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C1A1"/>
+      <xs:enumeration value="C1B1"/>
+      <xs:enumeration value="C1C1"/>
+      <xs:enumeration value="C1D1"/>
+      <xs:enumeration value="C1E1"/>
+      <xs:enumeration value="C1F1"/>
+      <xs:enumeration value="C2X1"/>
+      <xs:enumeration value="C3A1"/>
+      <xs:enumeration value="C3B1"/>
+      <xs:enumeration value="C3C1"/>
+      <xs:enumeration value="C3D1"/>
+      <xs:enumeration value="C3E1"/>
+      <xs:enumeration value="C3F1"/>
+      <xs:enumeration value="C4X1"/>
+      <xs:enumeration value="C5A1"/>
+      <xs:enumeration value="C5B1"/>
+      <xs:enumeration value="C5C1"/>
+      <xs:enumeration value="C5D1"/>
+      <xs:enumeration value="C5E1"/>
+      <xs:enumeration value="C5F1"/>
+      <xs:enumeration value="T1X1"/>
+      <xs:enumeration value="T1X2"/>
+      <xs:enumeration value="T1X3"/>
+      <xs:enumeration value="T2A1"/>
+      <xs:enumeration value="T2B1"/>
+      <xs:enumeration value="T2C1"/>
+      <xs:enumeration value="T2D1"/>
+      <xs:enumeration value="T2E1"/>
+      <xs:enumeration value="T2F1"/>
+      <xs:enumeration value="T2A2"/>
+      <xs:enumeration value="T2B2"/>
+      <xs:enumeration value="T2C2"/>
+      <xs:enumeration value="T2D2"/>
+      <xs:enumeration value="T2E2"/>
+      <xs:enumeration value="T2F2"/>
+      <xs:enumeration value="T2A3"/>
+      <xs:enumeration value="T2B3"/>
+      <xs:enumeration value="T2C3"/>
+      <xs:enumeration value="T2D3"/>
+      <xs:enumeration value="T2E3"/>
+      <xs:enumeration value="T2F3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Prelievo Annuo Previsto -->
+  <xs:simpleType name="PrelievoAnnuoPrevisto">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Potenza -->
+  <xs:simpleType name="Potenza">
+    <xs:restriction base="xs:double">
+      <xs:minExclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Numero  intero generico -->
+  <xs:simpleType name="Intero">
+    <xs:restriction base="xs:integer">
+      <xs:minExclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Numero  intero punti gas -->
+  <xs:simpleType name="PuntiGas">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+<!-- Prelievo Aggregato -->
+<xs:simpleType name="PrelievoType">
+    <xs:restriction base="xs:integer">
+		<xs:minInclusive value="0"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="DatiConsumoType">
+	<xs:sequence>
+	    <xs:element name="Prel_Aggregato" type="PrelievoType"/>
+		<xs:element name="Prelievo" type="PrelievoGiornoType" maxOccurs="31" minOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+  
+  
+<xs:complexType name="PrelievoGiornoType">
+	<xs:simpleContent>
+		<xs:extension base="PrelievoType">
+			<xs:attribute name="Giorno" type="GiornoType"/>
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+  
+<!-- Giorno (Formato dd) -->
+<xs:simpleType name="GiornoType">
+    <xs:restriction base="xs:string">
+		<xs:pattern value="(0[1-9]|[12][0-9]|3[01])"/>
+    </xs:restriction>
+</xs:simpleType>
+   
+  
+  
+  
+  <!-- Ammissibilità  per la prestazione A01 contiene gli ulteriori codici relativi a inammissibilità categoria d'uso-->
+  <xs:complexType name="Ammissibilita">
+    <xs:sequence>
+      <xs:element name="verifica_amm" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="001"/>
+            <xs:enumeration value="002"/>
+            <xs:enumeration value="003"/>
+            <xs:enumeration value="004"/>
+            <xs:enumeration value="005"/>
+            <xs:enumeration value="006"/>
+            <xs:enumeration value="007"/>
+            <xs:enumeration value="008"/>
+            <xs:enumeration value="009"/>
+            <xs:enumeration value="010"/>
+            <xs:enumeration value="011"/>
+            <xs:enumeration value="012"/>
+            <xs:enumeration value="013"/>
+            <xs:enumeration value="014"/>
+            <xs:enumeration value="015"/>
+            <xs:enumeration value="016"/>
+            <xs:enumeration value="017"/>
+            <xs:enumeration value="018"/>
+            <xs:enumeration value="019"/>
+            <xs:enumeration value="020"/>
+            <xs:enumeration value="021"/>
+            <xs:enumeration value="023"/>
+            <xs:enumeration value="024"/>
+            <xs:enumeration value="025"/>
+            <xs:enumeration value="026"/>
+            <xs:enumeration value="027"/>
+            <xs:enumeration value="028"/>
+            <xs:enumeration value="029"/>
+            <xs:enumeration value="030"/>
+            <xs:enumeration value="031"/>
+            <xs:enumeration value="032"/>
+            <xs:enumeration value="033"/>
+            <xs:enumeration value="034"/>
+            <xs:enumeration value="035"/>
+            <xs:enumeration value="036"/>
+            <xs:enumeration value="037"/>
+            <xs:enumeration value="038"/>
+            <xs:enumeration value="039"/>
+            <xs:enumeration value="040"/>
+            <xs:enumeration value="041"/>
+            <xs:enumeration value="042"/>
+            <xs:enumeration value="043"/>
+            <xs:enumeration value="044"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="motivazione" type="Stringa255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AmmissibilitaM01">
+    <xs:sequence>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="001"/>
+            <xs:enumeration value="002"/>
+            <xs:enumeration value="003"/>
+            <xs:enumeration value="004"/>
+            <xs:enumeration value="005"/>
+            <xs:enumeration value="006"/>
+            <xs:enumeration value="007"/>
+            <xs:enumeration value="008"/>
+            <xs:enumeration value="009"/>
+            <xs:enumeration value="010"/>
+            <xs:enumeration value="011"/>
+            <xs:enumeration value="012"/>
+            <xs:enumeration value="013"/>
+            <xs:enumeration value="014"/>
+            <xs:enumeration value="015"/>
+            <xs:enumeration value="016"/>
+            <xs:enumeration value="017"/>
+            <xs:enumeration value="018"/>
+            <xs:enumeration value="019"/>
+            <xs:enumeration value="020"/>
+            <xs:enumeration value="021"/>
+            <xs:enumeration value="023"/>
+            <xs:enumeration value="024"/>
+            <xs:enumeration value="025"/>
+            <xs:enumeration value="026"/>
+            <xs:enumeration value="027"/>
+            <xs:enumeration value="028"/>
+            <xs:enumeration value="029"/>
+            <xs:enumeration value="030"/>
+            <xs:enumeration value="031"/>
+            <xs:enumeration value="032"/>
+            <xs:enumeration value="033"/>
+            <xs:enumeration value="034"/>
+            <xs:enumeration value="035"/>
+            <xs:enumeration value="036"/>
+            <xs:enumeration value="037"/>
+            <xs:enumeration value="038"/>
+            <xs:enumeration value="039"/>
+            <xs:enumeration value="040"/>
+            <xs:enumeration value="041"/>
+            <xs:enumeration value="042"/>
+            <xs:enumeration value="043"/>
+            <xs:enumeration value="044"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="motivazione" type="Stringa500" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EsitoRichiesta">
+    <xs:sequence>
+      <xs:element name="esito_revoca" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Ammissibilità  per la prestazione A40 contiene gli ulteriori codici relativi a inammissibilità categoria d'uso-->
+  <xs:complexType name="AmmissibilitaA40">
+    <xs:sequence>
+      <xs:element name="verifica_amm" type="EsitoBase"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="001"/>
+            <xs:enumeration value="002"/>
+            <xs:enumeration value="003"/>
+            <xs:enumeration value="004"/>
+            <xs:enumeration value="005"/>
+            <xs:enumeration value="006"/>
+            <xs:enumeration value="007"/>
+            <xs:enumeration value="008"/>
+            <xs:enumeration value="009"/>
+            <xs:enumeration value="010"/>
+            <xs:enumeration value="011"/>
+            <xs:enumeration value="012"/>
+            <xs:enumeration value="013"/>
+            <xs:enumeration value="014"/>
+            <xs:enumeration value="015"/>
+            <xs:enumeration value="016"/>
+            <xs:enumeration value="017"/>
+            <xs:enumeration value="018"/>
+            <xs:enumeration value="019"/>
+            <xs:enumeration value="020"/>
+            <xs:enumeration value="021"/>
+            <xs:enumeration value="023"/>
+            <xs:enumeration value="024"/>
+            <xs:enumeration value="025"/>
+            <xs:enumeration value="026"/>
+            <xs:enumeration value="027"/>
+            <xs:enumeration value="028"/>
+            <xs:enumeration value="029"/>
+            <xs:enumeration value="030"/>
+            <xs:enumeration value="031"/>
+            <xs:enumeration value="034"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="motivazione" type="Stringa255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Tipo Semplice con scelta SI/NO -->
+  <xs:simpleType name="OnOff">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SI"/>
+      <xs:enumeration value="NO"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Semplice con scelta 1 = Accessibile /2 = Non accessibile/ 3 = Parzialmente accessibile -->
+  <xs:simpleType name="TipoAccessibilita">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Fine definizione tipi semplici e constraints -->
+  <!-- 0: Negativo, prestazione non eseguita-->
+  <!-- 1: postivo -->
+  <!-- 2 = Negativo: scadenza tempo fissazione appuntamento-->
+  <xs:simpleType name="EsitoBase">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Esito (1=positivo, 0=negativo)-->
+  <xs:simpleType name="EsitoAccertamento">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Semplice con scelta (1=Positiva, 0=Negativa) -->
+  <xs:simpleType name="Conferma">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo conferma (1=in loco, 2=laboratorio) -->
+  <xs:simpleType name="TipoConferma">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Stato contatore base (0=SIGILLATO,1=APERTO) -->
+  <xs:simpleType name="StatoContatore">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Stato contatore base (0=SIGILLATO,1=APERTO,2=RIMOSSO) -->
+  <xs:simpleType name="StatoContatoreEsteso">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Stato contatore sospensione (0=SIGILLATO,2=RIMOSSO) -->
+  <xs:simpleType name="StatoContatoreSosp">
+    <xs:restriction base="xs:integer">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo lettura con scelta (W=switch,C=commerciale,T=tecnica) -->
+  <xs:simpleType name="TipologiaLettura">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="W"/>
+      <xs:enumeration value="C"/>
+      <xs:enumeration value="T"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo lettura con scelta (E=effettiva, S=stimata) -->
+  <xs:simpleType name="LetturaEffSti">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E"/>
+      <xs:enumeration value="S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo lettura con scelta (E=effettiva, S=stimata, A=autolettura) -->
+  <xs:simpleType name="LetturaEffStiAut">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="A"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipologia PdR 0 = punto di riconsegna nella titolarità di un cliente domestico
+                               1 = punto di riconsegna relativo a un condominio con uso domestico
+                               2 punto di riconsegna per usi diversi
+                               3 punto di riconsegna nella titolarità di un’utenza relativa ad attività di servizio pubblico  -->
+  <xs:simpleType name="TipologiaPdR">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Atti autorizzativi (1=positivo/0=negativo)-->
+  <xs:simpleType name="AttiAutorizzativi">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Gestione appuntamento (1=gestione distributore/0=gestione utente)-->
+  <xs:simpleType name="GestioneAppuntamento">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Esito conferma appuntamento (1=richiesta nuova data, 0=Accettato, 2=richiesta annullata)-->
+  <xs:simpleType name="EsitoConfermaAppuntamentoProposto">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Esito (1=validità appuntamento scaduto, 2=Codice appuntamento non esistente o non associato alla pratica)-->
+  <xs:simpleType name="CausaleKOConfermaAppuntamento">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Esito appuntamento (0=mancato intervento causa cliente 2° appuntamento vendita,1=mancato intervento causa cliente 2° appuntamento distributore
+										,2=mancato intervento causa distributore, 3=mancato intervento causa forza maggiore,4=positivo)-->
+  <xs:simpleType name="EsitoAppuntamento">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Possibili servizi per richiesta appuntamento-->
+  <xs:simpleType name="Servizi">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PN1"/>
+      <xs:enumeration value="PM1"/>
+      <xs:enumeration value="PR1"/>
+      <xs:enumeration value="E01"/>
+      <xs:enumeration value="D01"/>
+      <xs:enumeration value="R01"/>
+      <xs:enumeration value="A01"/>
+      <xs:enumeration value="A40"/>
+      <xs:enumeration value="V01"/>
+      <xs:enumeration value="M01"/>
+      <xs:enumeration value="M02"/>
+      <xs:enumeration value="V02"/>
+      <xs:enumeration value="SM1"/>
+      <xs:enumeration value="SM2"/>
+      <xs:enumeration value="SW1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Ora (Formato hh:mm) -->
+  <xs:simpleType name="Ora">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[0-9]|[1][0-9]|2[0123])[:](0[0-9]|[1-5][0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DurataAppuntamento">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([0-9][0-9][:]([0-1][0-9]|2[0-3])[:](0[0-9]|[1-5][0-9]))"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Mercato provenienza Switch(1/2/3, 1=mercato libero/tutela, 2=FUI e 3=FDD)-->
+  <xs:simpleType name="MercatoProv">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Resoconto-->
+  <!-- 0: Fuori tolleranza-->
+  <!-- 1: In tolleranza -->
+  <xs:simpleType name="Resoconto">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Stato PdR(1=in prelievo, 2=sospeso per morosità) -->
+  <xs:simpleType name="StatoPdR">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Stato PdRE01(1=in prelievo, 2=non in prelievo) -->
+  <xs:simpleType name="StatoPdRE01">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Mesi dell'anno -->
+  <xs:simpleType name="Mese">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="01"/>
+      <xs:enumeration value="02"/>
+      <xs:enumeration value="03"/>
+      <xs:enumeration value="04"/>
+      <xs:enumeration value="05"/>
+      <xs:enumeration value="06"/>
+      <xs:enumeration value="07"/>
+      <xs:enumeration value="08"/>
+      <xs:enumeration value="09"/>
+      <xs:enumeration value="10"/>
+      <xs:enumeration value="11"/>
+      <xs:enumeration value="12"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Valute -->
+  <xs:simpleType name="Importi">
+    <xs:restriction base="xs:double"/>
+  </xs:simpleType>
+  <!-- Tipologia Bonus Gas 0 - Cliente domestico diretto   1 - Cliente domestico indiretto -->
+  <xs:simpleType name="TipoBonus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EsitoInterventoCA1">
+    <xs:sequence>
+      <xs:element name="esito" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EsitoInterventoCA2">
+    <xs:sequence>
+      <xs:element name="esito" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="MotivazioneRichiesta">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EsitoInterventoSM1">
+    <xs:sequence>
+      <xs:element name="esito" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+            <xs:enumeration value="8"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="note" type="Stringa255" minOccurs="0"/>
+      <xs:element name="fat_tec" type="SiNoNa" minOccurs="0"/>
+      <xs:element name="sti_costi" type="xs:double" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EsitoInterventoSM2">
+    <xs:sequence>
+      <xs:element name="esito" type="Conferma"/>
+      <xs:element name="cod_causale" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
+            <xs:enumeration value="4"/>
+            <xs:enumeration value="5"/>
+            <xs:enumeration value="6"/>
+            <xs:enumeration value="7"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="note" type="Stringa255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SiNoNa">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SI"/>
+      <xs:enumeration value="NO"/>
+      <xs:enumeration value="NA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Timestamp dd/MM/yyyy) -->
+  <xs:simpleType name="Timestamp">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d (0[0-9]|[1][0-9]|2[0123])[:](0[0-9]|[1-5][0-9])[:](0[0-9]|[1-5][0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AnSM1">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SM1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ZeroUnoDue">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Mese Anno MM/yyyy) -->
+  <xs:simpleType name="MeseAnno">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Esito tentativo raccolta P – Tentativo andato a buon fine   N – Tentativo fallito -->
+  <xs:simpleType name="PN">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--Numerico 1-->
+  <xs:simpleType name="Numerico1">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--Frequenza di lettura-->
+  <xs:simpleType name="FrequenzaLettura">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Esito tentativo raccolta P – Tentativo andato a buon fine   N – Tentativo fallito   O - tentativo non effettuato-->
+  <xs:simpleType name="PNO">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="N"/>
+      <xs:enumeration value="O"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Cause mancata raccolta-->
+  <xs:simpleType name="CauseMancataRaccolta">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Semplice con scelta S/N -->
+  <xs:simpleType name="SN">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo Semplice con scelta V/S/I/F -->
+  <xs:simpleType name="VSIF">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="V"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="I"/>
+      <xs:enumeration value="F"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Motivazione rettifica lettura -->
+  <xs:simpleType name="MotivoRettificaLettura">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo richiesta cliente finale -->
+  <xs:simpleType name="TipoRichCliFin">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Finestra temporale MM/yyyy MM/yyyy) -->
+  <xs:simpleType name="Finestra">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d (0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Finestra temporale MM/yyyy MM/yyyy) -->
+  <xs:simpleType name="FinestraV2">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|[12][0-9]|3[01])[//](0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- Richiesta revoca prestazione -->
+  <xs:complexType name="RichServizio">
+    <xs:sequence>
+      <xs:element name="conferma" type="Conferma"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- Lista di zero o più PdR validi -->
+  <xs:simpleType name="Lista">
+    <xs:list itemType="CodicePdr"/>
+  </xs:simpleType>
+  <!-- Lista di zero o più date valide -->
+  <xs:simpleType name="ElencoDate">
+    <xs:list itemType="DataIta"/>
+  </xs:simpleType>
+  <!--  Causale intervento su misuratore(1=installazione, 2=rimozione, 3=sostituzione con smart meter ai sensi delle Direttive,
+		4=sostituzione per verifica GM,5=sostituzione per pronto intervento, 6=sostituzione per altri motivi)-->
+  <xs:simpleType name="CausaleIntMisuratore">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--  Causale intervento su correttore(1=installazione, 2=sostituzione, 3=rimozione virtuale,
+		4=rimozione,5=allineamento)-->
+  <xs:simpleType name="CausaleIntCorrettore">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Cause stima misura (1= misuratore guasto, 2=correttore guasto, 3= correttore disallineato rispetto al misuratore)-->
+  <xs:simpleType name="CauseStimaMisura">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+    <!-- Richiesta utente (1= semplice, 2=complesso)-->
+  </xs:simpleType>
+  <xs:simpleType name="Rich_Utente">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Categoria Complesso: 1) ricostruzione consumi per malfunzionamento del gruppo di misura; 2) richieste relative a dati di misura per periodi superiori a 2 anni; 3) richieste relative a PDR con misuratori di classe superiore a G40; 4) richieste relative ad errato abbinamento PDR/matricola/cliente; 5) verifiche relative a dati anagrafici del punto di prelievo relativi a periodi in cui la rete era gestita da un diverso operatore; 6)	verifiche relative a dati anagrafici del punto di prelievo relativi a periodi anteriori di più di 12 mesi alla data della richiesta; 7) richieste relative a contestazioni del cliente in sede di esecuzione lavori di  aspetti tecnici -->
+  <xs:simpleType name="CatCompl">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Tipo file allegato-->
+  <xs:complexType name="Allegato">
+    <xs:sequence>
+      <xs:element name="NomeFile" type="Stringa100"/>
+      <xs:element name="DatiFile" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- TipoCodiceFlussoPeriodicoGAS -->
+  <xs:simpleType name="TipoCodFlussoPGASType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TML"/>
+      <xs:enumeration value="TGL"/>
+      <xs:enumeration value="TMV"/>
+      <xs:enumeration value="SWG1"/>
+      <xs:enumeration value="FUI"/>
+      <xs:enumeration value="FDD"/>
+      <xs:enumeration value="TAL"/>
+      <xs:enumeration value="TAS"/>
+      <xs:enumeration value="TAV"/>
+      <xs:enumeration value="D01"/>
+      <xs:enumeration value="D02"/>
+      <xs:enumeration value="R01"/>
+      <xs:enumeration value="A40"/>
+      <xs:enumeration value="S40"/>
+      <xs:enumeration value="R40"/>      
+      <xs:enumeration value="A01"/>
+      <xs:enumeration value="A02"/>
+      <xs:enumeration value="S02"/>
+      <xs:enumeration value="V01"/>
+      <xs:enumeration value="M01"/>
+      <xs:enumeration value="V02"/>
+      <xs:enumeration value="SM1"/>
+      <xs:enumeration value="SM2"/>
+      <xs:enumeration value="AD2"/>
+	  <xs:enumeration value="AD3"/>
+	  <xs:enumeration value="AD4"/>
+	  <xs:enumeration value="AD5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- TipoCodiceFlussoRettificaGAS -->
+  <xs:simpleType name="TipoCodFlussoRGASType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RML"/>
+      <xs:enumeration value="RGL"/>
+      <xs:enumeration value="RMV"/>
+      <xs:enumeration value="RSL"/>
+      <xs:enumeration value="D01R"/>
+      <xs:enumeration value="D02R"/>
+      <xs:enumeration value="R01R"/>
+      <xs:enumeration value="A40R"/>
+      <xs:enumeration value="S40R"/>
+      <xs:enumeration value="R40R"/>
+      <xs:enumeration value="A01R"/>
+      <xs:enumeration value="A02R"/>
+      <xs:enumeration value="S02R"/>
+      <xs:enumeration value="V01R"/>
+      <xs:enumeration value="M01R"/>
+      <xs:enumeration value="V02R"/>
+      <xs:enumeration value="SM1R"/>
+      <xs:enumeration value="SM2R"/>
+	  <xs:enumeration value="AD2R"/>
+	  <xs:enumeration value="AD3R"/>
+	  <xs:enumeration value="AD4R"/>
+      <xs:enumeration value="AD5R"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+<!-- TipoCodiceFlussoStorcicoGAS -->
+<xs:simpleType name="TipoCodFlussoSGSType">
+    <xs:restriction base="xs:string">
+		<xs:enumeration value="SGS"/>
+    </xs:restriction>
+</xs:simpleType>
+  
+  
+  <!-- Mese Anno (Formato italiano MM/yyyy) -->
+  <xs:simpleType name="MeseAnnoItaType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(0[1-9]|1[012])[//](19|20)\d\d"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Trattamento -->
+  <xs:simpleType name="TrattamentoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="G"/>
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="Y"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+ <!-- Raccolta -->
+<xs:simpleType name="RaccoltaType">
+  <xs:restriction base="xs:string">
+    <xs:enumeration value="P"/>
+    <xs:enumeration value="S"/>
+    <xs:enumeration value="V"/>
+    <xs:enumeration value="T"/>
+    <xs:enumeration value="AC"/>
+  </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tipo Rettifica -->
+  <xs:simpleType name="TipoRettifica">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="P"/>
+      <xs:enumeration value="S"/>
+      <xs:enumeration value="V"/>
+      <xs:enumeration value="T"/>
+      <xs:enumeration value="AC"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tipo Rettifica -->
+  <xs:simpleType name="MotivazioneRettLettura">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+	  <xs:enumeration value="7"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+<!-- Tipo misuratore -->
+<xs:simpleType name="TipoMisuratoreType">
+    <xs:restriction base="xs:string">
+		<xs:enumeration value="01"/>
+		<xs:enumeration value="02"/>
+    </xs:restriction>
+</xs:simpleType>
+ 
+<!-- Dati Tecnici PDR  -->
+
+<xs:complexType name="DatiPdRTecnType">
+	<xs:sequence>
+		<xs:element name="Trattamento" type="TrattamentoType"/>
+		<xs:element name="piva_distr" type="PIVA_new"/>
+	</xs:sequence>
+</xs:complexType>
+ 
+<!-- valori classe gruppo misuratore)-->
+<xs:simpleType name="CodificaClasseGM">
+    <xs:restriction base="xs:string">
+		<xs:enumeration value="G1,6"/>
+		<xs:enumeration value="G2,5"/>
+		<xs:enumeration value="G4"/>
+		<xs:enumeration value="G6"/>
+		<xs:enumeration value="G10"/>
+		<xs:enumeration value="G16"/>
+		<xs:enumeration value="G25"/>
+		<xs:enumeration value="G40"/>
+		<xs:enumeration value="G65"/>
+		<xs:enumeration value="G100"/>
+		<xs:enumeration value="G160"/>
+		<xs:enumeration value="G250"/>
+		<xs:enumeration value="G400"/>
+		<xs:enumeration value="G650"/>
+		<xs:enumeration value="G1000"/>
+		<xs:enumeration value="G1600"/>
+		<xs:enumeration value="G2500"/>
+		<xs:enumeration value="G4000"/>
+		<xs:enumeration value="G6500"/>
+    </xs:restriction>
+</xs:simpleType>
+ 
+  </xs:schema>

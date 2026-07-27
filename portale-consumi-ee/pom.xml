@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.eng.au</groupId>
+    <artifactId>portale-consumi-ee</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>common</module>
+        <module>calcolo_forniture</module>
+        <module>export_misure</module>
+        <module>storico_misure_ee</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>Cloudera</id>
+            <name>Cloudera</name>
+            <url>https://repository.cloudera.com/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>Cloudera_Artifactory</id>
+            <name>Cloudera_Artifactory</name>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+    </repositories>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+        <scala.version>2.11.12</scala.version>
+        <scala.compat.version>2.11</scala.compat.version>
+        <typesafe.version>1.4.1</typesafe.version>
+        <maven.assembly.plugin.version>2.4</maven.assembly.plugin.version>
+        <maven.resources.plugin>2.6</maven.resources.plugin>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build.helper.maven.plugin>3.2.0</build.helper.maven.plugin>
+        <git.commit.id.plugin>2.2.4</git.commit.id.plugin>
+        <scopt.version>3.7.1</scopt.version>
+
+        <!--suppress UnresolvedMavenProperty -->
+        <timestamp>${build.time}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+    </properties>
+    <dependencies>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_${scala.compat.version}</artifactId>
+        <version>2.4.0.cloudera2</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_${scala.compat.version}</artifactId>
+        <version>2.4.0.cloudera2</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-hive_${scala.compat.version}</artifactId>
+        <version>2.4.0.cloudera2</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-library</artifactId>
+        <version>${scala.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-compiler</artifactId>
+        <version>${scala.version}</version>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-reflect</artifactId>
+        <version>2.11.12</version>
+    </dependency>
+    <dependency>
+        <groupId>com.typesafe</groupId>
+        <artifactId>config</artifactId>
+        <version>${typesafe.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.11</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.scalatest</groupId>
+        <artifactId>scalatest_${scala.compat.version}</artifactId>
+        <version>2.2.4</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.github.scopt</groupId>
+        <artifactId>scopt_${scala.compat.version}</artifactId>
+        <version>${scopt.version}</version>
+    </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>3.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <active.profile>dev</active.profile>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <active.profile>prod</active.profile>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

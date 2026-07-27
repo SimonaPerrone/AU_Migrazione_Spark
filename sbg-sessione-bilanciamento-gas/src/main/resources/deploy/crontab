@@ -1,0 +1,1 @@
+30 07 7-31/3 * * ${deploy.path}/run_sbg.sh -s CCG -p ${deploy.path.hdfs}/params_ccg.properties >> ${deploy.path}/log/calcolo_sbg_ccg_`date +\%Y\%m\%d\%H\%M\%S`.log

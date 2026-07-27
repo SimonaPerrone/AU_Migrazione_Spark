@@ -1,0 +1,33 @@
+package it.eng.au.portale_consumi_ee.model.rcu
+
+case class RcuFasceMisuratore2gPModel(
+                                       n_id_fasce_misuratore_2g: String = null,
+                                       n_id_misuratore: String = null,
+                                       n_cod_giorno_2g: String = null,
+                                       d_data_giorno: String = null,
+                                       n_fascia_1: String = null,
+                                       n_fine_fascia_1: String = null,
+                                       n_fascia_2: String = null,
+                                       n_fine_fascia_2: String = null,
+                                       n_fascia_3: String = null,
+                                       n_fine_fascia_3: String = null,
+                                       n_fascia_4: String = null,
+                                       n_fine_fascia_4: String = null,
+                                       n_fascia_5: String = null,
+                                       n_fine_fascia_5: String = null,
+                                       n_fascia_6: String = null,
+                                       n_fine_fascia_6: String = null,
+                                       n_fascia_7: String = null,
+                                       n_fine_fascia_7: String = null,
+                                       n_fascia_8: String = null,
+                                       n_fine_fascia_8: String = null,
+                                       n_fascia_9: String = null,
+                                       n_fine_fascia_9: String = null,
+                                       n_fascia_10: String = null,
+                                       n_fine_fascia_10: String = null,
+                                       t_nota: String = null,
+                                       d_aggiornamento: String = null,
+                                       n_id_traccia: String = null,
+                                       n_id_s_prec: String = null,
+                                       d_data_rif: String = null
+                      )

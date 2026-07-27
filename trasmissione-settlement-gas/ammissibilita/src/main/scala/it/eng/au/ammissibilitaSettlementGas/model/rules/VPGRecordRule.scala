@@ -1,0 +1,10 @@
+package it.eng.au.ammissibilitaSettlementGas.model.rules
+
+import it.eng.au.ammissibilitaSettlementGas.model.{ReportMessage, Rule, VPG}
+
+case class VPGRecordRule(
+                          condition: VPG => Boolean,
+                          override val message: ReportMessage,
+                          override val ruleName: String = "",
+                          override val isEnabled: Boolean = true
+                        ) extends Rule

@@ -1,0 +1,21 @@
+spark2-shell
+
+val csv_path = "${hdfs.deploy.path}/Tabella_Generale_Codici_Profili_Standard.csv"
+
+
+val schema =
+     |    StructType(
+     |      StructField("PROF",StringType,true) ::
+     |      StructField("BETA1_PROF",DoubleType,true) ::
+     |      StructField("BETA2_PROF",DoubleType,true) ::
+     |      StructField("BETA3_PROF",DoubleType,true) ::
+     |      StructField("BETA4_PROF",DoubleType,true) ::
+     |      StructField("CAT_USO",StringType,true) ::
+     |      StructField("ZONA_CLIM",StringType,true) ::
+     |      StructField("CLASSE_PREL",StringType,true) :: Nil)
+
+val df = spark.read.options(Map("delimiter"->";")).format("csv").option("header", "true").schema(schema).load(csv_path)
+
+df.write.parquet(${tsg.TabParametriCaratteristiciProfPrel.basepath})
+
+

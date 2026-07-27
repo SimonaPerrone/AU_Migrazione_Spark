@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="def_dati_tecnici.xsd"/>
+  <xs:include schemaLocation="def_identificativi.xsd"/>
+  <xs:include schemaLocation="def_main_types.xsd"/>
+  <xs:include schemaLocation="def_cliente.xsd"/>
+  <xs:include schemaLocation="def_documentazione.xsd"/>
+  <xs:element name="FlussoSGS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="piva_utente" type="PIVA_new"/>
+		<xs:element name="dati_funz" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="matr_mis" type="Matricola" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="data_inst_mis" type="DataIta" minOccurs="0" maxOccurs="1"/>	
+					<xs:element name="gruppo_mis_int" type="OnOff" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="classe_gruppo_mis" type="CodificaClasseGM" />
+					<xs:element name="telegestione" type="OnOff" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="pre_conv" type="OnOff" minOccurs="0" maxOccurs="1"/> 
+					<xs:element name="matr_conv" type="Matricola" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="coeff_corr" type="Coefficiente" minOccurs="0" maxOccurs="1"/> 
+					<xs:element name="data_inst_conv" type="DataIta" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="cod_remi" type="CodiceREMI" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="id_reg_clim" type="regClimType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="tipo_mis" type="TipoMisuratoreType" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="cod_pdr" type="CodicePdr"/>
+			<xs:element name="DatiPdr" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="MeseAnno" type="MeseAnnoItaType"/>
+					<xs:element name="DatiPdRTecn" type="DatiPdRTecnType"/>
+					<xs:element name="DatiConsumo" type="DatiConsumoType"/>					  
+				</xs:sequence>
+			</xs:complexType>
+			</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="cod_flusso" type="TipoCodFlussoSGSType" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
