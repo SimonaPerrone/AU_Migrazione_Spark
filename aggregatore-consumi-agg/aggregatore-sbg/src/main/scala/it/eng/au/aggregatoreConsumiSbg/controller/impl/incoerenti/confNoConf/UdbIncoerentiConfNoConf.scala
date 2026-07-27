@@ -1,0 +1,6 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.incoerenti.confNoConf
+
+import it.eng.au.aggregatoreConsumiSbg.controller.impl.incoerenti.traits.UdbIncoerentiTraitSbg
+import it.eng.au.aggregatoreConsumiSbg.controller.traits.IncoerentiConfNoConfTraitSbg
+
+object UdbIncoerentiConfNoConf extends IncoerentiConfNoConfTraitSbg with UdbIncoerentiTraitSbg

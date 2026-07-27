@@ -1,0 +1,9 @@
+/.idea/
+/aggregatore-consumi-agg.iml
+/target/
+metastore_db/
+aggregatore-common/src/test/resources/local/tmp/AGG
+aggregatore-common/src/test/resources/local/AGG/AGG1
+aggregatore-common/src/test/resources/local/AGG/AGG2
+**/*header.csv*
+

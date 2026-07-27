@@ -1,0 +1,19 @@
+{   
+    "conf":{
+        "uri": "mongodb://pdc:AueMongo123@172.16.16.70:27019,172.16.16.159:27019/Forniture",
+        "database": "Forniture",
+        "CollectionFornitureElettriche": [{"FornitureElettriche":""}],
+        "CollectionFornitureGas": [{"FornitureGas":""}],
+        "CollectionMisureElettriche":[{"MisureElettriche33M":""}, {"MisureElettriche3M":""}],
+        "CollectionMisureGas": [{"MisureGas33M":""}, {"MisureGas3M":""}],      
+        "CollectionAuditElettrico": [{"AuditElettrico":"AuditElettrico"}],
+        "CollectionAuditGas": [{"AuditGas":"AuditGas"}],      
+        "CollectionAuditElettricoLog": "AuditElettrico",
+        "CollectionAuditGasLog": "AuditGas",
+        "TracciatureSPID":"TracciatureSPID"
+    },
+    "HOST" : "10.0.0.16",
+    "PORT" : 21050,
+    "USERNAME" : "leonardo",
+    "PASSWORD" : "cloudera_au"
+}

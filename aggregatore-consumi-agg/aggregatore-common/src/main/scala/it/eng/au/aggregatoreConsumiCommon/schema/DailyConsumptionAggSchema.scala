@@ -1,0 +1,38 @@
+package it.eng.au.aggregatoreConsumiCommon.schema
+
+object DailyConsumptionAggSchema extends SchemaEnum {
+  val
+  pdr,
+  date,
+  value,
+  pprof,
+  coefficient,
+  ca,
+  idRegClim,
+  codProfStd,
+  segnante,
+  idFormula,
+  errorCode,
+  pivaDistr,
+  pivaUdd,
+  pivaUdb,
+  pivaIt,
+  pivaRdb,
+  dtg,
+  codRemi,
+  tipoCliente,
+  unitMisPrel,
+  annoMese,
+  session,
+  treatment,
+  causale,
+  isValid,
+  executionid,
+  leftMeasureLocalFile,
+  rightMeasureLocalFile,
+  forcedExclusion,
+  tCodIstat,
+  classeMisuratore,
+  valuef3
+  = Value
+}

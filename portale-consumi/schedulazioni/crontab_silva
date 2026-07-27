@@ -1,0 +1,14 @@
+20 21 * * *  /home/silvia/schedulazioni/sched_flussismis1G.sh
+00 22 * * *  /home/silvia/schedulazioni/sched_flussismis.sh
+30 22 * * *  /home/silvia/schedulazioni/sched_altriflussi.sh
+30 23 * * *  /home/silvia/schedulazioni/sched_altriflussi1G.sh
+00 02 * * *  /home/silvia/schedulazioni/sched_flussi_gas.sh
+00 04 * * *  /home/silvia/schedulazioni/sched_flussipdo1g.sh
+30 04 * * *  /home/silvia/schedulazioni/sched_flussirfo1g.sh
+00 05 * * *  /home/silvia/schedulazioni/sched_flussipdo2g.sh
+40 05 * * *  /home/silvia/schedulazioni/sched_flussirfo2g.sh
+00 10 * * * /home/silvia/MONITORAGGIO_CRONTAB/TOToutputall.sh
+00 07 * * 3 /home/silvia/MONITORAGGIO_CONDIVISIONI/verifica.sh
+40 10 * * * /home/silvia/MONITORAGGIO_CRONTAB/script_listafiles/1Gcaricareall.sh
+00 04 * * * /home/silvia/IMPORT_SMIS/export_smis_to_oracle.sh
+

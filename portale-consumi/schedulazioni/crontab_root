@@ -1,0 +1,5 @@
+00 06 * * *  /root/schedulazioni_utility/run_clean.sh
+10 20 * * *  /root/schedulazioni_utility/run_clean.sh
+00 03 * * 6  /home/silvia/portale_consumi/run_import_sqoop.sh
+56 10 8 7 3 /home/silvia/schedulazioni_sqoop/import_rcugas_bilanciamento.sh
+

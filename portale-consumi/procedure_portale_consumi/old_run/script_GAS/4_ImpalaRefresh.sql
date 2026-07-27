@@ -1,0 +1,10 @@
+  use misuregas;
+  INVALIDATE METADATA;
+  REFRESH misuregas.letture_tgl;
+  REFRESH misuregas.letture_rgl;
+  REFRESH misuregas.letture_tml;
+  REFRESH misuregas.letture_rml;
+  REFRESH misuregas.letture_tal;
+  REFRESH misuregas.letture_tav;
+  REFRESH misuregas.letture_rmv;
+  REFRESH misuregas.letture_vtg;

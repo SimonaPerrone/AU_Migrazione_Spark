@@ -1,0 +1,34 @@
+create or replace view SWITCH_GAS.PRT_VTG6_p as 
+select 
+N_ID_VTG6,N_ID_VTG,N_ID_PRATICA,N_ID_UTENTE,T_CODICE_PDR,T_MATR_MIS,D_DATA_ATT_CONTR,N_VOL_ANNUO_SOST,T_CLASSE_GRUPPO_MIS,T_CIFRE_MIS,T_SEGN_MIS_SOST,
+T_PRE_CONV,T_GRUPPO_MIS_INT,N_COEFF_CORR,T_MATR_CONV,T_CIFRE_CONV,T_SEGN_CONV,D_DATA_MIS_EFF,T_SEGN_MIS_EFF,T_SEGN_CONV_EFF,T_NOTE,
+T_TIPO_LETTURA,B_COPIATO_TMG_MISURE,'0' as COD_FLUSSO,from_unixtime(unix_timestamp(D_DATA_MIS_EFF ,'dd/MM/yyyy')) D_DATA_MIS_EFF_TS
+from
+SWITCH_GAS.VTG6_01092019_P
+UNION ALL
+select 
+'0' as N_ID_VTG6,
+'0' as N_ID_VTG,
+'0' as N_ID_PRATICA,
+'0' as N_ID_UTENTE,
+cod_pdr as T_CODICE_PDR,
+matr_mis as T_MATR_MIS,
+data_att_contr as D_DATA_ATT_CONTR,
+vol_annuo_sost as N_VOL_ANNUO_SOST,
+classe_gruppo_mis as T_CLASSE_GRUPPO_MIS,
+n_cifre_mis as T_CIFRE_MIS,
+segn_mis_sost as T_SEGN_MIS_SOST,
+pre_conv as T_PRE_CONV,
+gruppo_mis_int as T_GRUPPO_MIS_INT,
+coeff_corr as N_COEFF_CORR,
+matr_conv as T_MATR_CONV,
+n_cifre_conv as T_CIFRE_CONV,
+segn_conv as T_SEGN_CONV,
+data_mis_eff as D_DATA_MIS_EFF,
+segn_mis_eff as T_SEGN_MIS_EFF,
+segn_conv_eff as T_SEGN_CONV_EFF,
+note as T_NOTE,
+tipo_lettura as T_TIPO_LETTURA,
+'0' as B_COPIATO_TMG_MISURE,
+cod_flusso,from_unixtime(unix_timestamp(data_mis_eff ,'dd/MM/yyyy')) D_DATA_MIS_EFF_TS
+from cmg_gas.prt_cmg_tmv_p;

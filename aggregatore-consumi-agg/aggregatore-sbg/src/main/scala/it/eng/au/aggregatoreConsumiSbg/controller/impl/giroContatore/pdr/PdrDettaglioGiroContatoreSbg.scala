@@ -1,0 +1,5 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.giroContatore.pdr
+
+import it.eng.au.aggregatoreConsumiCommon.controller.impl.giroContatore.pdr.PdrDettaglioGiroContatore
+
+trait PdrDettaglioGiroContatoreSbg extends PdrDettaglioGiroContatore

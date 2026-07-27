@@ -1,0 +1,5 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.incoerentiDettaglio.elencoFlussi
+
+import it.eng.au.aggregatoreConsumiCommon.controller.impl.incoerentiDettaglio.elencoFlussi.ElencoFlussiDettaglioIncoerenti
+
+trait ElencoFlussiDettaglioIncoerentiSbg extends ElencoFlussiDettaglioIncoerenti

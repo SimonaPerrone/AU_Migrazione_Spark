@@ -1,0 +1,5 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.giroContatore.elencoFlussi
+
+import it.eng.au.aggregatoreConsumiCommon.controller.impl.giroContatore.elencoFlussi.ElencoFlussiDettaglioGiroContatore
+
+trait ElencoFlussiDettaglioGiroContatoreSbg extends ElencoFlussiDettaglioGiroContatore

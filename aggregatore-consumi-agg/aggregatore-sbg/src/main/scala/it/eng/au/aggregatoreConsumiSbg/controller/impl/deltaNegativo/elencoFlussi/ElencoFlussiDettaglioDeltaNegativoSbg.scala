@@ -1,0 +1,5 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.deltaNegativo.elencoFlussi
+
+import it.eng.au.aggregatoreConsumiCommon.controller.impl.deltaNegativo.elencoFlussi.ElencoFlussiDettaglioDeltaNegativo
+
+trait ElencoFlussiDettaglioDeltaNegativoSbg extends ElencoFlussiDettaglioDeltaNegativo

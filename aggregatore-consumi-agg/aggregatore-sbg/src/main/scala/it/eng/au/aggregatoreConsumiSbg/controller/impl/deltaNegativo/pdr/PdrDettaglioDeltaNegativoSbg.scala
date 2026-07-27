@@ -1,0 +1,5 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.deltaNegativo.pdr
+
+import it.eng.au.aggregatoreConsumiCommon.controller.impl.deltaNegativo.pdr.PdrDettaglioDeltaNegativo
+
+trait PdrDettaglioDeltaNegativoSbg extends PdrDettaglioDeltaNegativo

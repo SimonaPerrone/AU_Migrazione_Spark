@@ -1,0 +1,5 @@
+${deploy.path}/run_aggregatore_sbg.sh -o "aggregato->SBG1,esclusi->SBG1,dettaglioUnico->SBG1,dettaglio->SBG1,incoerenti->SBG1"
+${deploy.path}/run_aggregatore_sbg.sh -o "aggregato->SBG2,esclusi->SBG2,incoerenti->SBG2"
+${deploy.path}/run_aggregatore_sbg.sh -o "aggregato->SBG3,incoerenti->SBG3"
+${deploy.path}/run_aggregatore_sbg.sh -o "aggregato->SBG4,esclusi->SBG4,dettaglioUnico->SBG4,dettaglio->SBG4,incoerenti->SBG4"
+${deploy.path}/run_aggregatore_sbg.sh -o "aggregato->SBG5,esclusi->SBG5,dettaglioUnico->SBG5,dettaglio->SBG5,dtg->SBG5,incoerenti->SBG5"

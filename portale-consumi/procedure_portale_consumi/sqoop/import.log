@@ -1,0 +1,33 @@
+Fri Dec  4 18:36:35 CET 2020 Scarico tabella RCU.RCU_POD in corso...
+Fri Dec  4 18:36:35 CET 2020 Scarico tabella RCU.RCU_POD_DISTR in corso...
+Fri Dec  4 18:36:35 CET 2020 Scarico tabella RCU.RCU_POD_MISURE in corso...
+Fri Dec  4 18:36:35 CET 2020 Scarico tabella RCU.RCU_POD_STATO in corso...
+Fri Dec  4 18:36:35 CET 2020 Scarico tabella RCU.RCU_POD_UDD in corso...
+Fri Dec  4 18:36:35 CET 2020 Scarico vista RCU.V_RCU_AZIENDA in corso...
+Fri Dec  4 18:36:59 CET 2020 Importazione dati vista RCU.V_RCU_AZIENDA completata con successo.
+Fri Dec  4 18:37:25 CET 2020 Creazione vista  RCU.V_RCU_AZIENDA_p completata con successo.
+Fri Dec  4 18:37:25 CET 2020 Scarico vista RCUGAS.V_RCUGAS_DISTRIBUTORE in corso...
+Fri Dec  4 18:37:50 CET 2020 Importazione dati vista RCUGAS.V_RCUGAS_DISTRIBUTORE completata con successo.
+Fri Dec  4 18:38:18 CET 2020 Creazione vista  RCUGAS.V_RCUGAS_DISTRIBUTORE_p completata con successo.
+Fri Dec  4 18:38:18 CET 2020 Scarico vista TMPOD_CLOUD.DISTR_AZ in corso...
+Fri Dec  4 18:37:48 CET 2020 Importazione dati tabella RCU.RCU_POD_UDD completata con successo.
+Fri Dec  4 18:38:37 CET 2020 Creazione tabella RCU.RCU_POD_UDD_p completata con successo.
+Fri Dec  4 18:38:37 CET 2020 Importazione tabella RCU.RCU_POD_UDD completato
+Fri Dec  4 18:37:55 CET 2020 Importazione dati tabella RCU.RCU_POD_MISURE completata con successo.
+Fri Dec  4 18:38:44 CET 2020 Creazione tabella RCU.RCU_POD_MISURE_p completata con successo.
+Fri Dec  4 18:38:44 CET 2020 Importazione tabella RCU.RCU_POD_MISURE completato
+Fri Dec  4 18:38:04 CET 2020 Importazione dati tabella RCU.RCU_POD_STATO completata con successo.
+Fri Dec  4 18:38:51 CET 2020 Creazione tabella RCU.RCU_POD_STATO_p completata con successo.
+Fri Dec  4 18:38:51 CET 2020 Importazione tabella RCU.RCU_POD_STATO completato
+Fri Dec  4 18:38:42 CET 2020 Importazione dati vista TMPOD_CLOUD.DISTR_AZ completata con successo.
+Fri Dec  4 18:39:07 CET 2020 Creazione vista  TMPOD_CLOUD.DISTR_AZ_p completata con successo.
+Fri Dec  4 18:39:07 CET 2020 Scarico vista RCU.RCU_UDD in corso...
+Fri Dec  4 18:39:32 CET 2020 Importazione dati vista RCU.RCU_UDD completata con successo.
+Fri Dec  4 18:39:57 CET 2020 Creazione vista  RCU.RCU_UDD_p completata con successo.
+Fri Dec  4 18:40:04 CET 2020 Importazione dati tabella RCU.RCU_POD_DISTR completata con successo.
+Fri Dec  4 18:40:47 CET 2020 Creazione tabella RCU.RCU_POD_DISTR_p completata con successo.
+Fri Dec  4 18:40:47 CET 2020 Importazione tabella RCU.RCU_POD_DISTR completato
+Fri Dec  4 18:46:31 CET 2020 Importazione dati tabella RCU.RCU_POD completata con successo.
+Fri Dec  4 18:47:19 CET 2020 Creazione tabella RCU.RCU_POD_p completata con successo.
+Fri Dec  4 18:47:19 CET 2020 Importazione tabella RCU.RCU_POD completato
+Fri Dec  4 18:47:21 CET 2020 Tutte le operazioni sono concluse

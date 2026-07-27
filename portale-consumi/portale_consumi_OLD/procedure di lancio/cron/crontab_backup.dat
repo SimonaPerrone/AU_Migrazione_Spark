@@ -1,0 +1,17 @@
+00 19 * * *  /home/leonardo/schedulazioni_sqoop/rcugas_connessioni_distr.sh
+00 21 * * *  /home/leonardo/schedulazioni/sched_flussismis.sh
+10 22 * * *  /home/leonardo/schedulazioni/sched_altriflussi.sh
+10 23 * * *  /home/leonardo/schedulazioni/sched_altriflussi1G.sh
+00 01 * * *  /home/leonardo/schedulazioni_sqoop/rcugas_massivo_elab.sh
+00 02 * * *  /home/leonardo/schedulazioni/sched_flussi_gas.sh
+00 05 * * *  /home/leonardo/schedulazioni/sched_flussipdo2g.sh
+00 06 * * 6  /home/leonardo/portale_consumi/go_update_pc.sh
+00 06 * * 0  /home/leonardo/portale_consumi/go_update_pc_34_2.sh
+00 10 * * * /home/leonardo/MONITORAGGIO_CRONTAB/TOToutputall.sh
+00 07 * * 3 /home/leonardo/MONITORAGGIO_CONDIVISIONI/verifica.sh
+40 10 * * * /home/leonardo/MONITORAGGIO_CRONTAB/script_listafiles/1Gcaricareall.sh
+00 04 * * * /home/leonardo/IMPORT_SMIS/test_nuovo_script/importsmisV2.sh
+#00 04 * * * /home/leonardo/IMPORT_SMIS/importsmis.sh
+#00 22 * * *  hive -f /home/leonardo/au_test_20180820/Flusso-Misure/bin/rebuild_index_quarti_new.sql >/dev/null 2>&1
+#00 23 * * *  hive -f /home/leonardo/au_test_20180820/Flusso-Misure/bin/rebuild_index_podorari.sql >/dev/null 2>&1
+#00 09 * * * /home/leonardo/MONITORAGGIO_CRONTAB/outputall.sh

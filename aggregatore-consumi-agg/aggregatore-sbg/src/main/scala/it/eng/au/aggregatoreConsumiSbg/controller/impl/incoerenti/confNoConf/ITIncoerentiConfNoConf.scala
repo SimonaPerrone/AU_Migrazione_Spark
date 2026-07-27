@@ -1,0 +1,6 @@
+package it.eng.au.aggregatoreConsumiSbg.controller.impl.incoerenti.confNoConf
+
+import it.eng.au.aggregatoreConsumiSbg.controller.impl.incoerenti.traits.ITIncoerentiTraitSbg
+import it.eng.au.aggregatoreConsumiSbg.controller.traits.IncoerentiConfNoConfTraitSbg
+
+object ITIncoerentiConfNoConf extends IncoerentiConfNoConfTraitSbg with ITIncoerentiTraitSbg
