@@ -1,0 +1,1 @@
+00 18 15,28-31 * * [[("$(date +\%d)" == "15") || ("$(date --date=tomorrow +\%d)" == "01")]] && ${deploy.path}/run_agg.sh -d 6 -r 60G -n 30 -c 6 -m 60G -x 20G -h 4000 -s CCG -p ${deploy.path.hdfs}/params_ccg.properties >> ${deploy.path}/log/calcolo_agg_ccg_`date +\%Y\%m\%d\%H\%M\%S`.log

@@ -1,0 +1,36 @@
+create external table ${agg.db}.daily_consumption_agg
+(
+    pdr string,
+    date timestamp,
+    value double,
+    pprof double,
+    coefficient double,
+    ca double,
+    idRegClim int,
+    codProfStd string,
+    segnante string,
+    idFormula int,
+    errorCode int,
+    pivaDistr string,
+    pivaUdd string,
+    pivaUdb string,
+    pivaIt string,
+    pivaRdb string,
+    dtg string,
+    codRemi string,
+    tipoCliente string,
+    unitMisPrel string,
+    annoMese string,
+    treatment string,
+    causale string,
+    isValid boolean,
+    leftMeasureLocalFile string,
+    rightMeasureLocalFile string,
+    forceExclusion boolean,
+    tCodIstat string,
+    classeMisuratore string,
+    valueNotSterilized double,
+    valueF3 double
+) partitioned by (session string, executionid bigint)
+stored as parquet
+location '${agg.output.rootpath}/daily_consumption_agg'
