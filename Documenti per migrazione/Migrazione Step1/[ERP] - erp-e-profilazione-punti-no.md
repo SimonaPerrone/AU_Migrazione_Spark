@@ -1,4 +1,4 @@
-# STEP 1: MIGRAZIONE ARCHITETTURALE ingestion-misure-gas-unico
+# STEP 1: MIGRAZIONE ARCHITETTURALE erp-e-profilazione-punti-no
 
 ## YARN+NFS → YARN(decomp)+CDE(calcolo) + HDFS Gateway + Kerberos
 
@@ -8,18 +8,18 @@
 
 | Componente | PRIMA | DOPO | File |
 |---|---|---|---|
-| **UnzipDriver** | YARN + NFS | YARN + HDFS Gateway + Kerberos | `spark-submit-ingestion-misure-gas-unico-unzip.sh` |
-| **FlowDriver** | YARN + NFS | CDE + HDFS + Kerberos | `spark-submit-ingestion-misure-gas-unico-ingestion.sh` |
+| **UnzipDriver** | YARN + NFS | YARN + HDFS Gateway + Kerberos | `spark-submit-erp-e-profilazione-punti-no-unzip.sh` |
+| **FlowDriver** | YARN + NFS | CDE + HDFS + Kerberos | `spark-submit-erp-e-profilazione-punti-no-ingestion.sh` |
 | **Autenticazione** | — | `kinit` (Kerberos) | Aggiungi agli script |
-| **Path Input** | `/mnt/isilonshare_ingestion-misure-gas-unico` | `/mnt/hdfs-gateway/ingestion-misure-gas-unico/input` | `config.properties` |
-| **Path Temp** | `/mnt/isilonshare1/ingestion-misure-gas-unico_INJ_STD/...` | `/mnt/hdfs-gateway/ingestion-misure-gas-unico/temp` | `config.properties` |
+| **Path Input** | `/mnt/isilonshare_erp-e-profilazione-punti-no` | `/mnt/hdfs-gateway/erp-e-profilazione-punti-no/input` | `config.properties` |
+| **Path Temp** | `/mnt/isilonshare1/erp-e-profilazione-punti-no_INJ_STD/...` | `/mnt/hdfs-gateway/erp-e-profilazione-punti-no/temp` | `config.properties` |
 | **Storage** | Isilon NFS | HDFS via Gateway (esposto NFS) | Infrastructure |
 
 ---
 
 ## A. SCRIPT DA MODIFICARE
 
-### A1. `spark-submit-ingestion-misure-gas-unico-unzip.sh` - YARN Decompression
+### A1. `spark-submit-erp-e-profilazione-punti-no-unzip.sh` - YARN Decompression
 
 ```bash
 #!/bin/bash
@@ -34,10 +34,10 @@ fi
 
 # RESTO DEL COMANDO RIMANE UGUALE
 spark2-submit \
-    --class it.au.ingestion-misure-gas-unico.driver.UnzipDriver \
+    --class it.au.erp-e-profilazione-punti-no.driver.UnzipDriver \
     --master yarn \
     ... (resto invariato)
-A2. spark-submit-ingestion-misure-gas-unico-ingestion.sh - CDE Calcolo
+A2. spark-submit-erp-e-profilazione-punti-no-ingestion.sh - CDE Calcolo
 bash
 
 
@@ -53,13 +53,13 @@ fi
 
 # OPZIONE 1: Mantieni YARN (per ora)
 spark2-submit --master yarn \
-    --class it.au.ingestion-misure-gas-unico.driver.FlowDriver \
+    --class it.au.erp-e-profilazione-punti-no.driver.FlowDriver \
     ... (resto invariato)
 
 # OPZIONE 2: Migra a CDE (quando pronto)
 # spark2-submit --master kubernetes \
 #     --conf spark.kubernetes.authenticate.cdeUser=airflow \
-#     --class it.au.ingestion-misure-gas-unico.driver.FlowDriver \
+#     --class it.au.erp-e-profilazione-punti-no.driver.FlowDriver \
 #     ... (resto invariato)
 B. CONFIGURAZIONE PROPERTIES
 B1. config.properties - PATH UPDATES
@@ -75,38 +75,38 @@ properties
 root.path=/mnt/hdfs-gateway
 
 # Input paths
-unzip.input.path=/mnt/hdfs-gateway/ingestion-misure-gas-unico/input
-# PRIMA: /mnt/isilonshare_ingestion-misure-gas-unico
+unzip.input.path=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/input
+# PRIMA: /mnt/isilonshare_erp-e-profilazione-punti-no
 
 # Temp paths
-temp.path=/mnt/hdfs-gateway/ingestion-misure-gas-unico/temp
-# PRIMA: /mnt/isilonshare1/ingestion-misure-gas-unico_INJ_STD/isilonshare_ingestion-misure-gas-unico
+temp.path=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/temp
+# PRIMA: /mnt/isilonshare1/erp-e-profilazione-punti-no_INJ_STD/isilonshare_erp-e-profilazione-punti-no
 
-temp.path.old=/mnt/hdfs-gateway/ingestion-misure-gas-unico/temp_old
-# PRIMA: /mnt/isilonshare1/ingestion-misure-gas-unico_INJ/isilonshare_ingestion-misure-gas-unico
+temp.path.old=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/temp_old
+# PRIMA: /mnt/isilonshare1/erp-e-profilazione-punti-no_INJ/isilonshare_erp-e-profilazione-punti-no
 
 # XSD e config
-xsd.path=/mnt/hdfs-gateway/ingestion-misure-gas-unico/xsd
-# PRIMA: /mnt/isilonshare1/XSD_ingestion-misure-gas-unico_STANDARD
+xsd.path=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/xsd
+# PRIMA: /mnt/isilonshare1/XSD_erp-e-profilazione-punti-no_STANDARD
 
 # Validation/reports
-ammissibilita.standard.path=/mnt/hdfs-gateway/ingestion-misure-gas-unico/ammissibilita
+ammissibilita.standard.path=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/ammissibilita
 # PRIMA: /mnt/isilonshare1/TMG_SYNC_TMP1
 
 # Deploy
-deploy.path=/mnt/hdfs-gateway/ingestion-misure-gas-unico/deploy
-# PRIMA: /mnt/isilonshare1/Software/ingestion-misure-gas-unico/STANDARD
+deploy.path=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/deploy
+# PRIMA: /mnt/isilonshare1/Software/erp-e-profilazione-punti-no/STANDARD
 B2. application.conf - VERIFY/UPDATE
 properties
 
 
 # Verifica e aggiorna se presenti:
 
-rootPath=/mnt/hdfs-gateway/ingestion-misure-gas-unico/ingestion
-# PRIMA: /mnt/isilonshare1/ingestion-misure-gas-unico_INJ_STD/...
+rootPath=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/ingestion
+# PRIMA: /mnt/isilonshare1/erp-e-profilazione-punti-no_INJ_STD/...
 
-tempRootPath=/mnt/hdfs-gateway/ingestion-misure-gas-unico/temp
-# PRIMA: /mnt/isilonshare1/ingestion-misure-gas-unico_INJ_STD/...
+tempRootPath=/mnt/hdfs-gateway/erp-e-profilazione-punti-no/temp
+# PRIMA: /mnt/isilonshare1/erp-e-profilazione-punti-no_INJ_STD/...
 C. FILE DI CONFIGURAZIONE KERBEROS (NEW)
 C1. Creare: kerberos.conf
 properties
@@ -122,7 +122,7 @@ Deve essere creata nel sistema:
 
 
 /mnt/hdfs-gateway/
-├── ingestion-misure-gas-unico/
+├── erp-e-profilazione-punti-no/
 │   ├── input/          ← File input originali (ZIP/CSV/etc)
 │   ├── temp/           ← File decompressed/temporanei
 │   ├── temp_old/       ← Backup temp
@@ -137,10 +137,10 @@ Esegui in ordine per validare setup:
 
 Test	Comando	Expected
 Kerberos	kinit -kt /etc/security/keytabs/airflow.keytab airflow@REALM.COM && klist -s	Exit code 0
-Gateway Access	ls /mnt/hdfs-gateway/ingestion-misure-gas-unico/input/	Directory listing OK
-Write Access	touch /mnt/hdfs-gateway/ingestion-misure-gas-unico/temp/test.txt && rm test.txt	File created/deleted
-UnzipDriver	bash spark-submit-ingestion-misure-gas-unico-unzip.sh --input=sample.zip	Job SUCCEEDED
-FlowDriver	bash spark-submit-ingestion-misure-gas-unico-ingestion.sh --input=unzipped/	Job SUCCEEDED
+Gateway Access	ls /mnt/hdfs-gateway/erp-e-profilazione-punti-no/input/	Directory listing OK
+Write Access	touch /mnt/hdfs-gateway/erp-e-profilazione-punti-no/temp/test.txt && rm test.txt	File created/deleted
+UnzipDriver	bash spark-submit-erp-e-profilazione-punti-no-unzip.sh --input=sample.zip	Job SUCCEEDED
+FlowDriver	bash spark-submit-erp-e-profilazione-punti-no-ingestion.sh --input=unzipped/	Job SUCCEEDED
 F. CHECKLIST IMPLEMENTAZIONE
 Segui in ordine:
 
@@ -152,8 +152,8 @@ INFRA
   ☐ Directory structure creata (vedi Sezione D)
 
 CODE
-  ☐ Modifica spark-submit-ingestion-misure-gas-unico-unzip.sh con kinit
-  ☐ Modifica spark-submit-ingestion-misure-gas-unico-ingestion.sh con kinit
+  ☐ Modifica spark-submit-erp-e-profilazione-punti-no-unzip.sh con kinit
+  ☐ Modifica spark-submit-erp-e-profilazione-punti-no-ingestion.sh con kinit
   ☐ Update config.properties con nuovi path (Sezione B1)
   ☐ Update application.conf con nuovi path se presente (Sezione B2)
   ☐ Creare kerberos.conf (Sezione C1)
@@ -193,8 +193,8 @@ Fase di implementazione step-by-step:
 
 Fase	Componente	Azione	File	Status
 1	Infrastructure	Verificare keytab + mount	/etc/security/keytabs/	☐
-2	Script Unzip	Add kinit + test	spark-submit-ingestion-misure-gas-unico-unzip.sh	☐
-3	Script Flow	Add kinit/CDE + test	spark-submit-ingestion-misure-gas-unico-ingestion.sh	☐
+2	Script Unzip	Add kinit + test	spark-submit-erp-e-profilazione-punti-no-unzip.sh	☐
+3	Script Flow	Add kinit/CDE + test	spark-submit-erp-e-profilazione-punti-no-ingestion.sh	☐
 4	Config Props	Update path input/temp	config.properties	☐
 5	Config App	Verify path se presente	application.conf	☐
 6	Kerberos	Creare file config	kerberos.conf	☐
@@ -202,11 +202,11 @@ Fase	Componente	Azione	File	Status
 8	Test	End-to-end flow	CLI commands Sezione E	☐
 9	Validation	Confrontare risultati	Output reports	☐
 I. NOTE IMPORTANTI
-Path mapping: ogni occorrenza di /mnt/isilonshare* → /mnt/hdfs-gateway/ingestion-misure-gas-unico/*
+Path mapping: ogni occorrenza di /mnt/isilonshare* → /mnt/hdfs-gateway/erp-e-profilazione-punti-no/*
 Kerberos: kinit DEVE eseguire subito all'inizio dello script, prima di qualunque operazione Spark
 YARN vs CDE: puoi mantenere YARN per ora (Opzione 1 in A2), migrazione CDE è fase successiva
 Keytab permissions: ls -la /etc/security/keytabs/airflow.keytab → deve essere readable da utente airflow
-Directory ownership: /mnt/hdfs-gateway/ingestion-misure-gas-unico/* → deve essere writable da airflow
+Directory ownership: /mnt/hdfs-gateway/erp-e-profilazione-punti-no/* → deve essere writable da airflow
 Config consolidation: se hai altri file di config, aggiorna anche quelli con i nuovi path
 J. TROUBLESHOOTING
 
